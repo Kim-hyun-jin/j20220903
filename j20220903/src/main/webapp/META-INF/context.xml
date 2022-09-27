@@ -1,0 +1,27 @@
+<context>
+	<Resource
+		name="jdbc/OracleDB"
+		auth="Container"
+		type="javax.sql.DataSource"
+		username="scott"
+		password="tiger"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+		maxActive="50"
+		maxIdle="10"
+	/>
+
+	<Resource 
+		name="jdbc/MySql" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		username="root" 
+		password="mysql80" 
+		driverClassName="com.mysql.cj.jdbc.Driver" 
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" 
+		url="jdbc:mysql://localhost:3306/scottdb?serverTimezone=UTC" 
+		maxActive="100" 
+		maxIdle="10"
+	/>
+</context>
