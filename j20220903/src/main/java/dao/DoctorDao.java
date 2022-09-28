@@ -40,7 +40,7 @@ public class DoctorDao {
 		return conn;
 	}
 	
-	public int check(String doctor_no, String password) throws SQLException {
+	public int check(String doctor_no, int password) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

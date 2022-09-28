@@ -19,7 +19,7 @@ public class LoginPro implements CommandProcess {
 		
 		try {
 			String doctor_no = request.getParameter("doctor_no");
-			String password = request.getParameter("password");
+			int password = Integer.parseInt(request.getParameter("password"));
 			
 			DoctorDao dd = DoctorDao.getInstance();
 			int result = dd.check(doctor_no, password);
