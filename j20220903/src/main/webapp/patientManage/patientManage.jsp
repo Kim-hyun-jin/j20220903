@@ -26,6 +26,7 @@
 		height: 800px;
 		margin: 0 auto;
 	}
+	
 	#header {
 		height : 50px;
 		background-color: cornflowerblue;
@@ -137,6 +138,13 @@
 		text-decoration: none;
 		color: inherit;
 	}
+	
+	/* content부분 css 시작 */
+	
+	#patient_manage_table
+	{
+		padding:20px;
+	}
 </style>
 
 
@@ -165,7 +173,7 @@
 				<a href="">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">내환자</a>
+				<a href="../patientManage/patientManage.jsp">내환자</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="drug.jsp">의약품조회</a>
@@ -182,20 +190,38 @@
   	
   	
   	<div id="contents">
-  		<p>환자관리</p>
   		
-  		<table borger="2">
-  		
-  		<tr><th>환자번호</th><th>환자이름</th><th>주민번호</th><th>성별</th><th>연락처</th><th>주소</th></tr>
-  		
-  		<c:foreach>
+  		<table class="patient_manage_table" border="2">
+  		<caption>환자관리</caption>
+	  		<tr><th>환자번호</th><th>환자이름</th><th>생년월일</th><th>성별</th><th>연락처</th><th>보호자연락처</th><th>주소</th><th>버튼</th></tr>
+	  		<tr><td>1</td><td>장하영</td><td>생년월일</td><td>여</td><td>010-1111-2222</td><td>010-1111-2222</td><td>주소</td></tr>
+	  		<tr><td>1</td><td>장하영</td><td>생년월일</td><td>여</td><td>010-1111-2222</td><td>010-1111-2222</td><td>주소</td></tr>
+	  		<tr><td>1</td><td>장하영</td><td>생년월일</td><td>여</td><td>010-1111-2222</td><td>010-1111-2222</td><td>주소</td></tr>
+<%--   		<c:foreach>
   			<c:if test=" ">
   			<tr><td></td><td></td><td></td><td></td><td></td></tr>
   			</c:if>
-  		</c:foreach>
-  		
+  		</c:foreach> --%>
   		
   		</table>
+  		
+  		<div class="button">
+	  		<div class="patient_manage_button">
+	  			<input type="button" onclick="location.href='myPatientList.jsp'" value="자세히보기">
+	  			<input type="button" onclick="location.href='patientManageDetail.jsp?patient_no=${patient_no}'" value="자세히보기">
+	  			<input type="button" onclick="" value="자세히보기">
+	  			<input type="button" onclick="" value="자세히보기">
+	  			<input type="button" onclick="" value="자세히보기">
+	  		</div>
+	  		
+	  		<div class="patient_manage_button">
+	  		
+	  		</div>
+	  		<div class="patient_manage_button">
+	  		
+	  		</div>
+  		</div>
+  		
   	</div>
   	
   	
