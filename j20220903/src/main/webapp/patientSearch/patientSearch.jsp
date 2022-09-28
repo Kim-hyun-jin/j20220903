@@ -7,18 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>merge실험용</h2>
-<h2>fetch연습</h2>
-
-
-
-
-
-
-
-
-
-
-<h2> 분기생성 확인용 commit</h2>
+<jsp:include page="top-side.html"/>
+<article>hi friends</article>
+<jsp:include page="footer.html"/>
 </body>
 </html>
