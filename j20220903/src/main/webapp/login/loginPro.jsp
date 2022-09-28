@@ -7,15 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+   String context = request.getContextPath();
+%>
 <body>
 	<c:if test="${result == 1 }">
 		<script type="text/javascript">
-			location.href="../mainView.do";
+			location.href="<%=context%>/mainView.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			location.href="loginNot.jsp";
+			location.href="login/loginNot.jsp";
 		</script>
 	</c:if>
 </body>
