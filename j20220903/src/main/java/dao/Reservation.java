@@ -2,6 +2,7 @@ package dao;
 
 public class Reservation {
 
+
 	private String reservation_date;//PK 예약일
 	private String reservation_hour;//PK 예약시간
 	private String doctor_no;//PK FK 의사번호
@@ -32,5 +33,6 @@ public class Reservation {
 	public void setPatient_no(String patient_no) {
 		this.patient_no = patient_no;
 	}
+
 	
 }
