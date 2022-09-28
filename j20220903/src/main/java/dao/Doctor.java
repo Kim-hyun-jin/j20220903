@@ -3,7 +3,7 @@ package dao;
 public class Doctor {
 	
 	private String doctor_no;//PK 의사번호
-	private String password;//비밀번호
+	private int password;//비밀번호
 	private String doctor_name;//의사이름
 	private String department;//진료과
 	private String image;//의사사진
@@ -14,10 +14,10 @@ public class Doctor {
 	public void setDoctor_no(String doctor_no) {
 		this.doctor_no = doctor_no;
 	}
-	public String getPassword() {
+	public int getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 	public String getDoctor_name() {
