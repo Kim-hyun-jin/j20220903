@@ -23,14 +23,14 @@ public class LoginPro implements CommandProcess {
 			
 			DoctorDao dd = DoctorDao.getInstance();
 			int result = dd.check(doctor_no, password);
+			System.out.println(result);
 			
-			request.setAttribute("doctor_no", doctor_no);
-			request.setAttribute("password", password);
+			request.setAttribute("result", result);
 		} catch (Exception e) {
 			System.out.println("LoginPro Error ->" + e.getMessage());
 		}
 		
-		return "loginPro.jsp";
+		return "login/loginPro.jsp";
 
 	}
 
