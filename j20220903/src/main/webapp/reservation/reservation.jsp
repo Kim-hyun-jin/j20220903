@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="revStyle.css">  
 <style type="text/css">
 	table tr td {
@@ -18,8 +19,7 @@
 		height:15px;
 	}
 </style>
-</head>
-</head> 
+
 <body>   
   <div id="container">  
   	<div id="header">

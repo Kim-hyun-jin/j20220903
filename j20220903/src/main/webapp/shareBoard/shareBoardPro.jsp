@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	alert("성공했어요!");
-	alert("branch를 생성했어요!")
-	location.href="../mainView.do";
-</script>
+
 </body>
 </html>

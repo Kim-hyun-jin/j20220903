@@ -7,6 +7,11 @@
 <title>로그인</title>
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" href="login.css" >
+<style type="text/css">
+#login_not {
+color: red;
+}
+</style>
 </head>
 <body>
 	<!-- 전체 박스 -->
@@ -35,6 +40,7 @@
 				회원가입은 <a href="">여기</a>에서 할 수 있습니다.
 			</span><p>
 			<span class="ment" id="login_not">
+				사번 또는 암호가 일치하지 않습니다.
 			</span>
 		</form>
 	</div>	

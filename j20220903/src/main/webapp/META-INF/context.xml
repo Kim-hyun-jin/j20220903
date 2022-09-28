@@ -3,7 +3,7 @@
 		name="jdbc/OracleDB"
 		auth="Container"
 		type="javax.sql.DataSource"
-		username="scott"
+		username="j20220903"
 		password="tiger"
 		driverClassName="oracle.jdbc.driver.OracleDriver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
