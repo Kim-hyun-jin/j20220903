@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="top-side.html"%>
-<div>hi</div>
-<%@ include file="footer.html"%>
+
 </body>
 </html>
