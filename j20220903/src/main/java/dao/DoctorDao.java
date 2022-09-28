@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -53,9 +55,10 @@ public class DoctorDao {
 			rs = pstmt.executeQuery();
 			// 일단 id OK 상태
 			if(rs.next()) {
-				String dbPasswd = rs.getString(2);
+				int dbPasswd = rs.getInt(2);
+				System.out.println(dbPasswd);
 				// password 체크
-				if (dbPasswd.equals(password)) {
+				if (dbPasswd == password) {
 					result = 1;
 				}
 			} ;
@@ -68,5 +71,38 @@ public class DoctorDao {
 			if (conn != null) conn.close();
 		}
 		return result;
+	}
+	
+	public Doctor select(String doctor_no) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM doctor WHERE doctor_no=?";
+
+		Doctor doctor = new Doctor();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, doctor_no);
+			rs = pstmt.executeQuery();
+			// id는 primary key 이므로 데이터는 하나
+			// 따라서 while문이 필요 없다.
+			if (rs.next()) {
+				doctor.setDoctor_no(rs.getString("doctor_no"));
+				doctor.setDoctor_name(rs.getString("doctor_name"));
+				doctor.setDepartment(rs.getString("department"));
+				doctor.setPassword(rs.getInt("password"));
+				doctor.setImage(rs.getString("image"));
+			}
+		} catch (Exception e) {
+			System.out.println("select error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+
+		return doctor;
+
 	}
 }
