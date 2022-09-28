@@ -1,0 +1,67 @@
+@charset "UTF-8";
+	body {
+		margin: 50px;;
+		display: flex;
+		justify-content: center;
+	}
+
+	div {
+		border: 2px solid #489CFF;
+		width: 600px;
+		height: 700px;
+	}
+	
+	h1 {
+		margin-top: 100px;
+		color: #489CFF;
+		display: flex;
+		font-size : 3em;
+		justify-content: center;
+	}
+	
+	hr {
+		width: 412px;
+		margin-bottom: 60px;
+		margin-top: 60px;
+	}
+	
+	
+	a {
+		text-decoration: none;
+		color: #489CFF;
+	}
+	
+	i {
+		width: 48px;
+		height: 48px;
+		margin-right: 8px;
+	}
+	
+	.ment {
+		margin-left: 15%;
+	}
+	
+	.id {
+		width: 65%;
+		padding: 8px;
+		margin-left: 15%;
+		margin-bottom: 15px;
+		font-size: 16px;
+	}
+	
+	.log {
+		width: 68%;
+		border: 0;
+		border-radius: 5px;
+		padding: 6px;
+		margin-left: 15%;
+		background-color: #489CFF;
+		color: white;
+	}
+	
+	label {
+		margin-left: 15%;
+	}
+	#login_not {
+		color: red;
+	}
