@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="top-side.html"/>
-<article>hi friends</article>
-<jsp:include page="footer.html"/>
+<%@ include file="top-side.html"%>
+<div>hi</div>
+<%@ include file="footer.html"%>
 </body>
 </html>
