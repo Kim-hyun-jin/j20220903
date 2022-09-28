@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>merge실험용</h2>
+<h2>fetch연습</h2>
 </body>
 </html>
