@@ -58,7 +58,6 @@ public class DoctorDao {
 				if (dbPasswd.equals(password)) {
 					result = 1;
 				}
-			// ID 부터 X
 			} ;
 
 		} catch (Exception e) {
@@ -70,4 +69,4 @@ public class DoctorDao {
 		}
 		return result;
 	}
-
+}
