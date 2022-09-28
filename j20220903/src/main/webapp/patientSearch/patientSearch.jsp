@@ -32,16 +32,17 @@ url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 -
 			<td><select name="doctor_name">
 					<option value="*" selected="selected">선택하지 않음</option>
 					<c:forEach var="doctor" items="${list_doc }">
-						<option value=${doctor.GetDoctor_Name }>${doctor.GetDoctor_Name }</option>
+						<option value=${doctor.doctor_name }>${doctor.doctor_name }</option>
 					</c:forEach>
 			</select></td>
 		</tr> 
 		<tr>
-			<th>의사명</th>
+			<th>예약일</th>
 			<td><select name="reservation">
 					<option value="*" selected="selected">선택하지 않음</option>
 					<c:forEach var="reservation" items="${list_res }">
-						<option value=${reservation.getReservation_Date }>${reservation.getReservation_Date }</option>
+						<c:if test="${reservation.reservation_date  }"></c:if>
+						<option value=${reservation.reservation_date }>${reservation.reservation_date }</option>
 					</c:forEach>
 			</select></td>
 		</tr> 
