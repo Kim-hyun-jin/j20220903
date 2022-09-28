@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>fetch연습</h2>
 </body>
 </html>
