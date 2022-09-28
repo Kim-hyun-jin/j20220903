@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>글등록</h2>
 
 </body>
 </html>
