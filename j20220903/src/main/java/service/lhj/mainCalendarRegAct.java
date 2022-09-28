@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.CommandProcess;
 
-public class MainCalendarView implements CommandProcess {
+
+public class mainCalendarRegAct implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println(request.getParameterMap());
 		return null;
 	}
 
