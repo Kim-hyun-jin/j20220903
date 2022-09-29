@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class DiaHistory {
 	
-	private int patient_no;
-	private int chart_no;
-	private String chart_symptom;
-	private String chart_disease;
-	private Date chart_date;
-	private String doctor_no;
+	private int patient_no;//PK FK 환자번호
+	private int chart_no;//PK 차트번호
+	private String chart_symptom;//증상
+	private String chart_disease;//병명
+	private Date chart_date;//진단일시
+	private String doctor_no;//FK 의사번호
 	
 	public int getPatient_no() {
 		return patient_no;
