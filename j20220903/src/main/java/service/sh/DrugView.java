@@ -24,6 +24,9 @@ public class DrugView implements CommandProcess {
 			
 			Doctor doctor = dd.select(doctor_no);
 			
+			System.out.println(doctor_no);
+			System.out.println(doctor.getDoctor_name());
+			
 			request.setAttribute("doctor", doctor);
 		} catch (Exception e) {
 			System.out.println("DrugView error => " + e.getMessage());

@@ -105,6 +105,7 @@ public class DoctorDao {
 		return doctor;
 
 	}
+	
 //	public List<Doctor> namelist(String doctor_Name){
 //		List<Doctor> list		= new ArrayList<Doctor>();
 //		Connection conn			= null;
