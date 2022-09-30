@@ -105,8 +105,8 @@ public class DoctorDao {
 		return doctor;
 
 	}
-	
-	public List<Doctor> doctorList(String doctor_no) throws SQLException {
+		
+public List<Doctor> doctorList(String doctor_no) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
