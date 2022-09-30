@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/54a6153010.js"
-	crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 <style type="text/css">
 
 
@@ -149,6 +151,12 @@
 	  
 	}
 	
+	.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+	
+	/*팝업 박스*/
+	.popup_box{position: relative;top:50%;left:50%; overflow: auto; height: 600px; width:375px;transform:translate(-50%, -50%);z-index:1002;box-sizing:border-box;background:#fff;box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);}
+	
+	
 </style>
 </head>
 <body>
@@ -185,66 +193,80 @@
   	<div id="contents">
   	<article id="schedule">
   		<p> 내스케줄 </p>
-   <link href='../css/fullcalendar/main.css' rel='stylesheet' />
-   <script src='../css/fullcalendar/main.js'></script>
-   <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
-   <script type="text/javascript">
-   document.addEventListener('DOMContentLoaded', function() {
+<%--   		<jsp:include page="innerSchedule.jsp"></jsp:include> --%>
+   <!-- 	<link href='../css/fullcalendar/main.css' rel='stylesheet' />
+   	<script src='../css/fullcalendar/main.js'></script> 
+   	<script type="../css/fullcalendar/ko.js"></script>  한글변환
+   	<script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
+   	<script type="text/javascript">
+   	   $(document).ready(function() {
        var calendarEl = document.getElementById('calendar');
        var calendar = new FullCalendar.Calendar(calendarEl, {
-    	 initialView: 'dayGridMonth',
-         locale: 'ko',
-         dateClick: function(info) { /* 클릭해서 날짜 가져오기 */
-        	    alert('Clicked on: ' + info.dateStr);   
-        	  }
+    	   locale: 'ko', //한글변환
+    	   headerToolbar: {
+    	        right: 'dayGridMonth' //달력 화면으로 돌아가기
+    	  },
+    	  
+    	 initialView: 'dayGridMonth', //초기날짜설정
+         navLinks: true, // 날짜 텍스트 클릭시 이벤트 실행
+         selectable: true, //날짜 칸 클릭시 이벤크 실행 
+         selectMirror: true,      
+         select: function(arg){
+        	 //window.open("mainCalendarModView.do","팝업 테스트","width=400, height=300, top=10, left=10");
+        	 //document.getElementById("popup_layer").style.display = "block";  	 
+        	 var title = window.open("mainCalendarModView.do");
+        	 if(title){
+        		 calendar.addEvent({
+     						title: title,
+     						start: arg.start,
+     						end: arg.end,
+     						allDay: arg.allDay
+     			})
+        	 }
+        	 
+        	 
+         },
+       
 	       });
 	       calendar.render();
 	     });
-   		function registeredSchedule() {
-   			window.open("scheduleMod.jsp","팝업 테스트","width=400, height=300, top=10, left=10");
-   			
-		}
    
-
-	    </script>
-	    <script type="text/javascript">
-	       
-        	document.getElementById('currnetMonth').value= new Date().toISOString().slice(0, 7);
-	    
-	    </script>
-	    
-   		 <div id='calendar' style="width: 100; height: 100;" ></div>
-   		 <!-- modal 추가 -->
-    	<div class="popup_layer" id="popup_layer" style="display: none;">
-		  <div class="popup_box">
-		      <div style="height: 10px; width: 375px; float: top;">
-		        <a href="javascript:closePop();"><img src="/static/img/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></a>
-		      </div>
-		      <!--팝업 컨텐츠 영역-->
-		      <div class="popup_cont">
-		          <h5> POPUP TILTE</h5>
-		          <table>
-		          <tr><td>제목</td><td><input type="text" name="subject"></td></tr>
-		          <tr><td>시작일</td><td><input id="currnetMonth" type="date" name="startdate"></td></tr>
-		          <tr><td>종료일</td><td><input type="date" name="enddate"></td></tr>
-		          <tr><td>메모</td><td><input type="text" name="memo"></td></tr>		    
-		          </table>
-		      </div>
-		      <!--팝업 버튼 영역-->
-		      <div class="popup_btn" style="float: bottom; margin-top: 200px;">
-		          <a href="registeredBtn()">등록</a>
-		      </div>
-		  </div>
-		</div>
-		
-	    <input type="hidden" id="hiddenDate">
-	    <input type="button" value="등록" onclick="registeredSchedule()">
-	  	<input type="button" value="삭제">
- 	 </article>
- 	 
-
-  	</div>
   
+	    </script>
+	  
+	    
+   		 <div id='calendar' >
+   		 <div id="fc-daygrid-day-events"></div>
+   		 </div> 캘린더 뷰
+   		 
+  
+	    <input type="hidden" id="hiddenDate">
+	    <input type="button" value="등록" onclick="arg()">
+	  	<input type="button" value="삭제"> -->
+	  	<form action="mainCalendarRegView.do">
+	  	<table>
+	  	<tr>
+			<th>글번호</th><th>의사번호</th><th>제목</th><th>시작일</th><th>종료일</th><th>내용</th>
+		</tr>
+		
+	 <c:forEach var="schedule" items="${list}">
+		
+		<tr><td> ${schedule.schedule_no}</td>
+			<td> ${schedule.doctor_no}</td>
+			<td> ${schedule.schedule_title}</td>
+			<td> ${schedule.schedule_startdate}</td>
+			<td> ${schedule.schedule_enddate}</td>
+			<td> ${schedule.schedule_content}</td>
+			</tr>
+			
+		</c:forEach> 
+		</table>
+			<input type="submit" value="등록">  	
+		</form>
+ 
+ 	 </article>
+</div>
+  	
   	<div id="footer">
   		<h2>CareBare</h2>
   		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
