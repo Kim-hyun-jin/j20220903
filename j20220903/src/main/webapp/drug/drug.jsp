@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,9 @@
 <link type="text/css" href="main.css" rel="stylesheet">
 <link type="text/css" href="drug/drug.css" rel="stylesheet">
 </head>
+<%
+String context = request.getContextPath();
+%>
 <body>
 	<div id="container">
   	<div id="header">
@@ -38,13 +42,15 @@
   	</div>
   	
   	<div id="contents">
-  		<form action="../drugSearch.do">
+  		<form action="<%=context%>/drugSearch.do">
+	  		<input type="hidden" name="doctor_no" value="${doctor.doctor_no }">
+	  		
 	  		<span class="drug_search">약품분류</span>
-	  		<select>
-	  			<option></option>
-	  			<option>주사제</option>
-	  			<option>경질캡슐</option>
-	  			<option>액제</option>
+	  		<select name="drug_class">
+	  			<option value="empty"></option>
+	  			<option value="shot">주사제</option>
+	  			<option value="soft">경질캡슐</option>
+	  			<option value="liquid">액제</option>
 	  		</select><p>
 	  		
 	  		<span class="drug_search">약품명</span>
@@ -54,7 +60,9 @@
   		
   		<table border="1">
   			<tr><th>약품코드</th><th>약품분류</th><th width="250px;">약품명</th></tr>
-  			<tr><td>약품코드</td><td>약품분류</td><td>포도당가엔에이케이12</td></tr>
+  			<c:forEach var="drug" items="${list }">
+  				<tr><td>${drug.drug_code }</td><td>${drug.drug_class }</td><td>${drug.drug_name }</td></tr>
+  			</c:forEach>
   		</table>
 	</div>
   	

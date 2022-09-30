@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript">
-		location.href="../patientSearch.do";
-	</script>
-	수정확인용
-	수정확인용2
-	수정확인용 3
-	
+	<form action="../reservationDelAct.do">
+		alert("정말 삭제하시겠습니까?")
+		<input type="submit" value="예"><input type="reset" value="아니오">
+	</form>
+
+
 </body>
 </html>
