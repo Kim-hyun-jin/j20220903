@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 public class ReservationDao {
 	private static ReservationDao instance;
 	private ReservationDao() {}	
+	
 	public static ReservationDao getInstance() {
 		if(instance==null) {
 			instance = new ReservationDao();
@@ -76,7 +77,7 @@ public class ReservationDao {
 		
 		try {
 			conn=getConnection();
-			if (res_date=="*") {
+			if (res_date=="") {
 				pstmt=conn.prepareStatement(sqlif);
 			} else {
 				pstmt=conn.prepareStatement(sql);
@@ -84,17 +85,13 @@ public class ReservationDao {
 			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				String date = "";
 				do {
 					Reservation reservation = new Reservation();
 					reservation.setReservation_date(rs.getString(1));
 					reservation.setReservation_hour(rs.getString(2));
 					reservation.setDoctor_no(rs.getString(3));
 					reservation.setPatient_no(rs.getString(4));
-					if(!date.equals(rs.getString(1))) {
-						date=rs.getString(1);
-						list.add(reservation);
-					} else {}
+					list.add(reservation);
 				} while (rs.next());
 			}
 		} catch (Exception e) {

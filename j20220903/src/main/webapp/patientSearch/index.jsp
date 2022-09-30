@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href="../patientSearch.do"
+		location.href="../patientSearch.do";
 	</script>
 </body>
 </html>

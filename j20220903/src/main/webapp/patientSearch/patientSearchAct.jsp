@@ -7,8 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	td select {
+	.serachBox select {
    font: initial;
+   font-size: 25px;
+   margin-top: 50px;
+   margin-left: 20px;
+   border-radius: 5px;
 }
 </style>
 </head>
@@ -66,12 +70,17 @@
 			<td>진료과</td>
 			<td>예약일</td>
 		</tr>
+	  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
+			<tr><td>${patient.patient_no }</td>
+				<td>${patient.patient_name }</td>
+				<td>${searchSet.get(stat.index).get(2)}</td>
+				<td>${searchSet.get(stat.index).get(3)}</td>
+				<td>${searchSet.get(stat.index).get(4)}</td>
+			</tr>
+		</c:forEach>
 	</table>
 	<input type="submit" value="선택">
 </form>
 <%@ include file="footer.html" %>
-<div>
-	
-</div>
 </body>
 </html>
