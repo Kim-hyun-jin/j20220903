@@ -22,7 +22,7 @@
 
 <body>  
 <script type="text/javascript">
-	location.href = "reservation1.do";
+	location.href = "reservationView.do";
 </script> 
   <div id="container">  
   	<div id="header">
