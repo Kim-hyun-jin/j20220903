@@ -160,7 +160,7 @@ public class ReservationDao {
 					reservation.setReservation_date(rs.getString(1));
 					reservation.setReservation_hour(rs.getString(2));
 					reservation.setDoctor_no(rs.getString(3));
-					reservation.setPatient_no(rs.getString(4));
+					reservation.setPatient_no(rs.getInt(4));
 					list.add(reservation);
 				} while (rs.next());
 			}
@@ -198,7 +198,7 @@ public class ReservationDao {
 					reservation.setReservation_date(rs.getString(1));
 					reservation.setReservation_hour(rs.getString(2));
 					reservation.setDoctor_no(rs.getString(3));
-					reservation.setPatient_no(rs.getString(4));
+					reservation.setPatient_no(rs.getInt(4));
 					list.add(reservation);
 				} while (rs.next());
 			}

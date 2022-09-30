@@ -6,7 +6,7 @@ public class Reservation {
 	private String reservation_date;//PK 예약일
 	private String reservation_hour;//PK 예약시간
 	private String doctor_no;//PK FK 의사번호
-	private String patient_no;//FK 환자번호
+	private int patient_no;//FK 환자번호
 	
 	
 	public String getReservation_date() {
