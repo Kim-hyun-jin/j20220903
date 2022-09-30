@@ -82,7 +82,7 @@ public class ShareBoardDao {
 				list.add(shareBoard);
 			}
 		} catch(Exception e) {	
-			System.out.println(e.getMessage()); 
+			System.out.println(e.getMessage());
 		} finally {
 			if (rs !=null) rs.close();
 			if (pstmt != null) pstmt.close();

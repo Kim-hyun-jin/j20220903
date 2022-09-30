@@ -9,6 +9,7 @@ public class ShareBoard {
 	private String shareBoard_content;
 	private Date shareBoard_date;
 	private String doctor_no;
+	private String doctor_name;
 	
 	public int getShareBoard_no() {
 		return shareBoard_no;
@@ -40,5 +41,12 @@ public class ShareBoard {
 	public void setDoctor_no(String doctor_no) {
 		this.doctor_no = doctor_no;
 	}
+	public String getDoctor_name() {
+		return doctor_name;
+	}
+	public void setDoctor_name(String doctor_name) {
+		this.doctor_name = doctor_name;
+	}
+
 
 }

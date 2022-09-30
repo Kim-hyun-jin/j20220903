@@ -20,7 +20,9 @@ public class ShareBoardView implements CommandProcess {
 		      
 		      try {
 			      int totCnt = bd.getTotalCnt(); // 4
-			      
+			      // 알았다. 일단 ch16은 close project 하고 해야 정상테스트가 되고. 현재는 java는 잘 실행되었고 jsp에서 문제가 생겼어
+			      //그 HTML을 안그려놔서 그런가? ㅡ그래도 저 4는 나와야되ㅡㄴ거아녀? jsp에 4는 들고왔는ㄷ; 다른거 세팅하다가 에러나니까 jsp 전체가 에러난거야;;음,
+			      // 4 세팅하고 shareboard_no 세팅하려다가 없어서 에러난듯 기둘
 			      String pageNum = request.getParameter("pageNum");
 			      if(pageNum==null || pageNum.equals("")){ pageNum = "1"; }
 			      int currentPage = Integer.parseInt(pageNum); // 1  2
