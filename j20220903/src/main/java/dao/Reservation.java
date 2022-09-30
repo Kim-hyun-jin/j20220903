@@ -27,10 +27,10 @@ public class Reservation {
 	public void setDoctor_no(String doctor_no) {
 		this.doctor_no = doctor_no;
 	}
-	public String getPatient_no() {
+	public int getPatient_no() {
 		return patient_no;
 	}
-	public void setPatient_no(String patient_no) {
+	public void setPatient_no(int patient_no) {
 		this.patient_no = patient_no;
 	}
 

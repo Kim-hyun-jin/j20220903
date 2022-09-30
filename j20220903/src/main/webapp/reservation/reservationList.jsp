@@ -18,12 +18,20 @@
 		width:15px;
 		height:15px;
 	}
+	#contents {
+		overflow: scroll;
+
+	}
+	table {
+		background: cornflowerblue;
+	}
 </style>
+<%
+	String context = request.getContextPath();
+%>
 
 <body>  
-<script type="text/javascript">
-	location.href = "reservation1.do";
-</script> 
+
   <div id="container">  
   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
@@ -58,6 +66,33 @@
   	<div id="contents">
 
 	<article id="table-style">
+
+		<table border="1">
+			
+			<tr>
+			<th>예약일</th><th>이름</th><th>의료과</th><th>의료진</th><th>예약시간</th><th>선택</th>
+			</tr>
+			<c:if test="${totCnt>0}">
+				<c:forEach var="reservation" items="${list }">
+					<tr>
+						<td>${reservation.reservation_date}</td>
+						<td>${reservation.patient_no}</td>
+						<td>${reservation.doctor_no}</td>
+						<td>${reservation.doctor_no}</td>
+						<td>${reservation.reservation_hour}</td>
+						<td><input type="checkbox" name="chk" onclick="allChk(this.checked);"></td>
+					</tr><p>		
+				</c:forEach>
+				<c:if test="${totCnt == 0}">
+					<tr>
+						<td colspan=7>데이터가 없네</td>
+					</tr>
+				</c:if>
+			</c:if>
+			
+			<input type="button" value="삭제" onclick="reservationDel.do" style="float: right">
+			<input type="button" value="등록" onclick="reservationReg.do" style="float: right">
+		</table>
 
  	 </article>
   	</div>
