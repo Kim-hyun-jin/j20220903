@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ShareBoard {
 
+
 	   private int shareBoard_no;//PK 글번호
 	   private String shareBoard_subject;//제목
 	   private String shareBoard_content;//상세내용

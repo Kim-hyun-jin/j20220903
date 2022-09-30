@@ -6,19 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	td select {
+   font: initial;
+}
+</style>
 </head>
-<%-- <%
+<%
    String context = request.getContextPath();
 %>
-url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
+<%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
 <%@ include file="top-side.html" %>
-<form class="searchBox" style="background-color: white; width: 50%;" action="../patientsearchAct.do" >
+<form class="searchBox" style="background-color: white; width: 50%;" action="<%=context%>/patientsearchAct.do" >
 	<table>
 		<tr>
 			<th>진료과</th>
 			<td><select name="department">
-					<option value="*" selected="selected">선택하지 않음</option>
+					<option value="" selected="selected">선택하지 않음</option>
 					<option value="간담췌외과" >간담췌외과</option>
 					<option value="소화기내과">소화기내과</option>
 					<option value="신장내과">신장내과</option>
@@ -29,47 +34,40 @@ url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 -
 		</tr> 
 		<tr>
 			<th>의사명</th>
-			<td><select name="doctor_name">
-					<option value="*" selected="selected">선택하지 않음</option>
+			<td><select name="doctorName">
+					<option value="" selected="selected">선택하지 않음</option>
 					<c:forEach var="doctor" items="${list_doc }">
-						<option value=${doctor.GetDoctor_Name }>${doctor.GetDoctor_Name }</option>
+						<option value=${doctor.doctor_name }>${doctor.doctor_name }</option>
 					</c:forEach>
 			</select></td>
 		</tr> 
 		<tr>
-			<th>의사명</th>
-			<td><select name="reservation">
-					<option value="*" selected="selected">선택하지 않음</option>
-					<c:forEach var="reservation" items="${list_res }">
-						<option value=${reservation.getReservation_Date }>${reservation.getReservation_Date }</option>
+			<th>예약일</th>
+			<td><select name="reservationDate">
+					<option value="" selected="selected">선택하지 않음</option>
+					<c:forEach var="reservationDate" items="${list_res_date }">
+						<option value=${reservationDate }>${reservationDate }</option>
 					</c:forEach>
 			</select></td>
 		</tr> 
 		<tr>
 			<th>환자명</th>
-			<td><input type="text" name="patient_name" id="patient_name"></td>
+			<td><input type="text" name="patientName" id="patientName"></td>
 			<td><input type="submit" value="검색"></td>
 		</tr> 
 	</table>
 </form><p>
-<form class="searchResult" style="background-color: white; width: 50%;" action="../patientSearchSelect.do">
+<form class="searchResult" style="background-color: white; width: 50%;">
 	<table>
-		<thead><tr>
+		<tr>
 			<td>환자번호</td>
 			<td>환자명</td>
 			<td>담당의</td>
 			<td>진료과</td>
 			<td>예약일</td>
-		</tr></thead>
-		<%-- <c:forEach var=patient items="${list_pat }">
-			<tr><td>${patient.getPatient_Num }</td>
-				<td>${patient.getPatient_Num }</td>
-				<td>${patient.getPatient_Num }</td>
-				<td>${patient.getPatient_Num }</td>
-				<td>${patient.getPatient_Num }</td>
-			</tr>
-		</c:forEach> --%>
+		</tr>
 	</table>
+	<input type="submit" value="선택">
 </form>
 <%@ include file="footer.html" %>
 <div>

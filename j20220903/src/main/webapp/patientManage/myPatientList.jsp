@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% System.out.println("myPatientList.jsp start"); %>
+<p>myPatientList.jsp</p>
+	
 </body>
 </html>
