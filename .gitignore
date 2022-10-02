@@ -4,4 +4,4 @@
 /.recommenders/
 .settings/
 .gitignore
-.class
+*.class
