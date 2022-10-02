@@ -1,14 +1,9 @@
 package service.dj;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.Board;
-import dao.BoardDao;
 import dao.ShareBoard;
 import dao.ShareBoardDao;
 import service.CommandProcess;
@@ -20,7 +15,7 @@ public class ShareBoardContentView implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("ContentAction Service start...");
 		// 1. num , pageNum
-		int num = Integer.parseInt(request.getParameter("num"));
+		int shareboard_no = Integer.parseInt(request.getParameter("shareboard_no"));
 		String pageNum = request.getParameter("pageNum");
 		
 		try {
@@ -28,18 +23,18 @@ public class ShareBoardContentView implements CommandProcess {
 			ShareBoardDao bd = ShareBoardDao.getInstance();
 
 			// 4. Board board = bd.select(num);
-			ShareBoard board = bd.select(num);   
+			ShareBoard shareBoard = bd.select(shareboard_no);   
 
 			// 5. request 객체에 num , pageNum , board
-			request.setAttribute("num", num);
+			request.setAttribute("shareboard_no", shareboard_no);
 			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("board", board);		
+			request.setAttribute("shareBoard", shareBoard);		
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
 		}
 
 		//       View
-		return "content.jsp";
+		return "shareBoard/shareBoardContent.jsp";
 	      
 	   }
 }
