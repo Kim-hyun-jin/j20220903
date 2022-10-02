@@ -13,8 +13,30 @@ public class ShareBoardRegView implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+
+		System.out.println("WriteFormAction Start...");
+
+		try {
+			// 신규글
+			// int num = 0, ref = 0, re_level = 0, re_step = 0;
+			String pageNum = request.getParameter("pageNum");
+			String doctor_no = request.getParameter("doctor_no");
+
+			// doctor_no 의사이름을 가져오기
+			if (pageNum == null)
+				pageNum = "1";
+
+//			request.setAttribute("num", num);
+//			request.setAttribute("ref", ref);
+//			request.setAttribute("re_level", re_level);
+//			request.setAttribute("re_step", re_step);
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("doctor_no", doctor_no);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return "shareBoard/shareBoardRegForm.jsp";
 	}
 
 }

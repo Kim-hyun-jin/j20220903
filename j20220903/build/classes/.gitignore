@@ -1,7 +1,3 @@
-.classpath
-.project
-/.metadata/
-/.recommenders/
-.settings/
-.gitignore
-*.class
+/control/
+/dao/
+/service/

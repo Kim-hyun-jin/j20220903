@@ -105,30 +105,8 @@ public class DoctorDao {
 		return doctor;
 
 	}
-	
-//	public List<Doctor> namelist(String doctor_Name){
-//		List<Doctor> list		= new ArrayList<Doctor>();
-//		Connection conn			= null;
-//		PreparedStatement pstmt	= null;
-//		ResultSet rs 			= null;
-//		String sql = "SELECT n FROM doctor WHERE doctor_name = ?";
-//		
-//		try {
-//			conn = getConnection();
-//			pstmt= conn.prepareStatement(sql);
-//			pstmt.setString(1, doctor_Name);
-//			rs=pstmt.executeQuery();
-//			do {
-//				Doctor doctor = new Doctor();
-//				doctor.setDepartment(rs.getString("department"));
-//				list.add(doctor);
-//			} while (rs.next());
-//		} catch (Exception e) {
-//		}
-//		return list;
-//	}
-	
-	public List<Doctor> doctorList(String doctor_no) throws SQLException {
+		
+public List<Doctor> doctorList(String doctor_no) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
@@ -137,36 +115,24 @@ public class DoctorDao {
 	      String sqlif = "SELECT * FROM doctor";
 	      try {
 	    	  conn = getConnection();
-	    	  if(doctor_no=="*") {
+	    	  if(doctor_no=="") {
 	    		 pstmt = conn.prepareStatement(sqlif);
-	        	 rs = pstmt.executeQuery();
-	        	 if (rs.next()) {
-	        		 do {
-	        			 Doctor doctor = new Doctor();
-	        			 doctor.setDoctor_no(rs.getNString(1));
-	        			 doctor.setDoctor_name(rs.getString(3));
-	        			 doctor.setDepartment(rs.getString(4));
-	        			 doctor.setPassword(rs.getInt(2));
-	        			 doctor.setImage(rs.getString(5));
-	        			 list.add(doctor);
-	        		 } while (rs.next());
-	        	 }
 	    	  } else {
 	        	 pstmt = conn.prepareStatement(sql);
 	        	 pstmt.setString(1, doctor_no);
-	        	 rs = pstmt.executeQuery();
-	        	 if (rs.next()) {
-	        		 do {
-	        			 Doctor doctor = new Doctor();
-	        			 doctor.setDoctor_no(rs.getNString(1));
-	        			 doctor.setDoctor_name(rs.getString(3));
-	        			 doctor.setDepartment(rs.getString(4));
-	        			 doctor.setPassword(rs.getInt(2));
-	        			 doctor.setImage(rs.getString(5));
-	        			 list.add(doctor);
-	        		 } while (rs.next());
-	        	 }
-			}
+	    	  }
+	    	  rs = pstmt.executeQuery();
+	    	  if (rs.next()) {
+	    		  do {
+	    			  Doctor doctor = new Doctor();
+	    			  doctor.setDoctor_no(rs.getNString(1));
+	    			  doctor.setDoctor_name(rs.getString(3));
+	    			  doctor.setDepartment(rs.getString(4));
+	    			  doctor.setPassword(rs.getInt(2));
+	    			  doctor.setImage(rs.getString(5));
+	    			  list.add(doctor);
+	    		  } while (rs.next());
+	    	  }
 	      } catch (Exception e) {
 	         System.out.println("list error -> " + e.getMessage());
 	      } finally {

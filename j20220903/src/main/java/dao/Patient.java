@@ -10,8 +10,14 @@ public class Patient {
 	private String contact;//연락처
 	private String protector_contact;//보호자연락처
 	private String social_number;//주민번호
+	private String doctor_no;//담당의
 	
-	
+	public String getDoctor_no() {
+		return doctor_no;
+	}
+	public void setDoctor_no(String doctor_no) {
+		this.doctor_no = doctor_no;
+	}
 	public int getPatient_no() {
 		return patient_no;
 	}
