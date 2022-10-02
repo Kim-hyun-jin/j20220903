@@ -1,2 +1,7 @@
-/dao/
-/service/
+.classpath
+.project
+/.metadata/
+/.recommenders/
+.settings/
+.gitignore
+*.class
