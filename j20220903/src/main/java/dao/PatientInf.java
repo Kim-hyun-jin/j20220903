@@ -1,9 +1,8 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-public class PatientInformation {
+public class PatientInf {
 	private int patient_no;//PK 환자번호
 	private String patient_name;//환자이름
 	private String gender;//성별
@@ -19,8 +18,6 @@ public class PatientInformation {
 	private String image;//의사사진
 	private ArrayList<String> reservation_date;//PK 예약일
 	private ArrayList<String> reservation_hour;//PK 예약시간
-	private ArrayList<DiaHistory> dia_history; //진단내역
-
 	
 	public int getPatient_no() {
 		return patient_no;

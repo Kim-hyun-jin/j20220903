@@ -15,8 +15,8 @@
 <%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
 	<%@ include file="top-side.html" %>
-	<div class="content">
-		<div class="content-left"
+	<div class="content" >
+		<div class="content-left" 
 					style="	background-color: white;
 				 			width: 45%; 
 				 			height: 100%;

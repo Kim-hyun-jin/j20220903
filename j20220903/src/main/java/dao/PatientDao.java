@@ -38,25 +38,25 @@ public class PatientDao {
 		Connection conn			= null;
 		PreparedStatement pstmt	= null;
 		ResultSet rs			= null;
-//		int i=2;
-//		int j=1;
-//		String sqlbase			= 						   "SELECT p.* FROM patient p";
-//		if (department!="*")		sqlbase=sqlbase.concat(", (select * from doctor where department=?) d"); j++; i=i*3;
-//		if (doctorName!="*")		sqlbase=sqlbase.concat(", (select * from doctor where doctor_name=?) dd"); j++; i=i*5;
-//		if (reservationDate!="*")	sqlbase=sqlbase.concat(", (select * from reservation where reservation_date=?) r"); j++; i=i*7;
-//									sqlbase=sqlbase.concat(" WHERE p.patient_name like ?");
-//		if (department!="*")		sqlbase=sqlbase.concat(" AND p.patient_no = r.patient_no");
-//		if (doctorName!="*")		sqlbase=sqlbase.concat(" AND p.doctor_no=dd.doctor_no");
-//		if (reservationDate!="*")	sqlbase=sqlbase.concat(" AND p.doctor_no=d.doctor_no");
-//		System.out.println(sqlbase);
-		String sqlbase			= 						   "SELECT p.* FROM patient p, (select * from doctor where department like ?) d, "
-				+ "(select * from doctor where doctor_name like ?) dd, (select * from reservation where reservation_date like ?) r "
-				+ "WHERE p.patient_name like ? AND p.doctor_no=dd.doctor_no AND p.doctor_no=d.doctor_no";
-		if (reservationDate!="") sqlbase=sqlbase.concat(" AND p.patient_no = r.patient_no");
+		String sqlbase			= 
+				  "SELECT *\r\n"
+				  + "FROM patient p\r\n"
+				  + "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
+				  + "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
+				  + "LEFT JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
+				  + "WHERE p.patient_name like ?";
+		String sqlbase2			= 
+				"SELECT *\r\n"
+						+ "FROM patient p\r\n"
+						+ "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
+						+ "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
+						+ "INNER JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
+						+ "WHERE p.patient_name like ?";
 		System.out.println(sqlbase);
 		try {
 			conn = getConnection();
-			pstmt= conn.prepareStatement(sqlbase);
+			if(!reservationDate.equals("")) pstmt = conn.prepareStatement(sqlbase2);
+			else pstmt= conn.prepareStatement(sqlbase);
 			pstmt.setString(1, "%"+department+"%");
 			pstmt.setString(2, "%"+doctorName+"%");
 			pstmt.setString(3, "%"+reservationDate+"%");
@@ -139,16 +139,12 @@ public class PatientDao {
 		PreparedStatement pstmt	= null;
 		ResultSet rs			= null;
 		String sqlbase			= 
-					  "SELECT * "
-					+ "FROM patient p, "
-					+ "(select * from doctor where department like ?) d, "
-					+ "(select * from doctor where doctor_name like ?) dd, "
-					+ "(select * from reservation where reservation_date like ?) r "
-					+ "WHERE p.patient_name like ? "
-					+ "AND p.doctor_no=dd.doctor_no "
-					+ "AND p.doctor_no=d.doctor_no";
-		
-		if (reservationDate!="") sqlbase=sqlbase.concat(" AND p.patient_no = r.patient_no");
+					  "SELECT *\r\n"
+					  + "FROM patient p\r\n"
+					  + "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
+					  + "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
+					  + "LEFT JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
+					  + "WHERE p.patient_name like ?";
 		
 		try {
 			conn = getConnection();
@@ -176,9 +172,8 @@ public class PatientDao {
 			
 			resultset.add(set.get(0));
 			for(int i=1; i<set.size(); i++) {
-				if(set.get(i).get(1)!=set.get(i-1).get(1)) {
-					resultset.add(set.get(i));
-				}
+				if(!set.get(i).get(0).equals(set.get(i-1).get(0))) {resultset.add(set.get(i));}
+				else System.out.println("searchSet 중복제거");
 			}
 		} catch (Exception e) {
 			System.out.println("check error -> " + e.getMessage());
@@ -189,17 +184,18 @@ public class PatientDao {
 		}
 		return resultset;
 	}
-	public PatientInformation patientInformation(int patient_no) throws SQLException {
-		PatientInformation pi = new PatientInformation();
+	public PatientInf patientInf(int patient_no) throws SQLException {
+		PatientInf pi = new PatientInf();
 		Connection conn			= null;
 		PreparedStatement pstmt	= null;
 		ResultSet rs			= null;
 		String sqlbase			= 
-					"SELECT p.*, d.*, r.*						\r\n"
-				+ 	"FROM patient p, doctor d, reservation r	\r\n"
-				+ 	"WHERE p.doctor_no=d.doctor_no				\r\n"
-				+ 	"AND p.patient_no=r.patient_no				\r\n"
-				+ 	"AND p.patient_no=?";
+				  "SELECT *\r\n"
+				  + "FROM patient p\r\n"
+				  + "INNER JOIN (select * from doctor) dd ON p.doctor_no=dd.doctor_no\r\n"
+				  + "INNER JOIN (select * from doctor) d ON p.doctor_no=d.doctor_no\r\n"
+				  + "LEFT JOIN (select * from reservation) r ON p.patient_no=r.patient_no\r\n"
+				  + "WHERE p.patient_no=?";
 		try {
 			conn = getConnection();
 			pstmt= conn.prepareStatement(sqlbase);
