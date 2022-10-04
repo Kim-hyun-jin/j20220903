@@ -34,7 +34,7 @@ String context = request.getContextPath();
 				<a href="">내환자</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="drug.jsp">의약품조회</a>
+				<a href="<%=context%>/drugView.do?doctor_no=${doctor.doctor_no}">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="">공유게시판</a>
@@ -59,17 +59,32 @@ String context = request.getContextPath();
   		</form>
   		
   		<table border="1">
-  			<tr><th>약품코드</th><th>약품분류</th><th width="250px;">약품명</th></tr>
+  			<tr><th>번호</th><th>약품코드</th><th>약품분류</th><th width="250px;">약품명</th></tr>
   			<c:forEach var="drug" items="${list }">
-  				<tr><td>${drug.drug_code }</td><td>${drug.drug_class }</td><td>${drug.drug_name }</td></tr>
+  				<tr><td>${startRow }</td><td>${drug.drug_code }</td><td>${drug.drug_class }</td><td>${drug.drug_name }</td></tr>
+  				<c:set var="startRow" value="${startRow + 1 }"/>
   			</c:forEach>
   		</table>
+  		<div style="text-align: center;">
+			<c:if test="${startPage > blockSize }">
+				<a href="<%=context%>/drugSearch.do?pageNum=${startPage-blockSize }">[이전]</a>
+			</c:if>
+			<c:if test="${totCnt > 0 }">
+				<c:forEach var="i" begin="${startPage }" end="${endPage }">
+					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug.drug_class}&drug_name=${drug.drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
+				</c:forEach>
+			</c:if>
+			<c:if test="${endPage < pageCnt }">
+				<a href="<%=context%>/drugSearch.do?pageNum=${startPage+blockSize }">[다음]</a>
+			</c:if>
+		</div>
 	</div>
   	
   	<div id="footer">
   		<h2>CareBare</h2>
   		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
   		TEL:02-313-1711
-  </div>
+  	</div>
+  	</div>
 </body>
 </html>
