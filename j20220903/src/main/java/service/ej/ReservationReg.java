@@ -1,4 +1,4 @@
-package service.jw;
+package service.ej;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,11 +14,12 @@ import dao.Reservation;
 import dao.ReservationDao;
 import service.CommandProcess;
 
-public class PatientSearchView implements CommandProcess {
+public class ReservationReg implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		System.out.println("PatientSearchView Start...");
 		try {
 			DoctorDao dd = DoctorDao.getInstance();
@@ -44,8 +45,7 @@ public class PatientSearchView implements CommandProcess {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		return "patientSearch/patientSearch2.jsp";
+		return "reservationReg.jsp";
 	}
 
 }

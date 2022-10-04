@@ -18,7 +18,6 @@ public class ShareBoardRegView implements CommandProcess {
 
 		try {
 			// 신규글
-			// int num = 0, ref = 0, re_level = 0, re_step = 0;
 			String pageNum = request.getParameter("pageNum");
 			String doctor_no = request.getParameter("doctor_no");
 
@@ -26,10 +25,7 @@ public class ShareBoardRegView implements CommandProcess {
 			if (pageNum == null)
 				pageNum = "1";
 
-//			request.setAttribute("num", num);
-//			request.setAttribute("ref", ref);
-//			request.setAttribute("re_level", re_level);
-//			request.setAttribute("re_step", re_step);
+			
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("doctor_no", doctor_no);
 		} catch (Exception e) {

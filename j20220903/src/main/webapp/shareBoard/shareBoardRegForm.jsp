@@ -24,13 +24,13 @@
 			</td>
 	</tr>
 	<tr>
-		<td>제목</td><%-- <td>${shareBoard.shareBoard_subject }</td> --%>
+		<td>제목</td>
 			<td colspan="4">
 				<input type="text" name="shareBoard_subject" size="80" required="required">
 			</td>
    </tr>
  	<tr>
-		<td>게시글 내용</td><%-- ><td>${shareBoard.shareBoard_content }</td> --%>
+		<td>게시글 내용</td>
 			<td colspan="4">
 			<textarea rows="20" name ="shareBoard_content" cols="90" required="required">
 			

@@ -58,6 +58,7 @@ public class ShareBoardDao {
 	}
 	
 	public List<ShareBoard> shareBoardList(int startRow, int endRow) throws SQLException {
+	// 1.shareBoard 객체를 리스트로 담음 
 		List<ShareBoard> list = new ArrayList<ShareBoard>();
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
@@ -101,7 +102,7 @@ public class ShareBoardDao {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			if (rs.next()) {				
+			if (rs.next()) {
 				board.setDoctor_no(rs.getString("doctor_no"));
 				board.setShareBoard_content(rs.getString("shareBoard_content"));
 				board.setShareBoard_date(rs.getDate("shareBoard_date"));
@@ -118,6 +119,7 @@ public class ShareBoardDao {
 		}
 		return board;
 	}
+	
 	public int insert(ShareBoard shareboard) throws SQLException {
 			  int shareboard_no = shareboard.getShareBoard_no();
 		      Connection conn  = null;

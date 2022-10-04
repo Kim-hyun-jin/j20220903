@@ -31,6 +31,55 @@ public class PatientDao {
 		}
 		return conn;
 	}
+	//환자관리
+	public List<Patient> selectAll() throws SQLException {
+		
+		List<Patient> list = new ArrayList<Patient>();
+		String sql="select * from patient where doctor_no=?";
+		String doctor_no = "2";
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = getConnection();
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, doctor_no);
+			
+			rs = pstmt.executeQuery();
+			
+				if(rs.next()) {
+					do {
+					Patient patient = new Patient();
+					
+					patient.setAddress(rs.getString("address"));
+					patient.setBirth(rs.getString("birth"));
+					patient.setContact(rs.getString("contact"));
+					
+					patient.setGender(rs.getString("gender"));
+					patient.setPatient_name(rs.getString("patient_name"));
+					patient.setPatient_no(rs.getInt("patient_no"));
+					patient.setProtector_contact(rs.getString("protector_contact"));
+					patient.setSocial_number(rs.getString("social_number"));
+					list.add(patient);
+					
+					} while(rs.next());
+				}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			System.out.println("selectAll rs까지 Err: "+ e.getMessage());
+			
+		}finally {
+			 if (rs != null) rs.close();
+			 if (pstmt != null) pstmt.close();
+			 if (connection != null)connection.close();
+		}
+		
+		return list;
+	}
+	
 	public List<Patient> patientSearch(String department, String doctorName, String reservationDate, String patientName) throws SQLException {
 		
 		List<Patient> list = new ArrayList<Patient>();
@@ -184,6 +233,45 @@ public class PatientDao {
 		}
 		return resultset;
 	}
+
+	
+	
+	//환자등록
+	
+	public int regPatient(Patient patient) {
+		
+		int result = 0;
+		
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		ResultSet rs			= null;
+		String sql = "insert into patient * values(?,?,?,?,?,?,?,?,2)";
+		
+		
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, patient.getPatient_no());
+			pstmt.setString(2, patient.getPatient_name());
+			pstmt.setString(3, patient.getGender());
+			pstmt.setString(4, patient.getBirth());
+			pstmt.setString(5, patient.getAddress());
+			pstmt.setString(6, patient.getContact());
+			pstmt.setString(7, patient.getProtector_contact());
+			pstmt.setString(8, patient.getSocial_number());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			System.out.println("PatientDao / regPatient Err"+ e.getMessage());
+		}
+		
+		return result;
+}
+
 	public PatientInf patientInf(int patient_no) throws SQLException {
 		PatientInf pi = new PatientInf();
 		Connection conn			= null;
@@ -233,5 +321,6 @@ public class PatientDao {
 			if (conn != null) conn.close();
 		}
 		return pi;
+
 	}
 }

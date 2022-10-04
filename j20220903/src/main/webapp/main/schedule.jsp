@@ -7,8 +7,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/54a6153010.js"
-        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
+<link href='../css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
+<script src='../css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
+<script type="../css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
+<script type="text/javascript">
+	var schduleList = new Array(); // Json 데이터를 받기 위한 배열 선언
+	<c:forEach var="schedule" items="${list}"> /* JSTL */
+	  var obj = new Object();
+	  var date_str = "<c:out value="${schedule.schedule_startdate}"/>";
+	  var date_end = "<c:out value="${schedule.schedule_enddate}"/>";
+	  
+	  
+	  console.log("######"+JSON.stringify(date_str) + " " + JSON.stringify(date_end));
+      obj = { /* 중괄호-->json object */
+    	  id : "<c:out value="${schedule.schedule_no}"/>",
+    	  title: "<c:out value="${schedule.schedule_title}"/>",
+    	  start: date_str.substring(0,10),
+    	  end :  date_end.substring(0,10),
+    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	   	  
+    	 
+   	  };
+     
+	    
+      schduleList.push(obj);
+	</c:forEach>
+	
+	
+	/* fullcalendar render */
+	
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth', //달 형식으로 캘린더 보이기
+          locale: 'ko', //한글변환
+          headerToolbar: {
+        	  start: "addEventButton",
+        	  center: "prev title next",
+        	  end: "today",
+       	  },
+          selectable: true,
+          events: schduleList, /* 캘린더에 list를 뿌려주는 event */
+          customButtons: {
+              addEventButton: { // 추가한 버튼 설정
+                  text : "일정 추가",  // 버튼 내용
+                  click : function(){ // 버튼 클릭 시 이벤트 추가
+                	  		window.location.href = "mainCalendarRegView.do";
+                  }
+              }
+          },
+          
+          eventClick:function(info) { 
+          },
+
+		  height: 550,
+		  contentHeight: 200,
+		  aspectRatio: 1.8
+        	   
+          
+        });
+          calendar.render();
+      });
+      
+</script>
 <style type="text/css">
 
 
@@ -151,11 +213,40 @@
 	  
 	}
 	
-	.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+	#patient_info{
 	
-	/*팝업 박스*/
-	.popup_box{position: relative;top:50%;left:50%; overflow: auto; height: 600px; width:375px;transform:translate(-50%, -50%);z-index:1002;box-sizing:border-box;background:#fff;box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);}
+		border: solid 2px;
+		border-color: white;
+		margin: 15px;
+		height: 320px;
+		background-color: white;
+	}
 	
+	
+	#footer {
+		height : 130px;
+		clear : both; /* 나는 flat를 따르지 않을 거란다~ */
+		background-color: cornflowerblue;
+		border-top: solid 3px;
+		border-top-color: white;
+		padding-left: 10px;
+	}
+	
+	
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	#schedule {
+		border: solid 2px;
+		border-color: white;
+		margin: 15px;
+		height: 660px;
+		background-color: white;
+	  
+	}
+
 	
 </style>
 </head>
@@ -169,108 +260,38 @@
   	</div>
   	<div id="left-sidebar">
    	
-  			<div class="main_menu_btn">
-				<a href="">환자정보검색</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="">예약조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="">내환자</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="drug.jsp">의약품조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="">공유게시판</a>
-			</div>
+		<div class="main_menu_btn">
+			<a href="">환자정보검색</a>
+		</div>
+		<div class="main_menu_btn">
+			<a href="">예약조회</a>
+		</div>
+		<div class="main_menu_btn">
+			<a href="">내환자</a>
+		</div>
+		<div class="main_menu_btn">
+			<a href="drug.jsp">의약품조회</a>
+		</div>
+		<div class="main_menu_btn">
+			<a href="">공유게시판</a>
+		</div>
 
-			<div class="main_menu_btn">
-				<a href="view/todo/list.jsp">list</a>
-			</div>
+		<div class="main_menu_btn">
+			<a href="view/todo/list.jsp">list</a>
+		</div>
   	</div>
   	
   	<div id="contents">
-  	<article id="schedule">
-  		<p> 내스케줄 </p>
-<%--   		<jsp:include page="innerSchedule.jsp"></jsp:include> --%>
-   <!-- 	<link href='../css/fullcalendar/main.css' rel='stylesheet' />
-   	<script src='../css/fullcalendar/main.js'></script> 
-   	<script type="../css/fullcalendar/ko.js"></script>  한글변환
-   	<script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
-   	<script type="text/javascript">
-   	   $(document).ready(function() {
-       var calendarEl = document.getElementById('calendar');
-       var calendar = new FullCalendar.Calendar(calendarEl, {
-    	   locale: 'ko', //한글변환
-    	   headerToolbar: {
-    	        right: 'dayGridMonth' //달력 화면으로 돌아가기
-    	  },
-    	  
-    	 initialView: 'dayGridMonth', //초기날짜설정
-         navLinks: true, // 날짜 텍스트 클릭시 이벤트 실행
-         selectable: true, //날짜 칸 클릭시 이벤크 실행 
-         selectMirror: true,      
-         select: function(arg){
-        	 //window.open("mainCalendarModView.do","팝업 테스트","width=400, height=300, top=10, left=10");
-        	 //document.getElementById("popup_layer").style.display = "block";  	 
-        	 var title = window.open("mainCalendarModView.do");
-        	 if(title){
-        		 calendar.addEvent({
-     						title: title,
-     						start: arg.start,
-     						end: arg.end,
-     						allDay: arg.allDay
-     			})
-        	 }
-        	 
-        	 
-         },
-       
-	       });
-	       calendar.render();
-	     });
-   
-  
-	    </script>
-	  
-	    
-   		 <div id='calendar' >
-   		 <div id="fc-daygrid-day-events"></div>
-   		 </div> 캘린더 뷰
-   		 
-  
-	    <input type="hidden" id="hiddenDate">
-	    <input type="button" value="등록" onclick="arg()">
-	  	<input type="button" value="삭제"> -->
-	  	<form action="mainCalendarRegView.do">
-	  	<table>
-	  	<tr>
-			<th>글번호</th><th>의사번호</th><th>제목</th><th>시작일</th><th>종료일</th><th>내용</th>
-		</tr>
-		
-	 <c:forEach var="schedule" items="${list}">
-		
-		<tr><td> ${schedule.schedule_no}</td>
-			<td> ${schedule.doctor_no}</td>
-			<td> ${schedule.schedule_title}</td>
-			<td> ${schedule.schedule_startdate}</td>
-			<td> ${schedule.schedule_enddate}</td>
-			<td> ${schedule.schedule_content}</td>
-			</tr>
-			
-		</c:forEach> 
-		</table>
-			<input type="submit" value="등록">  	
-		</form>
- 
- 	 </article>
-</div>
-  	
+	  	<article id="schedule">
+	  		<p> 내스케줄 	  		
+	  			<div style=" size:auto; width: 700px; float: center; padding-left: 10px;" id='calendar' ></div>   <!-- 캘린더 view -->
+	 	 </article>
+	</div>
   	<div id="footer">
   		<h2>CareBare</h2>
   		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
   		TEL:02-313-1711
   </div>
+</div>
 </body>
 </html>

@@ -6,33 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.btn {
-	border: 0;
-	border-radius: 0; /*윤곽 0*/
-	padding: 5px 10px;
-	margin: 20px 0px;
+<!-- <style type="text/css">
+
+tr {
+	text-align="center"
+	
 }
-</style>
+
+</style> -->
 </head>
 <body>
-
-	<!-- 		  location.href="../mainView.do";  -->
-
 	<h1>공유게시판 메인페이지</h1>
-	한바퀴 돔
+	공유게시판 게시글 수 
 	<p>totCount : ${totCnt}
 	<table>
 		<tr>
 			<td>
-				<%-- <a href="shareBoardRegView.do?doctor_no=${login_doctor_no}">글쓰기</a> --%>
-				<a href="shareBoardRegView.do?doctor_no=2">글쓰기</a>
+				<a href="shareBoardRegView.do?doctor_no=2" class="left">글쓰기</a>
 			</td>
 		</tr>
 	</table>
-	<table width="700" border="1" border-collapse="collapse"
-		border-color="skyblue">
-		<tr height="40">
+	<table width="1000" border="1" border-collapse="collapse" border-color="skyblue" align="center" >
+		<tr height="50">
 
 			<th>번호</th>
 			<th>제목</th>
@@ -43,7 +38,7 @@
 		<c:forEach var="shareBoard" items="${list}">
 			<tr>
 				<td>${startNum }</td>
-				<td class="left" width=200><a
+				<td class="left" width=300><a
 					href='shareBoardContentView.do?shareboard_no=${shareBoard.shareBoard_no }&pageNum=${currentPage}'>
 						${shareBoard.shareBoard_subject}</a></td>
 				<td>${shareBoard.doctor_no}</td>
@@ -57,7 +52,7 @@
 			</tr>
 		</c:if>
 	</table>
-	<!--ㅠㅔ이지 숫자 보여주는 거  -->
+	<!--페이지 숫자 보여주는 거  -->
 	<div style="text-align: center;">
 		<c:if test="${startPage > blockSize }">
 			<a href='shareBoardView.do?pageNum=${startPage-blockSize }'>[이전]</a>

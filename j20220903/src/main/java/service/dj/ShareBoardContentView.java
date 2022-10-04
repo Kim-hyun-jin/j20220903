@@ -13,16 +13,16 @@ public class ShareBoardContentView implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("ContentAction Service start...");
+		System.out.println("ContentView Service start...");
 		// 1. num , pageNum
 		int shareboard_no = Integer.parseInt(request.getParameter("shareboard_no"));
 		String pageNum = request.getParameter("pageNum");
 		
 		try {
-			// 2. BoardDao bd Instance
+			// 2. shareBoardDao bd Instance
 			ShareBoardDao bd = ShareBoardDao.getInstance();
 
-			// 4. Board board = bd.select(num);
+			// 4. shareBoard board = bd.select(num);
 			ShareBoard shareBoard = bd.select(shareboard_no);   
 
 			// 5. request 객체에 num , pageNum , board
