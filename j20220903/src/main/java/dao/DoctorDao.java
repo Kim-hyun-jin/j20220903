@@ -168,36 +168,24 @@ public class DoctorDao {
 	      String sqlif = "SELECT * FROM doctor";
 	      try {
 	    	  conn = getConnection();
-	    	  if(doctor_no=="*") {
+	    	  if(doctor_no=="") {
 	    		 pstmt = conn.prepareStatement(sqlif);
-	        	 rs = pstmt.executeQuery();
-	        	 if (rs.next()) {
-	        		 do {
-	        			 Doctor doctor = new Doctor();
-	        			 doctor.setDoctor_no(rs.getNString(1));
-	        			 doctor.setDoctor_name(rs.getString(3));
-	        			 doctor.setDepartment(rs.getString(4));
-	        			 doctor.setPassword(rs.getInt(2));
-	        			 doctor.setImage(rs.getString(5));
-	        			 list.add(doctor);
-	        		 } while (rs.next());
-	        	 }
 	    	  } else {
 	        	 pstmt = conn.prepareStatement(sql);
 	        	 pstmt.setString(1, doctor_no);
-	        	 rs = pstmt.executeQuery();
-	        	 if (rs.next()) {
-	        		 do {
-	        			 Doctor doctor = new Doctor();
-	        			 doctor.setDoctor_no(rs.getNString(1));
-	        			 doctor.setDoctor_name(rs.getString(3));
-	        			 doctor.setDepartment(rs.getString(4));
-	        			 doctor.setPassword(rs.getInt(2));
-	        			 doctor.setImage(rs.getString(5));
-	        			 list.add(doctor);
-	        		 } while (rs.next());
-	        	 }
-			}
+	    	  }
+	    	  rs = pstmt.executeQuery();
+	    	  if (rs.next()) {
+	    		  do {
+	    			  Doctor doctor = new Doctor();
+	    			  doctor.setDoctor_no(rs.getNString(1));
+	    			  doctor.setDoctor_name(rs.getString(3));
+	    			  doctor.setDepartment(rs.getString(4));
+	    			  doctor.setPassword(rs.getInt(2));
+	    			  doctor.setImage(rs.getString(5));
+	    			  list.add(doctor);
+	    		  } while (rs.next());
+	    	  }
 	      } catch (Exception e) {
 	         System.out.println("list error -> " + e.getMessage());
 	      } finally {

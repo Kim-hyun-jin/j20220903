@@ -63,7 +63,7 @@ public class ShareBoardDao {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		String sql = "SELECT *  "
-	 	    	+ "FROM (Select rownum rn ,a.*  From shareboard a)"
+	 	    	+ "FROM (Select rownum rn ,a.*  From shareboard a  order by a.shareboard_no desc )"
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		try {
@@ -82,7 +82,7 @@ public class ShareBoardDao {
 				list.add(shareBoard);
 			}
 		} catch(Exception e) {	
-			System.out.println(e.getMessage()); 
+			System.out.println(e.getMessage());
 		} finally {
 			if (rs !=null) rs.close();
 			if (pstmt != null) pstmt.close();
@@ -90,4 +90,121 @@ public class ShareBoardDao {
 		} 
 		return list;
 	}
+	
+	public ShareBoard select(int shareboard_no ) throws SQLException {
+		Connection conn = null;	
+		Statement stmt= null; 
+		ResultSet rs = null;
+		String sql = "select * from shareboard where shareboard_no="+ shareboard_no; 
+		ShareBoard board = new ShareBoard();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {				
+				board.setDoctor_no(rs.getString("doctor_no"));
+				board.setShareBoard_content(rs.getString("shareBoard_content"));
+				board.setShareBoard_date(rs.getDate("shareBoard_date"));
+				board.setShareBoard_no(rs.getInt("shareBoard_no"));
+				board.setShareBoard_subject(rs.getString("shareBoard_subject"));
+			
+			}
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (rs !=null) rs.close();
+			if (stmt != null) stmt.close();
+			if (conn !=null) conn.close();
+		}
+		return board;
+	}
+	public int insert(ShareBoard shareboard) throws SQLException {
+			  int shareboard_no = shareboard.getShareBoard_no();
+		      Connection conn  = null;
+		      PreparedStatement pstmt = null;
+		      int result = 0;
+		      ResultSet rs = null;
+		      
+				/* String sql1 = "SELECT nvl(max(), 0) FROM shareboard"; */
+		      String sql = "INSERT INTO SHAREBOARD VALUES(shareboard_seq.NEXTVAL,?,?,to_date('22/02/25','RR/MM/DD'),?)";
+		      		
+		   
+		      try {
+		         conn = getConnection();
+		         pstmt = conn.prepareStatement(sql);		         
+		         // key인 num 1씩 증가, mysql auto_increment / oracle sequence
+		         // sequence 사용 : VALUES(시퀀스명(board_seq).nextval,?,?...)
+		         pstmt.setString (1, shareboard.getShareBoard_subject());
+		         pstmt.setString(2, shareboard.getShareBoard_content()); 
+		         pstmt.setString(3, shareboard.getDoctor_no());
+		    
+		         result = pstmt.executeUpdate();
+		         
+		      } catch (Exception e) {
+		         System.out.println(e.getMessage());
+		      } finally {
+		         if (rs != null)      rs.close();
+		         if (pstmt != null) pstmt.close();
+		         if (conn !=null)   conn.close();
+		      }
+		      return result;
+		   }
+	 public int update(ShareBoard shareboard) throws SQLException {
+
+	      Connection conn  = null;
+	      PreparedStatement pstmt = null;
+	      int result = 0;
+	      
+	      String sql ="update shareboard set ShareBoard_subject=?,ShareBoard_content=? where shareboard_no=?";
+	           
+	      
+	      try {
+	         conn = getConnection();
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, shareboard.getShareBoard_subject());
+	         pstmt.setString(2, shareboard.getShareBoard_content());
+	         pstmt.setInt(3, shareboard.getShareBoard_no());
+
+	         result =  pstmt.executeUpdate();
+	      } catch (Exception e) {
+	         System.out.println(e.getMessage());
+	      } finally {
+	         if (pstmt != null) pstmt.close();
+	         if (conn !=null)   conn.close();
+	      }
+	      return result;
+     
+  }
+	public int delete(int shareBoard_no) {
+		int result  = 0;  
+		Connection conn = null;
+		PreparedStatement pstmt = null; 
+		String sql  = "delete from shareboard where shareboard_no=?"; 	
+		try { 
+			conn  = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, shareBoard_no);
+			result = pstmt.executeUpdate();
+		} catch(Exception e) { 
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		return result;
+	}
 }
+
+	

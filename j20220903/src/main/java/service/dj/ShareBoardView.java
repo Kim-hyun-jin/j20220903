@@ -20,7 +20,6 @@ public class ShareBoardView implements CommandProcess {
 		      
 		      try {
 			      int totCnt = bd.getTotalCnt(); // 4
-			      
 			      String pageNum = request.getParameter("pageNum");
 			      if(pageNum==null || pageNum.equals("")){ pageNum = "1"; }
 			      int currentPage = Integer.parseInt(pageNum); // 1  2

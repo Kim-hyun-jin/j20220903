@@ -6,7 +6,7 @@ public class Reservation {
 	private String reservation_date;//PK 예약일
 	private String reservation_hour;//PK 예약시간
 	private String doctor_no;//PK FK 의사번호
-	private String patient_no;//FK 환자번호
+	private int patient_no;//FK 환자번호
 	
 	
 	public String getReservation_date() {
@@ -27,10 +27,10 @@ public class Reservation {
 	public void setDoctor_no(String doctor_no) {
 		this.doctor_no = doctor_no;
 	}
-	public String getPatient_no() {
+	public int getPatient_no() {
 		return patient_no;
 	}
-	public void setPatient_no(String patient_no) {
+	public void setPatient_no(int patient_no) {
 		this.patient_no = patient_no;
 	}
 
