@@ -137,49 +137,17 @@
 		color: inherit;
 	}
 	
-	#profile_info
-	{
-		background-color: cornflowerblue;
-		width:auto;
-		height:100px;
-		position:absolute;
-		right:0;
-		top:100px;
-		padding: 15px;
-		
-	}
-
-	
 </style>
-<script>
-	function mouseOver(){
-		document.getElementById("profile_info").style.display='block';
-	}
-	function mouseOut(){
-		document.getElementById("profile_info").style.display='none';
-	}
-</script>
+
 </head> 
-<body>
-	<input type="hidden" id="doctor_no" name="doctor_no" value="2">
-	<!-- 임시로 doctor_no = "2" 로 설정  --> 
+<body>  
   <div id="container">
-  
   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">메인페이지</span>
   		<span class="header_name">김준완</span>
-  		<a href='../profileView.do' class="header_image"><img id="myphoto" onmouseover="mouseOver()" onmouseout="mouseOut()" alt="" src="../images/myphoto.png" style="width: 60px"></a>
-  		<div id="profile_info">
-	  		<p>	내정보<br>
-	  		사번: 101010<br>
-	  		담당학과: 흉부외과
-	  		</p>
-  		</div>
-  	
+  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
   	</div>
-  	
-  	
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
@@ -189,7 +157,7 @@
 				<a href="reservationView.do">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="../patientManageView.do">환자관리</a>
+				<a href="../patientManageView.do">내환자</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="../drugView.do">의약품조회</a>
@@ -198,32 +166,8 @@
 				<a href="../shareBoardView.do">공유게시판</a>
 			</div>
 
+
   	</div>
- 
-
-
+  	
   	<div id="contents">
-
-  	<article id="schedule">
-  		<p> 내스케줄</p>
- 	 </article>
-	<article id="patient_info">
-  		<p> 나의 환자정보</p>
-  		<table>
-  			<tr><th>환자명</th><th>성별</th><th>나이</th><th>?</th></tr>
-  			<tr><td>jsp 파일</td></tr>
-  		</table>
- 	 </article>
-  	</div>
-  	
-  	
-  	
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-  	</div>
-  	
-  </div>
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>

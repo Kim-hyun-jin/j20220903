@@ -1,5 +1,4 @@
-<<<<<<< HEAD
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isELIgnored="false" %>
@@ -13,7 +12,7 @@
 
 
 <body>
-<%@ include file="top-side.html" %>
+<%@ include file="../top-side.jsp" %>
 
 
   	
@@ -48,6 +47,6 @@
   	</div>
 
   	
-<%@ include file="footer.html" %>
+<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

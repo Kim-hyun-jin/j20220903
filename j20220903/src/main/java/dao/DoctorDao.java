@@ -77,13 +77,13 @@ public class DoctorDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM doctor WHERE doctor_no=?";
+		String sql = "SELECT * FROM doctor WHERE doctor_no="+ doctor_no;
 
 		Doctor doctor = new Doctor();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, doctor_no);
+			
 			rs = pstmt.executeQuery();
 			// id는 primary key 이므로 데이터는 하나
 			// 따라서 while문이 필요 없다.
@@ -195,5 +195,12 @@ public class DoctorDao {
 	      }
 	      return list;
 	   }
+	
+	public int  updateProfileInfo(String doctor_no) {
+		
+		int result = 1;
+		
+		return result;
+	}
 
 }

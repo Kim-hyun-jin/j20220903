@@ -17,18 +17,21 @@ public class ProfileView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Doctor doctor = new Doctor();
-		DoctorDao doctorDao = DoctorDao.getInstance();
+		String doctor_no = request.getParameter("doctor_no");
 		
 		try {
-			doctor = doctorDao.select("2");
+			
+			DoctorDao doctorDao = DoctorDao.getInstance();
+			Doctor doctor = doctorDao.select("doctor_no");
+			
+			request.setAttribute("doctor", doctor);
+			request.setAttribute("doctor_no", doctor_no);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 			System.out.println("MyProfileView.java "+ e.getMessage());
 		}
 		
-		request.setAttribute("doctor", doctor);
 		
 		
 		return "profile/profile.jsp";

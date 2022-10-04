@@ -11,28 +11,29 @@ import dao.Doctor;
 import dao.DoctorDao;
 import service.CommandProcess;
 
-public class ProfileModForm implements CommandProcess {
+public class ProfileModAct implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		String doctor_no = request.getParameter("doctor_no");
+		int result=0;
 		
 		try {
 			
 			DoctorDao doctorDao = DoctorDao.getInstance();
-			Doctor doctor = doctorDao.select("doctor_no");
+			result = doctorDao.updateProfileInfo("doctor_no");
 			
-			request.setAttribute("doctor", doctor);
 			request.setAttribute("doctor_no", doctor_no);
-		} catch (SQLException e) {
+			request.setAttribute("result", result);
+		} catch (Exception e) {
 			
 			e.printStackTrace();
-			System.out.println("MyProfileView.java "+ e.getMessage());
+			System.out.println("ProfileView.java "+ e.getMessage());
 		}
 		
-		return "profile/profileMod.jsp";
+		return "profile/profileAct.jsp";
 	}
 
 }
