@@ -6,17 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ReservationDao;
 import service.CommandProcess;
 
-public class ReservationDel implements CommandProcess {
+public class ReservationSearch implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("ReservationDelAct service start...");
-
-		return "reservationDel.jsp";
+		// TODO Auto-generated method stub
+		return "reservationSearch.jsp";
 	}
 
 }

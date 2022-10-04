@@ -19,7 +19,9 @@
 		height:15px;
 	}
 </style>
-
+<%
+	String context = request.getContextPath();
+%>
 <body>  
 <script type="text/javascript">
 	location.href = "reservationView.do";
