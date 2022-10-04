@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +7,11 @@
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
+
 <style type="text/css">
-	
-	@font-face {
+
+@charset "UTF-8";
+@font-face {
     font-family: 'GangwonEduSaeeum_OTFMediumA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
     font-weight: normal;
@@ -136,48 +140,37 @@
 		text-decoration: none;
 		color: inherit;
 	}
-	
-	#profile_info
-	{
-		background-color: cornflowerblue;
-		width:auto;
-		height:100px;
-		position:absolute;
-		right:0;
-		top:100px;
-		padding: 15px;
-		
-	}
+
 
 	
+	#profile_update {
+		border: solid 2px;
+		border-color: white;
+		margin: 15px;
+		height: 520px;
+		background-color: white;
+	  
+	}
+	
+	.main
+	{
+		display: flex;
+	}
+	#edit_img
+	{
+		padding: 30px;
+	}
+	
 </style>
-<script>
-	function mouseOver(){
-		document.getElementById("profile_info").style.display='block';
-	}
-	function mouseOut(){
-		document.getElementById("profile_info").style.display='none';
-	}
-</script>
-</head> 
-<body>  
-  <div id="container">
-  
+</head>
+<body>
+ <div id="container">
   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
-  		<span class="header_page">메인페이지</span>
+  		<span class="header_page">내정보</span>
   		<span class="header_name">김준완</span>
-  		<a href='../profileView.do' class="header_image"><img id="myphoto" onmouseover="mouseOver()" onmouseout="mouseOut()" alt="" src="../images/myphoto.png" style="width: 60px"></a>
-  		<div id="profile_info">
-	  		<p>	내정보<br>
-	  		사번: 101010<br>
-	  		담당학과: 흉부외과
-	  		</p>
-  		</div>
-  	
+  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
   	</div>
-  	
-  	
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
@@ -187,7 +180,7 @@
 				<a href="">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="../patientManageView.do">환자관리</a>
+				<a href="">내환자</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="drug.jsp">의약품조회</a>
@@ -200,32 +193,42 @@
 				<a href="view/todo/list.jsp">list</a>
 			</div>
   	</div>
- 
-
-
+  	
   	<div id="contents">
+  	<article id="profile_update">
+  		<div>내정보</div>
+  		 
+  		 <div class="main">
+  		 	
+  		 <div class="profile_update_img">
+  		 	<div><img id="edit_img" alt="" src="../images/myphoto.png" style="width:100px"></div>
+  		 	<form action="" method="post" enctype="multipart/form-data">
+ 
+		  	  <input type="submit" value="이미지편집">
+			</form>
+  		 </div>
+  		 <div class="profile_update_content">
+  			
+  			<div>이름: ${doctor.name}</div>
+  			<div>사번: ${doctor.doctor_no}</div>
+  			<div>담당과:${doctor.department}</div>
+  			<div>연락처: ${doctor.contact}</div>
+  			
+  			<input type="button" value="수정" onclick="profileModForm.do">
+  			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>
+  		</div>
+  		
+  		</div>
+  	</article>
+  	
 
-  	<article id="schedule">
-  		<p> 내스케줄</p>
- 	 </article>
-	<article id="patient_info">
-  		<p> 나의 환자정보</p>
-  		<table>
-  			<tr><th>환자명</th><th>성별</th><th>나이</th><th>?</th></tr>
-  			<tr><td>jsp 파일</td></tr>
-  		</table>
- 	 </article>
+
   	</div>
-  	
-  	
   	
   	<div id="footer">
   		<h2>CareBare</h2>
   		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
   		TEL:02-313-1711
-  	</div>
-  	
   </div>
 </body>
-
 </html>

@@ -133,7 +133,33 @@ public class DoctorDao {
 			if (conn != null) conn.close();
 		}
 		
-public List<Doctor> doctorList(String doctor_no) throws SQLException {
+		return result;
+		
+	}
+	
+//	public List<Doctor> namelist(String doctor_Name){
+//		List<Doctor> list		= new ArrayList<Doctor>();
+//		Connection conn			= null;
+//		PreparedStatement pstmt	= null;
+//		ResultSet rs 			= null;
+//		String sql = "SELECT n FROM doctor WHERE doctor_name = ?";
+//		
+//		try {
+//			conn = getConnection();
+//			pstmt= conn.prepareStatement(sql);
+//			pstmt.setString(1, doctor_Name);
+//			rs=pstmt.executeQuery();
+//			do {
+//				Doctor doctor = new Doctor();
+//				doctor.setDepartment(rs.getString("department"));
+//				list.add(doctor);
+//			} while (rs.next());
+//		} catch (Exception e) {
+//		}
+//		return list;
+//	}
+	
+	public List<Doctor> doctorList(String doctor_no) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;

@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.CommandProcess;
 
-public class MyPatientListView implements CommandProcess {
+public class ProfileModPro implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return "patientManage/myPatientList.jsp";
+		
+		return "main/profile.jsp";
 	}
 
 }

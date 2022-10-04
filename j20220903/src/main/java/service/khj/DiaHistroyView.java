@@ -13,8 +13,11 @@ public class DiaHistroyView implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		int patient_no =Integer.parseInt(request.getParameter("patient_no"));
+		request.setAttribute("patient_no", patient_no);
+		System.out.println("DiaHistoryView.java");
+		return "patientManage/diaHistory.jsp";
 	}
 
 }
