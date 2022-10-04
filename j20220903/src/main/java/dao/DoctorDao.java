@@ -105,8 +105,61 @@ public class DoctorDao {
 		return doctor;
 
 	}
+	
+	public String search(String doctor_no, String doctor_name) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT password FROM doctor WHERE doctor_no=? AND doctor_name=?";
+		String result = "";
 		
-public List<Doctor> doctorList(String doctor_no) throws SQLException {
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, doctor_no);
+			pstmt.setString(2, doctor_name);
+			rs = pstmt.executeQuery();
+			// id는 primary key 이므로 데이터는 하나
+			// 따라서 while문이 필요 없다.
+			if (rs.next()) {
+				result = rs.getString("password");
+				System.out.println("DoctorDao search result -> " + result);
+			}
+		} catch (Exception e) {
+			System.out.println("select error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		
+		return result;
+		
+	}
+	
+//	public List<Doctor> namelist(String doctor_Name){
+//		List<Doctor> list		= new ArrayList<Doctor>();
+//		Connection conn			= null;
+//		PreparedStatement pstmt	= null;
+//		ResultSet rs 			= null;
+//		String sql = "SELECT n FROM doctor WHERE doctor_name = ?";
+//		
+//		try {
+//			conn = getConnection();
+//			pstmt= conn.prepareStatement(sql);
+//			pstmt.setString(1, doctor_Name);
+//			rs=pstmt.executeQuery();
+//			do {
+//				Doctor doctor = new Doctor();
+//				doctor.setDepartment(rs.getString("department"));
+//				list.add(doctor);
+//			} while (rs.next());
+//		} catch (Exception e) {
+//		}
+//		return list;
+//	}
+	
+	public List<Doctor> doctorList(String doctor_no) throws SQLException {
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
@@ -142,4 +195,5 @@ public List<Doctor> doctorList(String doctor_no) throws SQLException {
 	      }
 	      return list;
 	   }
+
 }

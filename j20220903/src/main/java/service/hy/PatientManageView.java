@@ -21,8 +21,10 @@ public class PatientManageView implements CommandProcess {
 		PatientDao patientDao = PatientDao.getInstance();
 		
 		try {
-			List<Patient> listDao = patientDao.selectNameAll();
-			request.setAttribute("patient_name_list", listDao);
+			List<Patient> listDao = patientDao.selectAll();
+			//doctor_no 2로 임시처리 getAttribute from request
+			//session.get?
+			request.setAttribute("patient_list", listDao);
 
 		} catch (SQLException e) {
 			

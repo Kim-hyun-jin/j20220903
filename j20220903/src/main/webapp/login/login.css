@@ -19,6 +19,12 @@
 		justify-content: center;
 	}
 	
+	h2 {
+		margin-top: 50px;
+		display: flex;
+		justify-content: center;
+	}
+	
 	hr {
 		width: 412px;
 		margin-bottom: 60px;
@@ -29,6 +35,10 @@
 	a {
 		text-decoration: none;
 		color: #489CFF;
+	}
+	
+	a:hover {
+		color: #1DDB16;
 	}
 	
 	i {
@@ -59,8 +69,21 @@
 		color: white;
 	}
 	
+	.log:hover {
+		color: #1DDB16;
+	}
+	
+	.forget {
+		display: flex;
+		justify-content: center;
+	}
+	
 	label {
 		margin-left: 15%;
+	}
+	
+	label:hover {
+		color: #1DDB16;
 	}
 	#login_not {
 		color: red;

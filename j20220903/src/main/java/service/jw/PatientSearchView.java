@@ -45,7 +45,7 @@ public class PatientSearchView implements CommandProcess {
 			// TODO: handle exception
 		}
 		
-		return "patientSearch/patientSearch.jsp";
+		return "patientSearch/patientSearch2.jsp";
 	}
 
 }
