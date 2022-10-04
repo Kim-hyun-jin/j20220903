@@ -1,5 +1,6 @@
 package dao;
 
+
 public class Schedule {
 	
 	private int schedule_no;//PK 스케줄번호
@@ -45,4 +46,10 @@ public class Schedule {
 	public void setSchedule_content(String schedule_content) {
 		this.schedule_content = schedule_content;
 	}
+	
+	
+	
+	
+	
+	
 }
