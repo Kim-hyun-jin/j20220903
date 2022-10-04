@@ -15,28 +15,28 @@ public class MainCalendarModAct implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); 		
 		try {
-			// 1. num , pageNum, writer ,  email , subject , passwd , content   Get
-			// 2. Board board 생성하고 Value Setting
-	        request.setCharacterEncoding("utf-8"); 
-	        Schedule schedule = new Schedule();
-	        schedule.setSchedule_title(request.getParameter("Schedule_title"));
-	        schedule.setSchedule_startdate(request.getParameter("Schedule_startdate"));
-	        schedule.setSchedule_enddate(request.getParameter("Schedule_enddate"));
-	        schedule.setSchedule_content(request.getParameter("setSchedule_content"));
-	  
+			Schedule schedule = new Schedule();
+			schedule.setSchedule_no(Integer.parseInt(request.getParameter("schedule_no")));
+			schedule.setDoctor_no("2");
+			//schedule.setDoctor_no(request.getParameter("doctor_no"));
+			schedule.setSchedule_title(request.getParameter("schedule_title"));
+			schedule.setSchedule_startdate(request.getParameter("schedule_startdate"));    
+			schedule.setSchedule_enddate(request.getParameter("schedule_enddate"));  
+			schedule.setSchedule_content(request.getParameter("schedule_content"));
 			
-			// 3. BoardDao bd Instance
-	        ScheduleDao sd= ScheduleDao.getInstance();//DB 
-	        //String result = sd.insert(schedule);   
-	        // 4. request 객체에 result, num , pageNum 	        
-	       request.setAttribute(null, response);
-		
+			ScheduleDao sd = ScheduleDao.getInstance();
+			int result = sd.update(schedule);
+			
+			request.setAttribute("result", result);
+			request.setAttribute("schedule", schedule.getSchedule_no());
 		} catch (Exception e) {
-			System.out.println(e.getMessage()); 
+			System.out.println("MainCalendarModAct e.getMessage()"+e.getMessage());
 		}
-
-        return "schedule.jsp";
+		
+		
+        return "scheduleModAct.jsp";
 	
 	}
 
