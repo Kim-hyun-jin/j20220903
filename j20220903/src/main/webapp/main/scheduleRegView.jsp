@@ -26,7 +26,6 @@
               alert("종료일이 시작일보다 먼저입니다.");
               return;
           }else{ // 정상적인 입력 시
-        	  alert("입력되었습니다.");
               var obj = {
                   "title" : content,
                   "start" : start_date,
