@@ -31,7 +31,7 @@ public class ShareBoardRegAct implements CommandProcess {
 			// 3. BoardDao bd Instance
 			ShareBoardDao bd = ShareBoardDao.getInstance();// DB
 
-			int result = bd.insert(shareboard);
+			int result = bd.insert(shareboard);//shareboardDao에 
 			// 4. request 객체에 result, num , pageNum
 			request.setAttribute("result", result);
 			request.setAttribute("shareboard_no", shareboard.getShareBoard_no());

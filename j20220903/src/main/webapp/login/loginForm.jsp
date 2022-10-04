@@ -29,7 +29,7 @@
 			</label>
 			<hr>
 			<span class="ment">
-				사번이나 암호를 잊었을 때는, <a href="">여기</a>를 눌러주세요.
+				사번이나 암호를 잊었을 때는, <a href="loginForget.jsp">여기</a>를 눌러주세요.
 			</span><p>
 			<span class="ment">
 				회원가입은 <a href="">여기</a>에서 할 수 있습니다.
