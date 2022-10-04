@@ -1,2 +1,4 @@
-/service/
+/control/
 /dao/
+/service/
+.gitignore

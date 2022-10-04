@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% System.out.println("diaHistory.jsp"); %>
+<p>${patient_no} diaHistory.jsp</p>
 </body>
 </html>

@@ -10,9 +10,5 @@
 	<script type="text/javascript">
 		location.href="../patientSearch.do";
 	</script>
-	수정확인용
-	수정확인용2
-	수정확인용 3
-	
 </body>
 </html>

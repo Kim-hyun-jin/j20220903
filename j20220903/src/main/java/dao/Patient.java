@@ -3,14 +3,14 @@ package dao;
 public class Patient {
 	
 	private int patient_no;//PK 환자번호
-	private String patient_name;//환자이름
-	private String gender;//성별
-	private String birth;//생년월일
-	private String address;//주소
+	private String patient_name;//환자이름 NOT NULL
+	private String gender;//성별 NOT NULL
+	private String birth;//생년월일 NOT NULL
+	private String address;//주소 
 	private String contact;//연락처
 	private String protector_contact;//보호자연락처
-	private String social_number;//주민번호
-	private String doctor_no;//담당의
+	private String social_number;//주민번호 NOT NULL
+	private String doctor_no;//담당의 NOT NULL
 	
 	public String getDoctor_no() {
 		return doctor_no;
