@@ -7,10 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DiaDrug;
 import dao.DiaDrugDao;
 import dao.DiaDrugInf;
-import dao.DiaHistory;
 import dao.DiaHistoryDao;
 import dao.DiaHistoryInf;
 import dao.PatientDao;
