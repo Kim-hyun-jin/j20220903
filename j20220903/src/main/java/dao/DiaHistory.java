@@ -9,7 +9,7 @@ public class DiaHistory {
 	private String chart_symptom;//증상
 	private String chart_disease;//병명
 	private Date chart_date;//진단일시
-	private String doctor_no;//FK 의사번호
+	private int doctor_no;//FK 의사번호
 	
 	public int getPatient_no() {
 		return patient_no;
@@ -41,10 +41,10 @@ public class DiaHistory {
 	public void setChart_date(Date chart_date) {
 		this.chart_date = chart_date;
 	}
-	public String getDoctor_no() {
+	public int getDoctor_no() {
 		return doctor_no;
 	}
-	public void setDoctor_no(String doctor_no) {
+	public void setDoctor_no(int doctor_no) {
 		this.doctor_no = doctor_no;
 	}
 	

@@ -19,8 +19,7 @@ public class ShareBoardView implements CommandProcess {
 		   ShareBoardDao bd = ShareBoardDao.getInstance();
 		      
 		      try {
-			      int totCnt = bd.getTotalCnt(); // 4
-			      
+			      int totCnt = bd.getTotalCnt(); //삭제,추가로 유동적
 			      String pageNum = request.getParameter("pageNum");
 			      if(pageNum==null || pageNum.equals("")){ pageNum = "1"; }
 			      int currentPage = Integer.parseInt(pageNum); // 1  2

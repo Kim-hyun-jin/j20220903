@@ -36,19 +36,84 @@ public class DrugDao {
 		return conn;
 	}
 	
-	public List<Drug> drugList(String drug_name, String drug_class) throws SQLException {
+	public int getCnt(String drug_name, String drug_class) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "SELECT COUNT(drug_name)\r\n"
+					+ "FROM (\r\n"
+					+ "		SELECT * FROM drug WHERE drug_name LIKE ? ORDER BY drug_code ASC\r\n"
+					+ ")";
+		
+		if (drug_class.equals("shot")) {
+			sql = "SELECT COUNT(drug_name)\r\n"
+					+ "FROM (\r\n"
+					+ "		SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='주사제' ORDER BY drug_code ASC\r\n"
+					+ ")";
+		} else if (drug_class.equals("soft")) {
+			sql = "SELECT COUNT(drug_name)\r\n"
+					+ "FROM (\r\n"
+					+ "		SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='경질캡슐' ORDER BY drug_code ASC\r\n"
+					+ ")";
+		} else if (drug_class.equals("liquid")) {
+			sql = "SELECT COUNT(drug_name)\r\n"
+					+ "FROM (\r\n"
+					+ "		SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='액제' ORDER BY drug_code ASC\r\n"
+					+ ")";
+		} else;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+drug_name+"%");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			System.out.println("getTotalCnt error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+	
+	public List<Drug> drugList(String drug_name, String drug_class, int startRow, int endRow) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Drug> list = new ArrayList<Drug>();
-		String sql = "SELECT * FROM drug WHERE drug_name LIKE ? ORDER BY drug_code ASC";
+		String sql = "SELECT *\r\n"
+				+ "FROM (\r\n"
+				+ "    SELECT ROWNUM rn, a.*\r\n"
+				+ "    FROM (SELECT * FROM drug WHERE drug_name LIKE ? ORDER BY drug_code ASC) a\r\n"
+				+ "    )\r\n"
+				+ "WHERE rn BETWEEN ? and ?";
 		
 		if (drug_class.equals("shot")) {
-			sql = "SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='주사제' ORDER BY drug_code ASC";
+			sql = "SELECT *\r\n"
+					+ "FROM (\r\n"
+					+ "    SELECT ROWNUM rn, a.*\r\n"
+					+ "    FROM (SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='주사제' ORDER BY drug_code ASC) a\r\n"
+					+ "    )\r\n"
+					+ "WHERE rn BETWEEN ? and ?";
 		} else if (drug_class.equals("soft")) {
-			sql = "SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='경질캡슐' ORDER BY drug_code ASC";
+			sql = "SELECT *\r\n"
+					+ "FROM (\r\n"
+					+ "    SELECT ROWNUM rn, a.*\r\n"
+					+ "    FROM (SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='경질캡슐' ORDER BY drug_code ASC) a\r\n"
+					+ "    )\r\n"
+					+ "WHERE rn BETWEEN ? and ?";
 		} else if (drug_class.equals("liquid")) {
-			sql = "SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='액제' ORDER BY drug_code ASC";
+			sql = "SELECT *\r\n"
+					+ "FROM (\r\n"
+					+ "    SELECT ROWNUM rn, a.*\r\n"
+					+ "    FROM (SELECT * FROM drug WHERE drug_name LIKE ? AND drug_class='액제' ORDER BY drug_code ASC) a\r\n"
+					+ "    )\r\n"
+					+ "WHERE rn BETWEEN ? and ?";
 		} else;
 		
 		try {
@@ -56,6 +121,8 @@ public class DrugDao {
 			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);
 			pstmt.setString(1, "%"+drug_name+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				do {

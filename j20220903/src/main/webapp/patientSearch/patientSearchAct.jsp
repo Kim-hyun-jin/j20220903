@@ -13,7 +13,7 @@
    margin-top: 50px;
    margin-left: 20px;
    border-radius: 5px;
-}
+   }
 </style>
 </head>
 <%
@@ -61,17 +61,12 @@
 		</tr> 
 	</table>
 </form><p>
-<form class="searchResult" style="background-color: white; width: 50%;">
-	<table>
-		<tr>
-			<td>환자번호</td>
-			<td>환자명</td>
-			<td>담당의</td>
-			<td>진료과</td>
-			<td>예약일</td>
-		</tr>
+<form class="searchResult" style="background-color: white; width: 50%; overflow: scroll; height: 70%;" action="..//patientSearchSelect.do">
+	<table border="1" style="border-collapse: collapse;">
+		<tr><td>환자번호</td><td>환자명</td><td>담당의</td><td>진료과</td><td>예약일</td></tr>
 	  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
-			<tr><td>${patient.patient_no }</td>
+			<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
+				<td>${patient.patient_no }</td>
 				<td>${patient.patient_name }</td>
 				<td>${searchSet.get(stat.index).get(2)}</td>
 				<td>${searchSet.get(stat.index).get(3)}</td>
