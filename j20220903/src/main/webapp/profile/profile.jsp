@@ -164,9 +164,10 @@
 </style>
 </head>
 <body>
+<%   String context = request.getContextPath();%>
  <div id="container">
   	<div id="header">
-  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">내정보</span>
   		<span class="header_name">김준완</span>
   		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
@@ -174,23 +175,19 @@
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
-				<a href="">환자정보검색</a>
+				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">예약조회</a>
+				<a href="<%=context %>/reservationView.do">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">내환자</a>
+				<a href="<%=context %>/patientManageView.do">환자관리</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="drug.jsp">의약품조회</a>
+				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">공유게시판</a>
-			</div>
-
-			<div class="main_menu_btn">
-				<a href="view/todo/list.jsp">list</a>
+				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
 			</div>
   	</div>
   	
@@ -209,10 +206,10 @@
   		 </div>
   		 <div class="profile_update_content">
   			
-  			<div>이름: ${doctor.name}</div>
+  			<div>이름: ${doctor.doctor_name}</div>
   			<div>사번: ${doctor.doctor_no}</div>
   			<div>담당과:${doctor.department}</div>
-  			<div>연락처: ${doctor.contact}</div>
+  			<div></div>
   			
   			<input type="button" value="수정" onclick="profileModForm.do">
   			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>

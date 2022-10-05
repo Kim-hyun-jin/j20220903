@@ -31,6 +31,7 @@ public class ProfileView implements CommandProcess {
 		request.setAttribute("doctor", doctor);
 		
 		
+		
 		return "profile/profile.jsp";
 	}
 
