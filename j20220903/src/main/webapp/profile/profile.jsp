@@ -180,13 +180,13 @@
 				<a href="">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="../patientManageView.do">내환자</a>
+				<a href="">내환자</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="drug.jsp">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="../shareBoardView.do">공유게시판</a>
+				<a href="">공유게시판</a>
 			</div>
 
 			<div class="main_menu_btn">
@@ -209,12 +209,12 @@
   		 </div>
   		 <div class="profile_update_content">
   			
-  			<div>이름: ${doctor.doctor_name}</div>
-  			<div>사번: ${doctor_no}</div>
+  			<div>이름: ${doctor.name}</div>
+  			<div>사번: ${doctor.doctor_no}</div>
   			<div>담당과:${doctor.department}</div>
-  			<div>연락처: 010-1234-1234</div>
+  			<div>연락처: ${doctor.contact}</div>
   			
-  			<input type="button" value="수정" onclick="location.href='profileModForm.do?doctor_no=${doctor_no}'">
+  			<input type="button" value="수정" onclick="profileModForm.do">
   			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>
   		</div>
   		

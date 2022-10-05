@@ -17,22 +17,21 @@ public class ProfileModForm implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String doctor_no = request.getParameter("doctor_no");
-		
+/*		Doctor doctor = new Doctor();
+		DoctorDao doctorDao = DoctorDao.getInstance();
 		try {
-			
-			DoctorDao doctorDao = DoctorDao.getInstance();
-			Doctor doctor = doctorDao.select("doctor_no");
-			
-			request.setAttribute("doctor", doctor);
-			request.setAttribute("doctor_no", doctor_no);
+			doctor = doctorDao.select(doctor.getDoctor_no());
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-			System.out.println("MyProfileView.java "+ e.getMessage());
+			System.out.println("MyProfileModForm.java "+ e.getMessage());
 		}
 		
-		return "profile/profileMod.jsp";
+		request.setAttribute("doctor", doctor);
+		request.getRequestDispatcher("profileMod.jsp")
+				.forward(request, response);
+*/
+		return "profileMod.jsp";
 	}
 
 }
