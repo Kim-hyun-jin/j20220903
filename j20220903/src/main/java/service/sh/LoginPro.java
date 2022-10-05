@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Doctor;
 import dao.DoctorDao;
@@ -27,8 +28,12 @@ public class LoginPro implements CommandProcess {
 			System.out.println(result);
 			Doctor doctor = dd.select(doctor_no);
 			
+			if (result == 1) {
+				HttpSession session = request.getSession();
+				session.setAttribute("doctor_s", doctor);
+			}
+			
 			request.setAttribute("result", result);
-			request.setAttribute("doctor", doctor);
 		} catch (Exception e) {
 			System.out.println("LoginPro Error ->" + e.getMessage());
 		}

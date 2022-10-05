@@ -49,6 +49,8 @@ public class DrugSearch implements CommandProcess {
 			// 공갈 Page
 			if (endPage > pageCnt) endPage = pageCnt;
 			
+			request.setAttribute("drug_name", drug_name);
+			request.setAttribute("drug_class", drug_class);
 			request.setAttribute("totCnt", totCnt);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);

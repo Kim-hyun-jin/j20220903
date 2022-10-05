@@ -119,7 +119,6 @@ public class DrugDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
 			pstmt.setString(1, "%"+drug_name+"%");
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
