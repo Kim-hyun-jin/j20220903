@@ -15,13 +15,20 @@
 String context = request.getContextPath();
 %>
 <body>
-	<div id="container">
   	<div id="header">
   		<a href="<%=context %>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">의약품조회</span>
-  		<span class="header_name">${doctor.doctor_name }</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
+  		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<c:choose>
+			<c:when test="${doctor_s.image == null}">
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:when>
+			<c:otherwise>
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:otherwise>
+		</c:choose>
   	</div>
+	<div id="container">
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
@@ -71,7 +78,7 @@ String context = request.getContextPath();
 			</c:if>
 			<c:if test="${totCnt > 0 }">
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug.drug_class}&drug_name=${drug.drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
+					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug_class}&drug_name=${drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
 				</c:forEach>
 			</c:if>
 			<c:if test="${endPage < pageCnt }">
