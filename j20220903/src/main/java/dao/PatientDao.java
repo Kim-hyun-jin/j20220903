@@ -244,7 +244,6 @@ public class PatientDao {
 		
 		Connection conn			= null;
 		PreparedStatement pstmt	= null;
-		ResultSet rs			= null;
 		String sql = "insert into patient * values(?,?,?,?,?,?,?,?,2)";
 		
 		

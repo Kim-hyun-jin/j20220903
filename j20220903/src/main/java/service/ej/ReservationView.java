@@ -1,18 +1,12 @@
 package service.ej;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Reservation;
 import dao.Reservation2;
 import dao.ReservationDao;
 import service.CommandProcess;
@@ -55,7 +49,7 @@ public class ReservationView implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println("Reservation Service e.getMessage() -->" +e.getMessage());
 		}
-		return "reservationList.jsp";
+		return "reservation/reservationList.jsp";
 
 	}
 }

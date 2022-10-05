@@ -276,9 +276,6 @@
 			<a href="">공유게시판</a>
 		</div>
 
-		<div class="main_menu_btn">
-			<a href="view/todo/list.jsp">list</a>
-		</div>
   	</div>
   	
   	<div id="contents">
