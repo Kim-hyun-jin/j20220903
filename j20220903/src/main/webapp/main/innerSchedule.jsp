@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -291,5 +291,5 @@
 
           
 </body>
->>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git
+
 </html>

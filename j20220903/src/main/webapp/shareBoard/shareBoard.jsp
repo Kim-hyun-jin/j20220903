@@ -16,6 +16,7 @@ tr {
 </style> -->
 </head>
 <body>
+<%@ include file="../top-side.jsp" %>
 	<h1>공유게시판 메인페이지</h1>
 	공유게시판 게시글 수 
 	<p>totCount : ${totCnt}
@@ -64,3 +65,6 @@ tr {
 			<a href='shareBoardView.do?pageNum=${startPage+blockSize }'>[ 다음]</a>
 		</c:if>
 	</div>
+	<%@ include file="../footer-side.jsp" %>
+</body>
+</html>

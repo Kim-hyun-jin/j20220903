@@ -13,8 +13,8 @@ String context = request.getContextPath();
 <body>
 	<c:if test="${result == 1 }">
 		<script type="text/javascript">
-			<%-- location.href="<%=context%>/mainView.do"; --%>
-			location.href="<%=context%>/drugView.do?doctor_no=${doctor.doctor_no}";
+			location.href="<%=context%>/mainView.do";
+			<%-- location.href="<%=context%>/drugView.do?doctor_no=${doctor.doctor_no}"; --%>
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
