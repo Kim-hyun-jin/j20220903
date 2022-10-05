@@ -1,18 +1,13 @@
 package service.ej;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Reservation;
+import dao.Reservation2;
 import dao.ReservationDao;
 import service.CommandProcess;
 
@@ -35,7 +30,7 @@ public class Reservation1 implements CommandProcess {
 			int endRow = startRow + pageSize -1;
 			int startNum = totCnt - startRow + 1;
 			
-			List<Reservation> list = rd.reservationList(startRow, endRow);
+			List<Reservation2> list = rd.reservationList(startRow, endRow);
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 			int startPage = (int)(currentPage-1)/blockSize*blockSize+1;
 			int endPage = startPage + blockSize -1;

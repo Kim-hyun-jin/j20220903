@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Reservation;
 import dao.ReservationDao;
 import service.CommandProcess;
 
@@ -21,7 +20,7 @@ public class ReservationDelAct implements CommandProcess {
 			String reservation_hour = request.getParameter("reservation_hour");
 			String doctor_no = request.getParameter("doctor_no");
 			ReservationDao rd = ReservationDao.getInstance();
-			int result = rd.delete("22/09/28", "09", "7");
+			int result = rd.delete(reservation_date, reservation_hour, doctor_no);
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
