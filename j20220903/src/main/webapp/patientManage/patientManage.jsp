@@ -12,7 +12,7 @@
 
 
 <body>
-<%@ include file="top-side.html" %>
+<%@ include file="../top-side.jsp" %>
 
 
   	
@@ -47,6 +47,6 @@
   	</div>
 
   	
-<%@ include file="footer.html" %>
+<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

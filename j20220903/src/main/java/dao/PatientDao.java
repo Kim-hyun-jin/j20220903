@@ -322,4 +322,51 @@ public class PatientDao {
 		return pi;
 
 	}
+	
+	public PatientInf getMyPatientList(String doctor_no) {
+		
+		PatientInf patientInf = new PatientInf();
+		
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		ResultSet rs			= null;
+		
+		String sql =
+				"select * from (select rownum rn, n.* from\r\n"
+				+ "(select d.chart_no, p.patient_name, p.gender, d.chart_symptom, d.chart_disease,d.chart_date " 
+				+"from diahistory d inner join patient p on d.patient_no = p.patient_no where d.doctor_no = ? "
+				+"order by d.chart_date desc) n\r\n"
+				+ ")\r\n"
+				+ "where rn between 1 and 5;";
+		//doctor_no => ?
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, doctor_no);
+			rs=pstmt.executeQuery();
+			
+			if(doctor_no.equals("")) {
+				System.out.println("doctor_no none");
+			}
+			
+			//2 => session
+			pstmt.setString(1, "2");
+			
+			if(rs.next()) {
+				
+				patientInf.setChart_no(rs.getInt("chart_no"));
+				patientInf.setPatient_name(rs.getString("patient_name"));
+				patientInf.setGender(rs.getString("gender"));
+				patientInf.setChart_symptom(rs.getString("chart_symptom"));
+				patientInf.setChart_symptom(rs.getString("chart_disease"));
+				patientInf.setChart_date(rs.getDate("chart_date"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			System.out.println("PatientDao  PatientInf getMyPatientList Err"+ e.getMessage());
+		}
+		
+		return patientInf;
+	}
 }

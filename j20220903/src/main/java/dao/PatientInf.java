@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PatientInf {
 	private int patient_no;//PK 환자번호
@@ -18,9 +19,34 @@ public class PatientInf {
 	private String image;//의사사진
 	private ArrayList<String> reservation_date;//PK 예약일
 	private ArrayList<String> reservation_hour;//PK 예약시간
-	private String asdf = "오류발생용";
-	public void start() {
-		System.out.println("오류"+asdf);
+	private int chart_no;//PK 차트번호
+	private String chart_symptom;//증상
+	private String chart_disease;//병명
+	private Date chart_date;//진단일시
+	
+	public int getChart_no() {
+		return chart_no;
+	}
+	public void setChart_no(int chart_no) {
+		this.chart_no = chart_no;
+	}
+	public String getChart_symptom() {
+		return chart_symptom;
+	}
+	public void setChart_symptom(String chart_symptom) {
+		this.chart_symptom = chart_symptom;
+	}
+	public String getChart_disease() {
+		return chart_disease;
+	}
+	public void setChart_disease(String chart_disease) {
+		this.chart_disease = chart_disease;
+	}
+	public Date getChart_date() {
+		return chart_date;
+	}
+	public void setChart_date(Date chart_date) {
+		this.chart_date = chart_date;
 	}
 	public int getPatient_no() {
 		return patient_no;
