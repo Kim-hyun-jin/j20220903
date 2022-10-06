@@ -15,7 +15,6 @@
 String context = request.getContextPath();
 %>
 <body>
-
   	<div id="header">
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">의약품조회</span>
@@ -29,8 +28,7 @@ String context = request.getContextPath();
 			</c:otherwise>
 		</c:choose>
   	</div>
-
-<%@ include file="../top-side.jsp" %>
+	<div id="container">
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">

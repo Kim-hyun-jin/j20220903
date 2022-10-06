@@ -252,7 +252,6 @@
 </head>
 <%   String context = request.getContextPath();%> 
 <body>
-<%@ include file="../top-side.jsp" %>
  <div id="container">
   	<div id="header">
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
