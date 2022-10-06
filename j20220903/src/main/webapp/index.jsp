@@ -9,7 +9,6 @@
 </head>
 <body>
 <%@ include file="top-side.jsp" %>
-
   <article id="schedule">
   	<div id="area" style="width: 500px; height: 50px;">
   	<p><a href="<%=context %>/mainCalendarView.do">내스케줄</a>

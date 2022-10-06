@@ -17,10 +17,17 @@
 <body>  
   <div id="container">
   	<div id="header">
-  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="<%=context %>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">메인페이지</span>
-  		<span class="header_name">김준완</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="images/myphoto.png" style="width: 60px"></a>
+  		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<c:choose>
+			<c:when test="${doctor_s.image == null}">
+  				<a href="profile/profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:when>
+			<c:otherwise>
+  				<a href="profile/profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:otherwise>
+		</c:choose>
   	</div>
   	<div id="left-sidebar">
    	
@@ -34,7 +41,7 @@
 				<a href="<%=context %>/patientManageView.do">환자관리</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
+				<a href="<%=context%>/drugView.do?doctor_no=${doctor_s.doctor_no}">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="<%=context %>/shareBoardView.do">공유게시판</a>

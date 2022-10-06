@@ -7,22 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
+
 import dao.Doctor;
 import dao.DoctorDao;
 import service.CommandProcess;
 
-public class DrugView implements CommandProcess {
+public class Logout implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("DrugView 실행중...");
+		System.out.println("Logout Start...");
 		
-		HttpSession session = request.getSession();
-		if (session.getAttribute("doctor_s") == null) {
-			return "login/loginForm.jsp";
+		try {
+			HttpSession session = request.getSession();
+			session.invalidate();
+		} catch (Exception e) {
+			System.out.println("LoginPro Error ->" + e.getMessage());
 		}
-		else return "drug/drug.jsp";
+		
+		return "login/loginForm.jsp";
 	}
 
 }
