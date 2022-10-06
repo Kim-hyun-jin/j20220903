@@ -12,9 +12,8 @@
 	.content-right {margin: 2% 2%;}
 </style>
 </head>
-<%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
-	<%@ include file="top-side.html" %>
+	<%@ include file="../top-side.jsp" %>
 	<div class="content" style="background-color: white; ">
 		<div class="content-left" style="background-color:white; width:45%; height:100%; display:inline-block; float:left; border:1px solid black;">
 			<form class="searchBox" action="<%=context%>/patientsearchAct.do" style="border:1px solid black;">
@@ -116,6 +115,6 @@
 		</form>
 		</div>
 	</div>
-	<%@ include file="footer.html" %>
+	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

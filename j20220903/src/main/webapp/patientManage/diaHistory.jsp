@@ -24,6 +24,16 @@
 			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
 		}
 	}
+	if (${delResult!=null}) {
+		if(${delResult>0}){
+			alert("삭제에 성공했습니다.")
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
+		}
+		if(${delResult<=0}) {
+			alert("삭제실패!");
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
+		}
+	}
 </script>
 </head>
 <body>
@@ -47,7 +57,7 @@
 							</td>
 							<td>${dh.chart_date }</td> 
 							<td><input type="button" onclick="location.href='<%=context%>/diaInf.do?patient_no=${patient_no}&chart_no=${dh.chart_no}'" value="상세정보"></td>
-				  			<td><input type="button" onclick="location.href='<%=context%>/diaMod.do?patient_no=${patient_no}'" value="수정/삭제"></td>
+				  			<td><input type="button" onclick="location.href='<%=context%>/diaModAct.do?patient_no=${patient_no}&chart_no=${dh.chart_no}'" value="삭제"></td>
 			  			</tr>
 						</c:forEach>
 					</c:if>

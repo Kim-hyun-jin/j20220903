@@ -19,8 +19,7 @@ public class MainView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("MainView 실행중...");	
-		return "main/3-layout.jsp";
-		
+
 		String doctor_no = "2";
 		PatientDao patientDao =PatientDao.getInstance();
 		List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
