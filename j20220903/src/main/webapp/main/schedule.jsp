@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내스케줄</title>
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
 <link href='../css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
 <script src='../css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
@@ -71,6 +71,7 @@
       });
       
 </script>
+<link type="text/css" href="main.css" rel="stylesheet">
 <style type="text/css">
 
 
@@ -250,15 +251,24 @@
 	
 </style>
 </head>
-<%   String context = request.getContextPath();%> 
+<%
+String context = request.getContextPath();
+%>
 <body>
- <div id="container">
   	<div id="header">
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
-  		<span class="header_page">내정보</span>
-  		<span class="header_name">김준완</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="myphoto.png" style="width: 60px"></a>
+  		<span class="header_page">의약품조회</span>
+  		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<c:choose>
+			<c:when test="${doctor_s.image == null}">
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:when>
+			<c:otherwise>
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:otherwise>
+		</c:choose>
   	</div>
+	<div id="container">
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
@@ -276,7 +286,6 @@
 			<div class="main_menu_btn">
 				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
 			</div>
-
   	</div>
   	
   	<div id="contents">
@@ -284,12 +293,4 @@
 	  		<p> 내스케줄 	  		
 	  			<div style=" size:auto; width: 700px; float: center; padding-left: 10px;" id='calendar' ></div>   <!-- 캘린더 view -->
 	 	 </article>
-	</div>
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-  </div>
-</div>
-</body>
-</html>
+<%@ include file="../footer-side.jsp" %>

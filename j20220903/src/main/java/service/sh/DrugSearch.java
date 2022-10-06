@@ -26,7 +26,9 @@ public class DrugSearch implements CommandProcess {
 			String drug_name	= request.getParameter("drug_name");
 			String drug_class	= request.getParameter("drug_class");
 			
-			System.out.println(drug_class); /* 제대로 넘어 오는구만 */
+			System.out.println("DrugSearch drug_class -> " + drug_class); /* 제대로 넘어 오는구만 */
+			System.out.println("DrugSearch drug_name -> " + drug_name); /* 제대로 넘어 오는구만 */
+			System.out.println("DrugSearch doctor_no -> " + doctor_no); /* 제대로 넘어 오는구만 */
 			
 			DoctorDao docd = DoctorDao.getInstance();
 			Doctor doctor = docd.select(doctor_no);
@@ -35,6 +37,7 @@ public class DrugSearch implements CommandProcess {
 			int totCnt = dd.getCnt(drug_name, drug_class);
 			
 			String pageNum = request.getParameter("pageNum");
+			System.out.println("DrugSearch pageNum -> " + pageNum); /* 제대로 넘어 오는구만 */
 			if (pageNum == null || pageNum.equals("")) { pageNum = "1"; }
 			int currentPage = Integer.parseInt(pageNum);
 			int pageSize = 10, blockSize = 10;
@@ -59,6 +62,8 @@ public class DrugSearch implements CommandProcess {
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("doctor", doctor);
 			request.setAttribute("list", list);
+			request.setAttribute("drug_name", drug_name);
+			request.setAttribute("drug_class", drug_class);
 		} catch (SQLException e) {
 			System.out.println("DrugSearch Error => " + e.getMessage());
 		}
