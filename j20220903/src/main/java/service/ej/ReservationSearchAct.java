@@ -46,7 +46,7 @@ public class ReservationSearchAct implements CommandProcess {
 		}
 		
 		
-		return "reservationSearch.jsp";
+		return "reservation/reservationSearch.jsp";
 	}
 
 }

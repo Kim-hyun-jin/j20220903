@@ -64,7 +64,7 @@ public class ReservationDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		//String sql = "select * from reservation order by reservation_date";
-		String sql = "select p.patient_name, d.doctor_name, d.department, r.reservation_date, r.reservation_hour from patient p, reservation r, doctor d "
+		String sql = "select p.patient_name, d.doctor_name, d.doctor_no, d.department, r.reservation_date, r.reservation_hour from patient p, reservation r, doctor d "
 				+ "where p.patient_no = r.patient_no and r.doctor_no = d.doctor_no order by reservation_date";
 		try {
 			conn = getConnection();
@@ -77,7 +77,7 @@ public class ReservationDao {
 					Reservation2 reservation = new Reservation2();
 					reservation.setReservation_date(rs.getString("reservation_date"));
 					reservation.setReservation_hour(rs.getString("reservation_hour"));
-//					reservation.setDoctor_no(rs.getString("doctor_no"));
+					reservation.setDoctor_no(rs.getString("doctor_no"));
 //					reservation.setPatient_no(rs.getInt("patient_no"));
 					reservation.setPatient_name(rs.getString("patient_name"));
 					reservation.setDoctor_name(rs.getString("doctor_name"));
@@ -375,5 +375,7 @@ public class ReservationDao {
 		}
 		return result;
 	} 
+	
+
 
 }

@@ -55,7 +55,7 @@ public class ReservationView implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println("Reservation Service e.getMessage() -->" +e.getMessage());
 		}
-		return "reservationList.jsp";
+		return "reservation/reservationList.jsp";
 
 	}
 }

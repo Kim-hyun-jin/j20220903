@@ -24,7 +24,7 @@
 %>
 <body>  
 <script type="text/javascript">
-	location.href = "reservationView.do";
+	location.href = "<%=context%>/reservationView.do";
 </script> 
   <div id="container">  
   	<div id="header">
