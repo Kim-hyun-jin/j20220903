@@ -142,4 +142,33 @@ public class DrugDao {
 
 		return list;
 	}
+	@SuppressWarnings("finally")
+	public ArrayList<Drug> drugListAll() throws SQLException {
+		ArrayList<Drug> drug = new ArrayList<Drug>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		String sql = "SELECT * FROM DRUG";
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				do {
+					Drug dr = new Drug();
+					dr.setDrug_class(rs.getString("drug_class"));
+					dr.setDrug_code(rs.getInt("drug_code"));
+					dr.setDrug_name(rs.getString("drug_name"));
+					drug.add(dr);
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			System.out.println("drugListAll error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		return drug;
+		}
+	}
 }

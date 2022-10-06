@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>환자정보검색</title>
+<link type="text/css" href="main.css" rel="stylesheet">
 <style type="text/css">
 	.mainContents{
 		min-width: 1000px;
@@ -55,10 +56,46 @@
 		width: auto;
 	}
 </style>
+<%-- <%   String context = request.getContextPath();%> --%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 </head>
-<%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
+<%
+String context = request.getContextPath();
+%>
 <body>
-	<%@ include file="top-side.html" %>
+  	<div id="header">
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<span class="header_page">환자정보검색</span>
+  		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<c:choose>
+			<c:when test="${doctor_s.image == null}">
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:when>
+			<c:otherwise>
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:otherwise>
+		</c:choose>
+  	</div>
+	<div id="container">
+  	<div id="left-sidebar">
+   	
+  			<div class="main_menu_btn">
+				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/reservationView.do">예약조회</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/patientManageView.do">환자관리</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
+			</div>
+  	</div>
+
+<div id="contents">
 	<div class="mainContents">
 		<div class="leftContents">
 			<form class="searchBox" action="<%=context %>/patientsearchAct.do">
@@ -157,6 +194,6 @@
 			</c:forEach></c:if>
 		</div>
 	</div>
-	<%@ include file="footer.html" %>
+	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

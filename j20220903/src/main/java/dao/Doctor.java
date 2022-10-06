@@ -8,6 +8,7 @@ public class Doctor {
 	private String department;//진료과
 	private String image;//의사사진
 	
+	
 	public String getDoctor_no() {
 		return doctor_no;
 	}

@@ -16,14 +16,12 @@ String context = request.getContextPath();
 %>
 <body>
   	<div id="header">
-  		<a href="<%=context %>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">의약품조회</span>
   		<span class="header_name">${doctor_s.doctor_name }</span>
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">
-  				<a href="profile.jsp" class="header_image">
-  					<img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;">
-  				</a>
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
 			</c:when>
 			<c:otherwise>
   				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
@@ -52,7 +50,7 @@ String context = request.getContextPath();
   	
   	<div id="contents">
   		<form action="<%=context%>/drugSearch.do">
-	  		<input type="hidden" name="doctor_no" value="${doctor_s.doctor_no }">
+	  		<input type="hidden" name="doctor_no" value="${doctor.doctor_no }">
 	  		
 	  		<span class="drug_search">약품분류</span>
 	  		<select name="drug_class">
@@ -88,12 +86,6 @@ String context = request.getContextPath();
 			</c:if>
 		</div>
 	</div>
-  	
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-  	</div>
-  	</div>
-</body>
-</html>
+	
+<%@ include file="../footer-side.jsp" %>
+>>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git
