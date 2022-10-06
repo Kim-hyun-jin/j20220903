@@ -250,8 +250,35 @@
 	
 </style>
 </head>
+<%   String context = request.getContextPath();%> 
 <body>
 <%@ include file="../top-side.jsp" %>
+ <div id="container">
+  	<div id="header">
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<span class="header_page">내정보</span>
+  		<span class="header_name">김준완</span>
+  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="myphoto.png" style="width: 60px"></a>
+  	</div>
+  	<div id="left-sidebar">
+   	
+  			<div class="main_menu_btn">
+				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/reservationView.do">예약조회</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/patientManageView.do">환자관리</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
+			</div>
+			<div class="main_menu_btn">
+				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
+			</div>
+
+  	</div>
   	
   	<div id="contents">
 	  	<article id="schedule">
@@ -259,8 +286,11 @@
 	  			<div style=" size:auto; width: 700px; float: center; padding-left: 10px;" id='calendar' ></div>   <!-- 캘린더 view -->
 	 	 </article>
 	</div>
-	
-<%@ include file="../footer-side.jsp" %>
-
+  	<div id="footer">
+  		<h2>CareBare</h2>
+  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
+  		TEL:02-313-1711
+  </div>
+</div>
 </body>
 </html>

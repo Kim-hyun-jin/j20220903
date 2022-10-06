@@ -11,28 +11,16 @@
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 
-
-
-<script>
-	function onmouseOver(){
-		document.getElementById('hidden_popup').style.display="block";
-		
-	}
-	
-	function onmouseOut(){
-		document.getElementById('hidden_popup').style.display="none";
-	}
-</script>
 </head>
 
 <%   String context = request.getContextPath();%> 
 <body>  
   <div id="container">
   	<div id="header">
-  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">메인페이지</span>
   		<span class="header_name">김준완</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="images/myphoto.png" style="width: 60px"></a>
+  		<a href="<%=context%>/profile.do" class="header_image"><img id="myphoto" alt="" src="images/myphoto.png" style="width: 60px"></a>
   	</div>
   	<div id="left-sidebar">
    	

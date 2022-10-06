@@ -12,7 +12,7 @@
 </head>
 
 
-<body>
+<body> 
   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">환자관리</span>
