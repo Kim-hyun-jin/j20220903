@@ -7,26 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%   String context = request.getContextPath();%>
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
-<link href='../css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
-<script src='../css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
-<script type="../css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
+<link href='<%=context%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
+<script src='<%=context%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
+<script type="<%=context%>/css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
 <script type="text/javascript">
 	var schduleList = new Array(); // Json 데이터를 받기 위한 배열 선언
 	<c:forEach var="schedule" items="${list}"> /* JSTL */
 	  var obj = new Object();
 	  var date_str = "<c:out value="${schedule.schedule_startdate}"/>";
 	  var date_end = "<c:out value="${schedule.schedule_enddate}"/>";
-	  
-	  
-	  console.log("######"+JSON.stringify(date_str) + " " + JSON.stringify(date_end));
+	  //moment(end_date, 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD HH:mm:SS');
+	  //console.log("######"+JSON.stringify(date_str) + " " + JSON.stringify(date_end));
       obj = { /* 중괄호-->json object */
     	  id : "<c:out value="${schedule.schedule_no}"/>",
     	  title: "<c:out value="${schedule.schedule_title}"/>",
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
-    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
-    	   	  
+    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}",
     	 
    	  };
      
@@ -48,6 +47,7 @@
         	  end: "today",
        	  },
           selectable: true,
+          
           events: schduleList, /* 캘린더에 list를 뿌려주는 event */
           customButtons: {
               addEventButton: { // 추가한 버튼 설정
@@ -56,14 +56,14 @@
                 	  		window.location.href = "mainCalendarRegView.do";
                   }
               }
-          },
-          
+          },   
+          timeZone: 'Asia/Seoul',
           eventClick:function(info) { 
           },
 
 		  height: 550,
-		  contentHeight: 200,
-		  aspectRatio: 1.8
+		  contentHeight: 230,
+		  aspectRatio: 1.6
         	   
           
         });
@@ -245,6 +245,11 @@
 		height: 660px;
 		background-color: white;
 	  
+	}
+	
+	.fc-toolbar-chunk {
+  	display: flex; // 일렬로 나란히
+  	align-items: center; // 수직 가운데 정렬
 	}
 
 	

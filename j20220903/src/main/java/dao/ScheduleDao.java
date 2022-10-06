@@ -35,12 +35,14 @@ import javax.sql.DataSource;
 			return conn;
 		}
 		
-	public  List<Schedule> list() throws SQLException {
+		/* public List<Schedule> list(String doctor_no) throws SQLException { */
+				 public List<Schedule> list() throws SQLException { 
 		List<Schedule> list = new ArrayList<Schedule>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
 		String sql = "select * from schedule where doctor_no=2";
+		//String sql = "select * from schedule where doctor_no="+doctor_no;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -140,7 +142,7 @@ import javax.sql.DataSource;
 		PreparedStatement pstmt = null;	
 		int result = 0;	
 		String sql="update schedule set doctor_no=?,schedule_title=?,schedule_startdate=?,"+
-            	"schedule_enddate=?,schedule_content=? where schedule_no=?";
+            		"schedule_enddate=?,schedule_content=? where schedule_no=?";
 	
 		try {
 			conn = getConnection();
