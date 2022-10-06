@@ -24,7 +24,7 @@
 			<input type="password" class="id" id="password" name="password" placeholder="암호" required="required"><p>
 			<input type="submit" class="log" id="chk" value="로그인"><p>
 			<label>
-				<input type="checkbox" class="auto_log" name="auto_log">
+				<input type="checkbox" class="auto_log" name="auto_log" value="auto">
 				로그인 상태 유지
 			</label>
 			<hr>

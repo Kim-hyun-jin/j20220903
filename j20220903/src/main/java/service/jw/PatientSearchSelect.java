@@ -11,7 +11,6 @@ import dao.DiaDrugDao;
 import dao.DiaDrugInf;
 import dao.DiaHistoryDao;
 import dao.DiaHistoryInf;
-import dao.DiaHistoryInf;
 import dao.PatientDao;
 import dao.PatientInf;
 import service.CommandProcess;

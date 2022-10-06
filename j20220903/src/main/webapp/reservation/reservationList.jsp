@@ -143,4 +143,4 @@
 
 </html>
   	
- 
+<%@ include file="../footer-side.jsp" %>
