@@ -64,7 +64,7 @@ String context = request.getContextPath();
 <body>
   	<div id="header">
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
-  		<span class="header_page">의약품조회</span>
+  		<span class="header_page">환자정보검색</span>
   		<span class="header_name">${doctor_s.doctor_name }</span>
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">

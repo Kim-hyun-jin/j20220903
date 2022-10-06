@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내환자목록</title>
+<link type="text/css" href="main.css" rel="stylesheet">
 </head>
 <body>
 <%
@@ -45,13 +46,14 @@ String context = request.getContextPath();
 			</div>
   	</div>
 
-<table>
+<table border="2">
 	<tr><td>차트번호</td><td>환자명</td><td>성별</td><td>증상</td><td>병명</td><td>진단일</td></tr>
-	<c:foreach var="patientInfo_main" items="${myPatientList}">
+<%-- 	<c:foreach var="patientInfo_main" items="${myPatientList}"> --%>
+	<c:forEach var="patientInfo_main" items="${myPatientList}">
 		<tr><td>${patientInfo_main.chart_no}</td><td>${patientInfo_main.patient_name}</td>
 		<td>${patientInfo_main.gender}</td><td>${patientInfo_main.chart_symptom}</td>
 		<td>${patientInfo_main.chart_disease}</td><td>${patientInfo_main.chart_date}</td></tr>
-	</c:foreach>
+	</c:forEach>
 </table>
 
 </div>
