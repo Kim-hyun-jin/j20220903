@@ -8,139 +8,10 @@
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 
+
+<link type="text/css" href="main.css" rel="stylesheet">
+
 <style type="text/css">
-
-@charset "UTF-8";
-@font-face {
-    font-family: 'GangwonEduSaeeum_OTFMediumA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-	}
-	
-	* {
-	font-family: 'GangwonEduSaeeum_OTFMediumA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
-    font-size: 30px;
-	}
-	
-	#container {
-		width: 1000px;
-		height: 800px;
-		margin: 0 auto;
-	}
-	#header {
-		height : 50px;
-		background-color: cornflowerblue;
-		padding: 20px;
-		border-bottom: solid 3px;
-		border-bottom-color: white;
-		position: relative;
-	
-	}
-	
-	#contents {
-		width: 770px;
-		height : 700px;
-		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
-		background-color: lightsteelblue;
-	}
-	
-	#left-sidebar {
-	
-		background-color: cornflowerblue;
-		width: 230px;
-		height : 700px;
-		float: left;
-	}
-	
-	.header_logo {
-		font-size: 40px;
-		font-weight: bold;
-		color: white;
-		position: absolute;
-		left: 20px;
-		bottom: 20px;
-	}
-	
-	.header_image {
-		position: absolute;
-		bottom: 10px;
-		right: 10px;
-	}
-	
-	.header_page {
-		position: absolute;
-		bottom: 20px;
-		left: 250px;
-		font-size: 40px;
-		color: white;
-		font-family: 'GangwonEduSaeeum_OTFMediumA';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-		}
-	
-	.header_name {
-		position: absolute;
-		bottom: 25px;
-		font-weight: bold;
-		font-size: 25px;
-		color: white;
-		right: 100px;
-	}
-	
-	.main_menu_btn {
-	
-		display: flex;
-		background-color: white;
-		border: 1px solid black;
-		justify-content: center;
-		margin: 15px;		
-		padding: 20px;
-		
-	
-	}
-	
-	.main_menu_btn:hover {
-		color: cornflowerblue;
-		box-shadow: 3px 3px #00008B;
-	}
-	
-	#schedule {
-		border: solid 2px;
-		border-color: white;
-		margin: 15px;
-		height: 320px;
-		background-color: white;
-	  
-	}
-	
-	#patient_info{
-	
-		border: solid 2px;
-		border-color: white;
-		margin: 15px;
-		height: 320px;
-		background-color: white;
-	}
-	
-	
-	#footer {
-		height : 130px;
-		clear : both; /* 나는 flat를 따르지 않을 거란다~ */
-		background-color: cornflowerblue;
-		border-top: solid 3px;
-		border-top-color: white;
-		padding-left: 10px;
-	}
-	
-	
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
-
 
 	
 	#profile_update {
@@ -209,12 +80,12 @@
   		 </div>
   		 <div class="profile_update_content">
   			
-  			<div>이름: ${doctor.name}</div>
+  			<div>이름: ${doctor.doctor_name}</div>
   			<div>사번: ${doctor.doctor_no}</div>
   			<div>담당과:${doctor.department}</div>
-  			<div>연락처: ${doctor.contact}</div>
   			
-  			<input type="button" value="수정" onclick="profileModForm.do">
+  			
+  			<input type="button" value="수정" onclick="profileModView.do">
   			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>
   		</div>
   		

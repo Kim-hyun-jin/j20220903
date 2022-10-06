@@ -11,7 +11,7 @@ import dao.Doctor;
 import dao.DoctorDao;
 import service.CommandProcess;
 
-public class ProfileModForm implements CommandProcess {
+public class ProfileModView implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" href="main.css" rel="stylesheet">
 <style type="text/css">
 	.mainContents{
 		min-width: 1000px;
@@ -55,10 +56,19 @@
 		width: auto;
 	}
 </style>
+
 </head>
-<%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
+<%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
-	<%@ include file="top-side.html" %>
+
+  	<div id="header">
+  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<span class="header_page">환자정보검색</span>
+  		<span class="header_name">${doctor.doctor_name }</span>
+  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
+  	</div>
+  	
+	<%@ include file="../top-side.jsp" %>
 	<div class="mainContents">
 		<div class="leftContents">
 			<form class="searchBox" action="<%=context %>/patientsearchAct.do">

@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.CommandProcess;
 
-public class ProfileModPro implements CommandProcess {
+public class ProfileModAct implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return "main/profile.jsp";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

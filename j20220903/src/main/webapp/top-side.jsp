@@ -11,6 +11,18 @@
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 
+
+
+<script>
+	function onmouseOver(){
+		document.getElementById('hidden_popup').style.display="block";
+		
+	}
+	
+	function onmouseOut(){
+		document.getElementById('hidden_popup').style.display="none";
+	}
+</script>
 </head>
 
 <%   String context = request.getContextPath();%> 
