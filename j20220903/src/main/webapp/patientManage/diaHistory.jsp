@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%String context = request.getContextPath();%>
+<%String context0 = request.getContextPath();%>
 <style type="text/css">
-	table, tr, td{
+	table, tr, td, th{
 		border: 1px solid black; 
 		border-collapse: collapse;"
 	}
@@ -17,16 +17,17 @@
 	if (${result!=null}) {
 		if(${result>0}){
 			alert("등록에 성공했습니다.")
-			location.href="<%=context%>/diaHistroyView.do?patient_no=${patient_no}";
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
 		}
 		if(${result<=0}) {
 			alert("등록실패!");
-			location.href="<%=context%>/diaHistroyView.do?patient_no=${patient_no}";
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
 		}
 	}
 </script>
 </head>
 <body>
+	<%@ include file="../top-side.jsp" %>
 	<div>
 		<form action="">
 			<table>
@@ -54,5 +55,6 @@
 			</table>
 		</form>
 	</div>
+	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

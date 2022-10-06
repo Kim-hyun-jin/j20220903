@@ -18,7 +18,10 @@ public class PatientInf {
 	private String image;//의사사진
 	private ArrayList<String> reservation_date;//PK 예약일
 	private ArrayList<String> reservation_hour;//PK 예약시간
-	
+	private String asdf = "오류발생용";
+	public void start() {
+		System.out.println("오류"+asdf);
+	}
 	public int getPatient_no() {
 		return patient_no;
 	}
