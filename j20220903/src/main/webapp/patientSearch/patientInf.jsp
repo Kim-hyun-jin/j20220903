@@ -56,9 +56,8 @@
 	}
 </style>
 </head>
-<%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
-	<%@ include file="top-side.html" %>
+	<%@ include file="../top-side.jsp" %>
 	<div class="mainContents">
 		<div class="leftContents">
 			<form class="searchBox" action="<%=context %>/patientsearchAct.do">
@@ -158,6 +157,6 @@
 			</c:forEach></c:if>
 		</div>
 	</div>
-	<%@ include file="footer.html" %>
+	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

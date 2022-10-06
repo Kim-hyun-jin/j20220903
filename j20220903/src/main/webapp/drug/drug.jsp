@@ -15,29 +15,36 @@
 String context = request.getContextPath();
 %>
 <body>
-	<div id="container">
   	<div id="header">
-  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">의약품조회</span>
-  		<span class="header_name">${doctor.doctor_name }</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
+  		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<c:choose>
+			<c:when test="${doctor_s.image == null}">
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:when>
+			<c:otherwise>
+  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+			</c:otherwise>
+		</c:choose>
   	</div>
+	<div id="container">
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
-				<a href="">환자정보검색</a>
+				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">예약조회</a>
+				<a href="<%=context %>/reservationView.do">예약조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">내환자</a>
+				<a href="<%=context %>/patientManageView.do">환자관리</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=${doctor.doctor_no}">의약품조회</a>
+				<a href="<%=context%>/drugView.do?doctor_no=${doctor_s.doctor_no}">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="">공유게시판</a>
+				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
 			</div>
   	</div>
   	
@@ -71,7 +78,7 @@ String context = request.getContextPath();
 			</c:if>
 			<c:if test="${totCnt > 0 }">
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug.drug_class}&drug_name=${drug.drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
+					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug_class}&drug_name=${drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
 				</c:forEach>
 			</c:if>
 			<c:if test="${endPage < pageCnt }">
@@ -79,12 +86,6 @@ String context = request.getContextPath();
 			</c:if>
 		</div>
 	</div>
-  	
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-  	</div>
-  	</div>
-</body>
-</html>
+	
+<%@ include file="../footer-side.jsp" %>
+>>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git

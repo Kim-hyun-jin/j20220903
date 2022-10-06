@@ -100,7 +100,6 @@ import javax.sql.DataSource;
 	}
 	
 	public  int insert(Schedule schedule) throws SQLException {
-		int schedule_no = schedule.getSchedule_no();
 		Connection conn = null;
 		PreparedStatement pstmt = null;	
 		int result =0;
