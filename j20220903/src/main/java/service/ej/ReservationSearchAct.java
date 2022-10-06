@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Patient;
+import dao.PatientDao;
 import dao.Reservation2;
 import dao.ReservationDao;
 import service.CommandProcess;
@@ -44,7 +46,7 @@ public class ReservationSearchAct implements CommandProcess {
 		}
 		
 		
-		return "reservationSearch.jsp";
+		return "reservation/reservationSearch.jsp";
 	}
 
 }

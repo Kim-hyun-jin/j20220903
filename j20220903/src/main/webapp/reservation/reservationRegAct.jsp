@@ -18,14 +18,15 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("입력 완료");
-		location.href="<%=context%>/reservationRegView.do";
+		location.href="<%=context%>/reservationView.do";
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">
 	<script type="text/javascript">
 		alert("입력 실패");
-		location.href="<%=context%>/reservationRegView.do";
+		location.href="<%=context%>/reservationView.do";
 	</script>
 </c:if>
 </body>
+
 </html>

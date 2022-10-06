@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<link rel="stylesheet" type="text/css" href="revStyle.css">  
+<link rel="stylesheet" type="text/css" href="reservation/revStyle.css">  
 <style type="text/css">
 	table tr td {
 		width:150px; 
@@ -96,7 +96,7 @@
   	
   		
 
-		<form id="table-style" action="../reservationRegAct.do" >
+		<form id="table-style" action="<%=context %>/reservationRegAct.do" >
 	
 			<table border="1">
 			 <colgroup>
@@ -114,31 +114,48 @@
 					
 					<%-- <tr><td>제목</td><td>${board.subject}</td></tr>  --%>
 				</tr>
-				<tr><td><input id="name" name="name" type="text" value=""><input type="button" value="조회" onclick="window.open('reservationSearch.do')"></td>
-					<td><input id="num" name="patient_no" type="text" value=""></td>
-					<td><input id="gender" name="gender" type="text" value=""></td>
-					<td><input id="birth" name="birth" type="text" value=""></td>
+				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:160px; "><input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"></td>
+					<td><input id="num" name="patient_no" type="text" value="" style="text-align:center; width:130px;" ></td>
+					<td><input id="gender" name="gender" type="text" value="" style="text-align:center; width:150px;"></td>
+					<td><input id="birth" name="birth" type="text" value="" style="text-align:center; width:180px;"></td>
 					<!-- <input type="hidden" id="patientno" name="patientno"> -->
 				</tr>
 				<tr>
-					<th>주소</th>
-					<td><input id="address" type="text" value=""></td>
+					<th colspan="4">주소</th>
 				</tr>
 				<tr>
-					<th>예약일</th><td><input id="reservation_date" name="reservation_date" type="text" value="YY/MM/DD"></td>
+					<td colspan="4"><input id="address" type="text" value="" style="text-align:center; width:715px; "></td>
 				</tr>
 				<tr>
-					<th>예약시간</th><td><input id="reservation_hour" name="reservation_hour" type="text" value="HH"></td>									
+					<th>예약일</th><th>예약시간</th><th colspan="2">의료진</th>
+				</tr>
+				<tr>
+					<td><input id="reservation_date" name="reservation_date" type="text" value="YY/MM/DD"></td>
+					<td><input id="reservation_hour" name="reservation_hour" type="text" value="HH" style="width:120px;"></td>
+					<td colspan="2" style="text-align:center; width:200px;" ><select name="doctor_no" >
+							<option value="" selected="selected" colspan="2" style="text-align:center; width:300px;" >-의료진 선택-</option>
+							<c:forEach var="doctor" items="${list_doc }">
+								<option  value=${doctor.doctor_no } style="text-align:center; width:200px;">${doctor.doctor_name }</option>
+							</c:forEach>
+					</select></td>
+				</tr>
+<%-- 				<tr>
+					<th>예약시간</th>
+				</tr>
+				<tr>
+					<td><input id="reservation_hour" name="reservation_hour" type="text" value="HH"></td>									
 				</tr>
 				<tr>
 					<th>의료진</th>
+				</tr>
+				<tr>
 					<td><select name="doctor_no">
 							<option value="" selected="selected">-의료진 선택-</option>
 							<c:forEach var="doctor" items="${list_doc }">
 								<option value=${doctor.doctor_no }>${doctor.doctor_name }</option>
 							</c:forEach>
 					</select></td>
-				</tr>
+				</tr> --%>
 
 				<c:if test="${totCnt>0}">
 					<c:forEach var="reservation" items="${list}">
@@ -159,7 +176,7 @@
 				
 			</table>
 			<!-- <input type="button" value="저장" onclick="location.href='../reservationRegAct.do'" style="float: right"> -->
-			<input type="submit" value="저장"> 
+			<input type="submit" value="등록" style="float: right;"> 
 
 	
 	 	 </form>

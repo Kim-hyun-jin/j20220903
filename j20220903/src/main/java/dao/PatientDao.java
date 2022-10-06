@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class PatientDao {
 	private static PatientDao instance;
 	private PatientDao() {}	
@@ -323,9 +324,10 @@ public class PatientDao {
 
 	}
 	
-	public PatientInf getMyPatientList(String doctor_no) {
+	public List<PatientInf> getMyPatientList(String doctor_no) {
 		
-		PatientInf patientInf = new PatientInf();
+		List<PatientInf> list = new ArrayList<PatientInf>();
+		
 		
 		Connection conn			= null;
 		PreparedStatement pstmt	= null;
@@ -337,7 +339,7 @@ public class PatientDao {
 				+"from diahistory d inner join patient p on d.patient_no = p.patient_no where d.doctor_no = ? "
 				+"order by d.chart_date desc) n\r\n"
 				+ ")\r\n"
-				+ "where rn between 1 and 5;";
+				+ "where rn between 1 and 5";
 		//doctor_no => ?
 		try {
 			conn = getConnection();
@@ -353,20 +355,22 @@ public class PatientDao {
 			pstmt.setString(1, "2");
 			
 			if(rs.next()) {
-				
+				PatientInf patientInf = new PatientInf();
 				patientInf.setChart_no(rs.getInt("chart_no"));
 				patientInf.setPatient_name(rs.getString("patient_name"));
 				patientInf.setGender(rs.getString("gender"));
 				patientInf.setChart_symptom(rs.getString("chart_symptom"));
 				patientInf.setChart_symptom(rs.getString("chart_disease"));
 				patientInf.setChart_date(rs.getDate("chart_date"));
+				list.add(patientInf);
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 			System.out.println("PatientDao  PatientInf getMyPatientList Err"+ e.getMessage());
 		}
+		System.out.println("getMyPatientList 실행");
 		
-		return patientInf;
+		return list;
 	}
 }

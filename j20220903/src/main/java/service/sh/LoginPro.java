@@ -22,6 +22,9 @@ public class LoginPro implements CommandProcess {
 		try {
 			String doctor_no = request.getParameter("doctor_no");
 			int password = Integer.parseInt(request.getParameter("password"));
+			String auto = request.getParameter("auto_log");
+			
+			System.out.println("LoginPro auto -> " + auto);
 			
 			DoctorDao dd = DoctorDao.getInstance();
 			int result = dd.check(doctor_no, password);
@@ -31,6 +34,11 @@ public class LoginPro implements CommandProcess {
 			if (result == 1) {
 				HttpSession session = request.getSession();
 				session.setAttribute("doctor_s", doctor);
+				
+				if (auto != null) {
+					System.out.println("hi");
+					// 이곳에 로그인 유지하는 세션 구현 해보기?!
+				}
 			}
 			System.out.println("LoginPro doctor_image => " + doctor.getImage());
 			request.setAttribute("result", result);

@@ -41,7 +41,7 @@ String context = request.getContextPath();
 				<a href="<%=context %>/patientManageView.do">환자관리</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
+				<a href="<%=context%>/drugView.do?doctor_no=${doctor_s.doctor_no}">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
 				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
@@ -86,12 +86,6 @@ String context = request.getContextPath();
 			</c:if>
 		</div>
 	</div>
-  	
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-  	</div>
-  	</div>
-</body>
-</html>
+	
+<%@ include file="../footer-side.jsp" %>
+>>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git

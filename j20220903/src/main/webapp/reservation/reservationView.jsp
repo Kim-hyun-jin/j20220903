@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<link type="text/css" href="main.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="revStyle.css">  
 <style type="text/css">
 	table tr td {
@@ -25,11 +24,11 @@
 %>
 <body>  
 <script type="text/javascript">
-	location.href = "reservationView.do";
+	location.href = "<%=context%>/reservationView.do";
 </script> 
   <div id="container">  
   	<div id="header">
-  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
+  		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">예약조회</span>
   		<span class="header_name">김준완</span>
   		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="myphoto.png" style="width: 60px"></a>
@@ -37,19 +36,23 @@
   	<div id="left-sidebar">
    	
   			<div class="main_menu_btn">
-				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
+				<a href="">환자정보검색</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context %>/reservationView.do">예약조회</a>
+				<a href="reservation.jsp">예약조회</a> 
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context %>/patientManageView.do">환자관리</a>
+				<a href="">내환자</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
+				<a href="drug.jsp">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
+				<a href="">공유게시판</a>
+			</div>
+
+			<div class="main_menu_btn">
+				<a href="view/todo/list.jsp">list</a>
 			</div>
 
   	</div>
@@ -69,5 +72,3 @@
 </body>
 
 </html>
-  	
- 
