@@ -2,7 +2,6 @@ package service.khj;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import dao.PatientDao;
 import dao.PatientInf;
 import service.CommandProcess;
 
-public class DiaModView implements CommandProcess {
+public class DiaInfView implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
@@ -34,12 +33,6 @@ public class DiaModView implements CommandProcess {
 			DiaHistoryInf dhi = dhd.diaInf(patient_no,chart_no); 
 			ArrayList<DiaDrugInf> ddi = ddd.diaDrugList(patient_no, chart_no);
 			
-			List<Integer> drugList = new ArrayList<Integer>();
-			for(DiaDrugInf dl : ddi) {
-				drugList.add(dl.getDrug_code());
-			}
-			
-			request.setAttribute("drugList", drugList);
 			request.setAttribute("diaInf", dhi);
 			request.setAttribute("patientInf", pi);
 			request.setAttribute("diaDrug", ddi);

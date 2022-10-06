@@ -28,7 +28,7 @@ public class DiaRegAct implements CommandProcess {
 			int result = dhd.diaReg(chart_symptom,chart_disease,patient_no,2,drug_code);
 			
 			request.setAttribute("patient_no", patient_no);
-			request.setAttribute("result", result);
+			request.setAttribute("regResult", result);
 		} catch (Exception e) {
 			System.out.println("DiaRegAct e.getMessage ==>"+e.getMessage());
 		}

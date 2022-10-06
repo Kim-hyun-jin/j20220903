@@ -88,14 +88,16 @@ public class DiaHistoryDao {
 			result=pstmt.executeUpdate();
 			if(result>0) {
 				String sql2 = "INSERT INTO diadrug values(?,(SELECT MAX(CHART_NO) FROM diahistory WHERE PATIENT_NO=?),?)";
+				int rs=0;
 				for(int i=0; i<drug_code.length; i++) {
 					pstmt.close();
 					pstmt=conn.prepareStatement(sql2);
 					pstmt.setString(1, patient_no);
 					pstmt.setString(2, patient_no);
 					pstmt.setString(3, drug_code[i]);
-					int rs=pstmt.executeUpdate();
+					rs+=pstmt.executeUpdate();
 				}
+				if(rs>0) System.out.println("약품등록 성공!("+rs+"/"+drug_code.length+")");
 			}
 		}catch (Exception e) {
 			System.out.println("DiaHistory.diaReg e.getMessage ==> " + e.getMessage());
@@ -104,5 +106,42 @@ public class DiaHistoryDao {
 			if (conn != null) conn.close();
 		}
 		return result;
+	}
+	public DiaHistoryInf diaInf(int patient_no,int chart_no) throws SQLException {
+
+		DiaHistoryInf rsDia = new DiaHistoryInf();
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		ResultSet rs			= null;
+		String sqlbase			= 
+				"SELECT dh.* ,d.doctor_name,d.department\r\n"
+				+ "FROM diahistory dh, doctor d\r\n"
+				+ "WHERE dh.patient_no =?\r\n"
+				+ "AND dh.chart_no =?\r\n"
+				+ "AND dh.doctor_no=d.doctor_no";
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sqlbase);
+			pstmt.setInt(1, patient_no);
+			pstmt.setInt(2, chart_no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				rsDia.setChart_date(rs.getDate("chart_date"));
+				rsDia.setChart_disease(rs.getString("chart_disease"));
+				rsDia.setChart_no(rs.getInt("chart_no"));
+				rsDia.setChart_symptom(rs.getString("chart_symptom"));
+				rsDia.setDoctor_no(rs.getInt("doctor_no"));
+				rsDia.setPatient_no(rs.getInt("patient_no"));
+				rsDia.setDoctor_name(rs.getString("Doctor_name"));
+				rsDia.setDepartment(rs.getString("Department"));
+			}
+		}catch (Exception e) {
+			System.out.println("DiaHistory.historyList e.getMessage ==> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return rsDia;
 	}
 }
