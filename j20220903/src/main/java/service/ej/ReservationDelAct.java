@@ -32,3 +32,4 @@ public class ReservationDelAct implements CommandProcess {
 		}
 		return "reservation/reservationDel.jsp";
 	}
+}
