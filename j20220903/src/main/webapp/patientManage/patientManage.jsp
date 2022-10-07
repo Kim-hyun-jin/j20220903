@@ -13,6 +13,7 @@
 <body>
   	<%@ include file="../top-side.jsp" %>
   	
+  	<div id="contents">
   		
   		<table class="patient_manage_table" border="2">
   		<caption>환자관리</caption>
@@ -22,7 +23,7 @@
 	  			<tr><td>${list.patient_no}</td><td>${list.patient_name}</td><td>${list.birth}</td><td>${list.gender}</td>
 	  			<td><input type="button" onclick="location.href='patientManageDetail.do?patient_no=${list.patient_no}'" value="상세정보"></td>
 	  			<td><input type="button" onclick="location.href='diaHistroyView.do?patient_no=${list.patient_no}'" value="진단내역"></td>
-	  			<td><input type="button" onclick="location.href='patientManageUpdate.do?patient_no=${list.patient_no}'" value="수정/삭제"></td></tr>
+	  			<td><input type="button" onclick="location.href='patientManageUpdateDetail.do?patient_no=${list.patient_no}'" value="수정/삭제"></td></tr>
 
 	  		</c:forEach>
    		
