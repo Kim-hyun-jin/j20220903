@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>환자 정보 검색</title>
 <style type="text/css">
 	.mainContents{
 		min-width: 1000px;
-		background-color: white;
+		background-color: lightsteelblue;
 		display: inline-block;
 		height: 100%;
 		width: 100%;
@@ -25,17 +25,19 @@
 		position: relative;
 	}
 	.searchBox {
-		border: 3px solid lightsteelblue;
+		border: 3px solid black;
 		height: 29%;
 		margin-bottom: 1%;
+		background-color: white;
 	}
 	.searchResult {
-		border: 3px solid lightsteelblue;
+		border: 3px solid black;
 		height: 70%;
 		overflow: scroll;
+		background-color: white;
 	}
 	.patientInf {
-		border: 3px solid lightsteelblue;
+		border: 3px solid black;
 		width: 43%;
 		height: 90%;
 		float: right;
@@ -43,6 +45,7 @@
 		margin-right: 5%;
 		margin-bottom: 5%;
 		overflow: scroll;
+		background-color: white;
 	}
 	td select {
 		font: initial;
@@ -85,12 +88,13 @@
 					</tr> 
 					<tr>
 						<th>예약일</th>
-						<td><select name="reservationDate">
+						<td><%-- <select name="reservationDate">
 								<option value="" selected="selected">선택하지 않음</option>
 								<c:forEach var="reservationDate" items="${list_res_date }">
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
-						</select></td>
+						</select> --%>
+						<input type="date" name="reservationDate"></td>
 					</tr> 
 					<tr>
 						<th>환자명</th>

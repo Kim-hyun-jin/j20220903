@@ -13,7 +13,7 @@
 	}
 	
 	#container {
-		width: 1000px;
+		width: 1280px;
 		height: 800px;
 		margin: 0 auto;
 	}
@@ -28,8 +28,8 @@
 	}
 	
 	#contents {
-		width: 770px;
-		height : 700px;
+		width: 1050px;
+		height : 800px;
 		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
 		background-color: lightsteelblue;
 	}
@@ -38,7 +38,7 @@
 	
 		background-color: cornflowerblue;
 		width: 230px;
-		height : 700px;
+		height : 800px;
 		float: left;
 	}
 	

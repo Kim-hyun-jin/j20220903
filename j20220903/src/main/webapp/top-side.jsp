@@ -6,19 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%   String context = request.getContextPath();%> 
 <title>Insert title here</title>
-<link type="text/css" href="test.css" rel="stylesheet">
+<link type="text/css" href="<%=context %>/main.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
-
 </head>
 
-<%   String context = request.getContextPath();%> 
-<body>  
+<body>
    <div id="container">
   	<div id="header">
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
-  		<span class="header_page">메인페이지</span>
+  		<span class="header_page"><script type="text/javascript">document.write(document.title)</script></span>
   		<span class="header_name">${doctor_s.doctor_name }</span>
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">
@@ -30,22 +29,20 @@
 		</c:choose>
   	</div>
   	<div id="left-sidebar">
-   	
-  			<div class="main_menu_btn">
-				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/reservationView.do">예약조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/patientManageView.do">환자관리</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=${doctor_s.doctor_no}">의약품조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
-			</div>
-
+   		<a href="<%=context%>/patientSearch.do">
+  			<div class="main_menu_btn">환자 정보 검색</div>
+		</a>
+   		<a href="<%=context%>/reservationView.do">
+  			<div class="main_menu_btn">예약 조회</div>
+		</a>
+   		<a href="<%=context%>/patientManageView.do">
+  			<div class="main_menu_btn">환자 관리</div>
+		</a>
+   		<a href="<%=context%>/drugView.do">
+  			<div class="main_menu_btn">의약품 조회</div>
+		</a>
+   		<a href="<%=context%>/shareBoardView.do">
+  			<div class="main_menu_btn">공유 게시판</div>
+		</a>
   	</div>
 	<div id="contents">
