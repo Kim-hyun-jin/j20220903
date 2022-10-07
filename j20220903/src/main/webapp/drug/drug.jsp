@@ -88,4 +88,3 @@ String context = request.getContextPath();
 	</div>
 	
 <%@ include file="../footer-side.jsp" %>
->>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git
