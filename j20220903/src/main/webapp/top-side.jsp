@@ -21,10 +21,10 @@
   		<span class="header_name">${doctor_s.doctor_name }</span>
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">
-  				<a href="profile/profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
+  				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
 			</c:when>
 			<c:otherwise>
-  				<a href="profile/profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
+  				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 60px; border-radius: 50%;"></a>
 			</c:otherwise>
 		</c:choose>
   	</div>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Patient;
 import dao.PatientDao;
@@ -31,6 +32,7 @@ public class PatientManageView implements CommandProcess {
 			e.printStackTrace();
 			System.out.println("PatientManageView.java:"+e.getMessage());
 		}
+		
 		return "patientManage/patientManage.jsp";
 	}
 

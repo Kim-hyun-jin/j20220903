@@ -50,6 +50,9 @@
 	td select {
 		font: initial;
 	}
+	.select {
+		font: initial;
+	}
 	.searchResult table, .searchResult td, .searchResult th {
 		min-width:100%;
 		border: 1px solid black;
@@ -94,7 +97,7 @@
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
 						</select> --%>
-						<input type="date" name="reservationDate"></td>
+						<input type="date" name="reservationDate" class="select"></td>
 					</tr> 
 					<tr>
 						<th>환자명</th>

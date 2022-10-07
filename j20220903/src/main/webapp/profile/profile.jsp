@@ -39,10 +39,9 @@
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
-  		 	<div><img id="edit_img" alt="" src="<%=context %>/images/myphoto.png" style="width:100px"></div>
+  		 	<div><img id="edit_img" alt="" src="<%=context %>/images/${doctor_s.image}" style="width:100px"></div>
   		 	<form action="" method="post" enctype="multipart/form-data">
  
-		  	  <input type="submit" value="이미지편집">
 			</form>
   		 </div>
   		 <div class="profile_update_content">

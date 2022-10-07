@@ -222,5 +222,30 @@ public class DoctorDao {
 	    
 		
 	}
+	
+	public int updateImage(String image, String doctor_no) {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+	    String sql="update doctor\r\n"
+	    		+ "set image =?\r\n"
+	    		+ "where doctor_no = ?";
+	    
+	    
+	    try {
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);
+	          
+	    	  pstmt.setString(1, image);
+	    	  pstmt.setString(2, doctor_no);
+	          result = pstmt.executeUpdate();
+	   
+	      } catch (Exception e) {
+	         System.out.println("updateProfile error -> " + e.getMessage());
+	      } 
+	      return result;
+	    
+		
+	}
 
 }

@@ -8,6 +8,7 @@
 <title>환자정보검색</title>
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
+<link type="text/css" href="patient/patientSearch.css" rel="stylesheet">
 <style type="text/css">
 	.mainContents{
 		min-width: 1000px;
@@ -50,6 +51,9 @@
 		background-color: white;
 	}
 	td select {
+		font: initial;
+	}
+	.select {
 		font: initial;
 	}
 	.searchResult table, .searchResult td, .searchResult th {
@@ -98,7 +102,7 @@
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
 						</select> --%>
-						<input type="date" name="reservationDate">
+						<input type="date" name="reservationDate" class="select">
 						</td>
 					</tr> 
 					<tr>
@@ -112,7 +116,7 @@
 				<table>
 					<tr><td>환자<br>번호</td><td>환자명</td><td>담당의</td><td>진료과</td><td>예약일</td></tr>
 				  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
-						<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
+						<tr class="patient_search" onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
 							<td>${patient.patient_no }</td>
 							<td>${patient.patient_name }</td>
 							<td>${searchSet.get(stat.index).get(2)}</td>
