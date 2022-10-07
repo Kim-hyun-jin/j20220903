@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.Patient;
 import dao.PatientDao;
@@ -19,10 +18,14 @@ public class PatientManageView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		PatientDao patientDao = PatientDao.getInstance();
+		System.out.println("PatientManageView Service start...");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+				
 		
 		try {
-			List<Patient> listDao = patientDao.selectAll();
+			PatientDao pd = PatientDao.getInstance();
+			List<Patient> listDao = pd.selectAll();
 			//doctor_no 2로 임시처리 getAttribute from request
 			//session.get?
 			request.setAttribute("patient_list", listDao);
@@ -32,7 +35,6 @@ public class PatientManageView implements CommandProcess {
 			e.printStackTrace();
 			System.out.println("PatientManageView.java:"+e.getMessage());
 		}
-		
 		return "patientManage/patientManage.jsp";
 	}
 
