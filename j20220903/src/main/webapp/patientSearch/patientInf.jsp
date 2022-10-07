@@ -135,7 +135,12 @@
 			<br>
 			<c:if test="${dh.isEmpty() }">진단내역 : 없음.<br></c:if>
 			<c:if test="${!dh.isEmpty() }">
-			<c:forEach var="dh" items="${dh }" varStatus="stat">
+				<select name="diaDate" onselect="diadate()">
+					<c:forEach var="dh" items="${dh }" varStatus="stat">
+						<option value="${dh }">${dh.chart_date }/${dh.doctor_name }/${dh.chart_disease }</option>
+					</c:forEach>
+				</select>
+	<%-- 		<c:forEach var="dh" items="${dh }" varStatus="stat">
 			<h1> 진단내역 : ${stat.index+1 } </h1>
 					차트번호 : ${dh.chart_no }<br>
 					진단의사 : ${dh.doctor_name } (${dh.department })<br>	
@@ -154,7 +159,8 @@
 			<c:if test="${pi.reservation_date.get(0)!=null }">
 			<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
 					${date } ${pi.reservation_hour.get(stat.index) }시<br>
-			</c:forEach></c:if>
+			</c:forEach> --%>
+			</c:if>
 		</div>
 	</div>
 	<%@ include file="../footer-side.jsp" %>
