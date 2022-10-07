@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +14,17 @@ import javax.sql.DataSource;
 
 public class PatientDao {
 	private static PatientDao instance;
-	private PatientDao() {}	
+
+	private PatientDao() {
+	}
+
 	public static PatientDao getInstance() {
 		if (instance == null) {
 			instance = new PatientDao();
 		}
 		return instance;
 	}
+
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
@@ -31,32 +36,33 @@ public class PatientDao {
 		}
 		return conn;
 	}
-	//환자관리
+
+	// 환자관리
 	public List<Patient> selectAll() throws SQLException {
-		
+
 		List<Patient> list = new ArrayList<Patient>();
 		String sql = "select * from patient where doctor_no=? ORDER BY patient_no asc";
 		String doctor_no = "2";
-		
+
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			connection = getConnection();
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, doctor_no);
-			
+
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				do {
 					Patient patient = new Patient();
-					
+
 					patient.setAddress(rs.getString("address"));
 					patient.setBirth(rs.getString("birth"));
 					patient.setContact(rs.getString("contact"));
-					
+
 					patient.setGender(rs.getString("gender"));
 					patient.setPatient_name(rs.getString("patient_name"));
 					patient.setPatient_no(rs.getInt("patient_no"));
@@ -67,7 +73,7 @@ public class PatientDao {
 				} while (rs.next());
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("selectAll rs까지 Err: " + e.getMessage());
 
@@ -399,17 +405,75 @@ public class PatientDao {
 		
 		return list;
 	}
-	
-	public Patient deletePatient(int patient_no) {
+public int updatePatient(Patient patient) throws SQLException {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		int result = 0;
 		
-		String sql = "DELETE FROM patient WHERE patient_no=?";
+		String sql = "UPDATE patient SET patient_name=?, social_number=?, birth=?, gender=?, contact=?, protector_contact=?, address=?, doctor_no=? WHERE patient_no=?";
+		System.out.println("updatePatient Dao sql->" + sql);
+		System.out.println("updatePatient Dao patient.getDoctor_no()->" + patient.getDoctor_no());
+		System.out.println("updatePatient Dao patient.getPatient_no()->" + patient.getPatient_no());
+			try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, patient.getPatient_name());
+			System.out.println("updatePatient Dao patient.getPatient_name()->" + patient.getPatient_name());
+			pstmt.setString(2, patient.getSocial_number());
+			pstmt.setString(3, patient.getBirth());
+			pstmt.setString(4, patient.getGender());
+			pstmt.setString(5, patient.getContact());
+			pstmt.setString(6, patient.getProtector_contact());
+			pstmt.setString(7, patient.getAddress());
+			pstmt.setString(8, patient.getDoctor_no());
+			pstmt.setInt(9, patient.getPatient_no());
+			
+			result = pstmt.executeUpdate();
+			System.out.println("updatePatient Dao result->" + result);
+			
+		} catch (Exception e) {
+			System.out.println("updatePatient Dao e.getMessage->" + e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
 		
-		return patient;
+		return result;
 		
 	}
-}
+
+	public int deletePatient(int patient_no) throws SQLException {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "DELETE FROM patient WHERE patient_no=?";
+		System.out.println("delete Dao sql->" + sql);
+		System.out.println("updatePatient Dao patient_no()->" + patient_no);
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, patient_no);
+			System.out.println("patient_no()->" + patient_no);
+
+			result = pstmt.executeUpdate();
+			System.out.println("result->" + result);
+
+		} catch (Exception e) {
+			System.out.println("deletePatient Dao e.getMessage" + e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		
+		return result;
+		
+	}
 }
