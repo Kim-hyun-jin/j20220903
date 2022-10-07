@@ -18,10 +18,14 @@ public class PatientManageView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		PatientDao patientDao = PatientDao.getInstance();
+		System.out.println("PatientManageView Service start...");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+				
 		
 		try {
-			List<Patient> listDao = patientDao.selectAll();
+			PatientDao pd = PatientDao.getInstance();
+			List<Patient> listDao = pd.selectAll();
 			//doctor_no 2로 임시처리 getAttribute from request
 			//session.get?
 			request.setAttribute("patient_list", listDao);
