@@ -6,65 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>환자정보검색</title>
-<script src="https://kit.fontawesome.com/54a6153010.js"
-	crossorigin="anonymous"></script>
-<style type="text/css">
-	.mainContents{
-		min-width: 1000px;
-		background-color: lightsteelblue;
-		display: inline-block;
-		height: 100%;
-		width: 100%;
-		position: relative;
-	}
-	.leftContents {
-		width : 43%;
-		height: 90%;
-		float: left;
-		margin-top: 2%;
-		margin-left: 5%;
-		margin-bottom: 5%;
-		position: relative;
-	}
-	.searchBox {
-		border: 3px solid black;
-		height: 29%;
-		margin-bottom: 1%;
-		background-color: white;
-	}
-	.searchResult {
-		border: 3px solid black;
-		height: 70%;
-		overflow: scroll;
-		background-color: white;
-	}
-	.patientInf {
-		border: 3px solid black;
-		width: 43%;
-		height: 90%;
-		float: right;
-		margin-top: 2%;
-		margin-right: 5%;
-		margin-bottom: 5%;
-		overflow: scroll;
-		background-color: white;
-	}
-	td select {
-		font: initial;
-	}
-	.searchResult table, .searchResult td, .searchResult th {
-		min-width:100%;
-		border: 1px solid black;
-		border-collapse:collapse;
-		font-size: 22pt;
-		width: auto;
-	}
-</style>
-<%-- <%   String context = request.getContextPath();%> --%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
+<link type="text/css" href="patientSearch/search.css" rel="stylesheet">
 </head>
 <body>
-  	<%@ include file="../top-side.jsp" %>
-
+	<%@ include file="../top-side.jsp" %>
 	<div class="mainContents">
 		<div class="leftContents">
 			<form class="searchBox" action="<%=context %>/patientsearchAct.do">

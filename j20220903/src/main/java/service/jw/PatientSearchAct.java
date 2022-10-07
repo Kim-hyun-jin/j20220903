@@ -40,10 +40,6 @@ public class PatientSearchAct implements CommandProcess {
 		}
 		
 		String patientName = request.getParameter("patientName");
-				
-		HttpSession session = request.getSession();
-		Doctor doc = (Doctor)session.getAttribute("doctor_s");
-		System.out.println("session 유효성검사"+doc.getDoctor_no());
 		
 		try {
 			PatientDao pd = PatientDao.getInstance();
