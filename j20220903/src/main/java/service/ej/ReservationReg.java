@@ -45,7 +45,7 @@ public class ReservationReg implements CommandProcess {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "reservationReg.jsp";
+		return "reservation/reservationReg.jsp";
 	}
 
 }

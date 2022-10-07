@@ -57,7 +57,7 @@
 	  }
 	
 	</script>
-	<form class="searchBox" style="background-color: white; width: 50%;" action="<%=context%>/reservation/reservationSearchAct.do" >
+	<form class="searchBox" style="background-color: white; width: 50%;" action="<%=context%>/reservationSearchAct.do" >
 		<table>
 			<tr>
 				<th>환자명</th>
@@ -66,7 +66,7 @@
 			</tr> 
 		</table>
 	</form>
-	<form class="searchResult" style="background-color: white; width: 50%;" action="<%=context%>/reservation/reservationSearchAct.do" >
+	<form class="searchResult" style="background-color: white; width: 50%;" action="<%=context%>/reservationSearchAct.do" >
 		<table>
 			<tr>
 				<td></td>

@@ -6,10 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mainCalendar</title>
-<%
-String context = request.getContextPath();
-%>
+<title>Insert title here</title>
+<%   String context = request.getContextPath();%>
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
 <link href='<%=context%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
 <script src='<%=context%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
@@ -28,7 +26,7 @@ String context = request.getContextPath();
     	  title: "<c:out value="${schedule.schedule_title}"/>",
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
-    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	  //url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
     	   	  
     	 
    	  };
@@ -43,11 +41,18 @@ String context = request.getContextPath();
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth', //달 형식으로 캘린더 보이기
           locale: 'ko', //한글변환
+          headerToolbar: {
+        	  start: '', // will normally be on the left. if RTL, will be on the right
+        	  center: 'title',
+        	  end: '' // will normally be on the right. if RTL, will be on the left
+          },
           events: schduleList, /* 캘린더에 list를 뿌려주는 event */
 		  height: 300,
-		  contentHeight: 20,
-		  aspectRatio: 0.2
-        	   
+		  //expandRows: true,
+		  //contentHeight: 200,
+		  //aspectRatio: 5.0,
+		 //calendar.setOption('contentHeight', 30),
+           
           
         });
           calendar.render();
@@ -70,16 +75,32 @@ String context = request.getContextPath();
     font-size: 30px;
 	}
 	
+	#calendar {
+    max-width: 480px;
+    min-height: 50px;
+    margin: 0 auto;
+    -ms-overflow-style: none;
+    /* pointer-events : none; */
+  }
+  
+	  body{  
+	 -ms-overflow-style: none;  /* 스크롤바는 숨기고 */
+	 }
+	::-webkit-scrollbar {      /* 스크롤 기능은 살림 */
+	  	display: none;
+	}
+
+  	.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  		min-height: 1em;
+  }
 	
 		
 	
 </style>
 </head>
 <body>
-
-
-	  			<div style="width: 350px; float: center; padding-left: 50px;" id='calendar'  ></div>   <!-- 캘린더 view -->
-
+	  			<div style="float: center; padding-top: 0;" id='calendar'  ></div>   <!-- 캘린더 view -->
 
 </body>
+
 </html>

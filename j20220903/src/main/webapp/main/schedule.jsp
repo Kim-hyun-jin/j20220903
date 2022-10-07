@@ -21,9 +21,8 @@ String context = request.getContextPath();
 	  var obj = new Object();
 	  var date_str = "<c:out value="${schedule.schedule_startdate}"/>";
 	  var date_end = "<c:out value="${schedule.schedule_enddate}"/>";
-	  
-	  
-	  console.log("######"+JSON.stringify(date_str) + " " + JSON.stringify(date_end));
+	  //moment(end_date, 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD HH:mm:SS');
+	  //console.log("######"+JSON.stringify(date_str) + " " + JSON.stringify(date_end));
       obj = { /* 중괄호-->json object */
     	  id : "<c:out value="${schedule.schedule_no}"/>",
     	  title: "<c:out value="${schedule.schedule_title}"/>",
@@ -52,6 +51,7 @@ String context = request.getContextPath();
         	  end: "today",
        	  },
           selectable: true,
+          
           events: schduleList, /* 캘린더에 list를 뿌려주는 event */
           customButtons: {
               addEventButton: { // 추가한 버튼 설정
@@ -60,14 +60,14 @@ String context = request.getContextPath();
                 	  		window.location.href = "mainCalendarRegView.do";
                   }
               }
-          },
-          
+          },   
+          timeZone: 'Asia/Seoul',
           eventClick:function(info) { 
           },
 
 		  height: 550,
-		  contentHeight: 200,
-		  aspectRatio: 1.8
+		  contentHeight: 230,
+		  aspectRatio: 1.6
         	   
           
         });
@@ -118,4 +118,3 @@ String context = request.getContextPath();
 	  		<p> 내스케줄 	  		
 	  			<div style=" size:auto; width: 700px; float: center; padding-left: 10px;" id='calendar' ></div>   <!-- 캘린더 view -->
 	 	 </article>
-<%@ include file="../footer-side.jsp" %>

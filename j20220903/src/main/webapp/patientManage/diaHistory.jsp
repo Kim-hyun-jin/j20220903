@@ -14,13 +14,23 @@
 	}
 </style>
 <script type="text/javascript">
-	if (${result!=null}) {
-		if(${result>0}){
+	if (${regResult!=null}) {
+		if(${regResult>0}){
 			alert("등록에 성공했습니다.")
 			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
 		}
-		if(${result<=0}) {
+		if(${regResult<=0}) {
 			alert("등록실패!");
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
+		}
+	}
+	if (${delResult!=null}) {
+		if(${delResult>0}){
+			alert("삭제에 성공했습니다.")
+			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
+		}
+		if(${delResult<=0}) {
+			alert("삭제실패!");
 			location.href="<%=context0%>/diaHistroyView.do?patient_no=${patient_no}";
 		}
 	}
@@ -31,7 +41,7 @@
 	<div>
 		<form action="">
 			<table>
-				<tr><th>차트번호</th><th>병명</th><th>처방약</th><th>진단일</th><th>환자정보보기</th><th>수정/삭제</th></tr>
+				<tr><th>차트번호</th><th>병명</th><th>처방약</th><th>진단일</th><th>진단상세정보</th><th>수정/삭제</th></tr>
 					<c:if test="${dhl.isEmpty() }"><tr><td>진단내역 : 없음.</td></tr></c:if>
 					<c:if test="${!dhl.isEmpty() }">
 						<c:forEach var="dh" items="${dhl }" varStatus="stat">
@@ -46,8 +56,8 @@
 								</c:forEach></c:if>
 							</td>
 							<td>${dh.chart_date }</td> 
-							<td><input type="button" onclick="location.href='<%=context%>/patientManageDetail.jsp?patient_no=${patient_no}'" value="상세정보"></td>
-				  			<td><input type="button" onclick="location.href='<%=context%>/diaMod.do?patient_no=${patient_no}'" value="수정/삭제"></td>
+							<td><input type="button" onclick="location.href='<%=context%>/diaInf.do?patient_no=${patient_no}&chart_no=${dh.chart_no}'" value="상세정보"></td>
+				  			<td><input type="button" onclick="location.href='<%=context%>/diaModAct.do?patient_no=${patient_no}&chart_no=${dh.chart_no}'" value="삭제"></td>
 			  			</tr>
 						</c:forEach>
 					</c:if>
