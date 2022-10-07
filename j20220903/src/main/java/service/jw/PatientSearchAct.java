@@ -27,6 +27,18 @@ public class PatientSearchAct implements CommandProcess {
 		String department = request.getParameter("department");
 		String doctorName = request.getParameter("doctorName");
 		String reservationDate = request.getParameter("reservationDate");
+		System.out.println("hi" + reservationDate);
+		System.out.println("hi" + reservationDate);
+		
+		if (reservationDate == null || reservationDate == "") {
+			reservationDate = "";
+		}
+		
+		if (reservationDate != null && reservationDate != "") {
+			reservationDate = reservationDate.replaceAll("-", "/"); 
+			reservationDate = reservationDate.substring(reservationDate.length()-8, reservationDate.length());
+		}
+		
 		String patientName = request.getParameter("patientName");
 		
 		try {

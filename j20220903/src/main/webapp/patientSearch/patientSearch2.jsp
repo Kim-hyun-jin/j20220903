@@ -37,12 +37,14 @@
 					</tr> 
 					<tr>
 						<th>예약일</th>
-						<td><select name="reservationDate">
+						<td><%-- <select name="reservationDate">
 								<option value="" selected="selected">선택하지 않음</option>
 								<c:forEach var="reservationDate" items="${list_res_date }">
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
-						</select></td>
+						</select> --%>
+						<input type="date" name="reservationDate">
+						</td>
 					</tr> 
 					<tr>
 						<th>환자명</th>

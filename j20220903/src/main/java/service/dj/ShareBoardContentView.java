@@ -13,10 +13,13 @@ public class ShareBoardContentView implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("ContentView Service start...");
+		System.out.println("ShareBoardContentView Service start...");
 		// 1. num , pageNum
 		int shareboard_no = Integer.parseInt(request.getParameter("shareboard_no"));
 		String pageNum = request.getParameter("pageNum");
+//		String doctor_no = request.getParameter("doctor_no");
+//		String doctor_name = request.getParameter("doctor_name");
+		System.out.println("ShareBoardContentView Service shareboard_no->"+shareboard_no);
 		
 		try {
 			// 2. shareBoardDao bd Instance
@@ -26,6 +29,7 @@ public class ShareBoardContentView implements CommandProcess {
 			ShareBoard shareBoard = bd.select(shareboard_no);   
 
 			// 5. request 객체에 num , pageNum , board
+			// request.setAttribute("doctor_name", shareBoard.getDoctor_name());
 			request.setAttribute("shareboard_no", shareboard_no);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("shareBoard", shareBoard);		

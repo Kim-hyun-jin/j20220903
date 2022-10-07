@@ -12,30 +12,34 @@ import dao.Patient;
 import dao.PatientDao;
 import service.CommandProcess;
 
-public class PatientManageView implements CommandProcess {
+public class PatientManageUpdateDetail implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		System.out.println("PatientManageView Service start...");
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-				
+		System.out.println("patientManageUpdateDetail Service start...");
+		
+		String doctor_no = request.getParameter("doctor_no");
+		doctor_no = "2";
+		
+		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
+		System.out.println("patient_no ->" + patient_no);
 		
 		try {
 			PatientDao pd = PatientDao.getInstance();
-			List<Patient> listDao = pd.selectAll();
+			
+			
+			Patient patient = pd.selectPatient(patient_no);
 			//doctor_no 2로 임시처리 getAttribute from request
 			//session.get?
-			request.setAttribute("patient_list", listDao);
+			request.setAttribute("list", patient);
+			System.out.println(patient);
 
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
-			System.out.println("PatientManageView.java:"+e.getMessage());
 		}
-		return "patientManage/patientManage.jsp";
+		return "patientManage/patientManageUpdateDetail.jsp";
 	}
 
 }

@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://kit.fontawesome.com/54a6153010.js"
+	crossorigin="anonymous"></script>
+<style type="text/css">
+	@font-face {
+	    font-family: 'GangwonEduSaeeum_OTFMediumA';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	* {
+		font-family: 'GangwonEduSaeeum_OTFMediumA';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+	    font-size: 30px;
+	}
+	</style>
 </head>
 <body>
 	<form action="shareBoardModAct.do">
@@ -17,8 +33,8 @@
 			<tr>
 				<td>작성자</td>
 			    <td colspan="4">
-			    	<input type="text" name="doctor_no" required="required" 
-		                           value="${shareBoard.doctor_no}" readonly="readonly">
+			    	<input type="text" name="doctor_name" required="required" 
+		                           value="${shareBoard.doctor_name}" readonly="readonly">
 				</td>
 			</tr>
 			<tr>

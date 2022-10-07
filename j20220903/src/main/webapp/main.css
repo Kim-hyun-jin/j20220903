@@ -19,18 +19,18 @@
 		border-bottom: solid 3px;
 		border-bottom-color: white;
 		position: relative;
-		width: 1190px;
-		margin: 0 auto;	
+		width: 1240px;
+		margin: 0 auto;
 	}
 	
 	#container {
-		width: 1230px;
+		width: 1280px;
 		height: 800px;
 		margin: 0 auto;
 	}
 	
 	#contents {
-		width: 1000px;
+		width: 1050px;
 		height : 800px;
 		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
 		background-color: lightsteelblue;
