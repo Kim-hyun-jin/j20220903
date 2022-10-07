@@ -85,5 +85,26 @@ public class DiaDrugDao {
 		
 		return rsDiadrugs;
 	}
+	public int diaDrugDel(int patient_no, int chart_no) throws SQLException {
+		int result = 0;
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		ResultSet rs			= null;
+		String sql				= "DELETE diadrug WHERE patient_no=? AND chart_no=?";
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, patient_no);
+			pstmt.setInt(2, chart_no);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("DiaDrug.diaDrugDel e.getMessage ==> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
 
 }

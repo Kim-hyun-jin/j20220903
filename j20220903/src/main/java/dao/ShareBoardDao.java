@@ -158,8 +158,7 @@ public class ShareBoardDao {
 	}
 	
 	public int insert(ShareBoard shareboard) throws SQLException {
-			  int shareboard_no = shareboard.getShareBoard_no();
-		      Connection conn  = null;
+			  Connection conn  = null;
 		      PreparedStatement pstmt = null;
 		      int result = 0;
 		      ResultSet rs = null;

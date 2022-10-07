@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Doctor;
 import dao.DoctorDao;
@@ -17,21 +18,10 @@ public class DrugView implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("DrugView 실행중...");
 		
-		String doctor_no = request.getParameter("doctor_no");
-		
-		try {
-			DoctorDao dd = DoctorDao.getInstance();
-			
-			Doctor doctor = dd.select(doctor_no);
-			
-			System.out.println(doctor_no);
-			System.out.println(doctor.getDoctor_name());
-			
-			request.setAttribute("doctor", doctor);
-		} catch (Exception e) {
-			System.out.println("DrugView error => " + e.getMessage());
-		}
-		
+		/*HttpSession session = request.getSession();
+		if (session.getAttribute("doctor_s") == null) {
+			return "login/loginForm.jsp";
+		}*/
 		return "drug/drug.jsp";
 	}
 

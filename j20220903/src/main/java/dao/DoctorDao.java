@@ -195,4 +195,32 @@ public class DoctorDao {
 	      }
 	      return list;
 	   }
+	
+	public int updateProfile(Doctor doctor) {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+	    String sql="update  doctor \r\n"
+	    		+ "set password =?, doctor_name=?, department=? \r\n"
+	    		+ "where doctor_no = ?;";
+	    
+	    
+	    try {
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);
+	          
+	    	  pstmt.setInt(1, doctor.getPassword());
+	    	  pstmt.setString(2, doctor.getDoctor_name());
+	    	  pstmt.setString(3, doctor.getDepartment());
+	    	  pstmt.setString(4, doctor.getDoctor_no());
+	          result = pstmt.executeUpdate();
+	   
+	      } catch (Exception e) {
+	         System.out.println("updateProfile error -> " + e.getMessage());
+	      } 
+	      return result;
+	    
+		
+	}
+
 }

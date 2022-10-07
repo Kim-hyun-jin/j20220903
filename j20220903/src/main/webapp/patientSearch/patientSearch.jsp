@@ -12,17 +12,11 @@
 	.content-right {margin: 2% 2%;}
 </style>
 </head>
-<%   String context = request.getContextPath();%> <%-- url:"<%=context%>/ajaxTest1.do", 모델2에서도 앵커태그는 가능하다 --%>
 <body>
-	<%@ include file="top-side.html" %>
-	<div class="content" >
-		<div class="content-left" 
-					style="	background-color: white;
-				 			width: 45%; 
-				 			height: 100%;
-				 			display: inline-block;
-				 			float: left;">
-			<form class="searchBox" action="<%=context%>/patientsearchAct.do">
+	<%@ include file="../top-side.jsp" %>
+	<div class="content" style="background-color: white; ">
+		<div class="content-left" style="background-color:white; width:45%; height:100%; display:inline-block; float:left; border:1px solid black;">
+			<form class="searchBox" action="<%=context%>/patientsearchAct.do" style="border:1px solid black;">
 				<table>
 					<tr>
 						<th>진료과</th>
@@ -61,29 +55,66 @@
 					</tr> 
 				</table>
 			</form><p>
-			<form class="searchResult" >
-				<table>
-					<tr>
-						<td>환자번호</td>
-						<td>환자명</td>
-						<td>담당의</td>
-						<td>진료과</td>
-						<td>예약일</td>
-					</tr>
+			<form class="searchResult" action="..//patientSearchSelect.do" style="background-color: white; overflow: scroll; height: 70%; border:1px solid black;" >
+				<table border="1" style="border-collapse: collapse;">
+					<tr><td>환자번호</td><td>환자명</td><td>담당의</td><td>진료과</td><td>예약일</td></tr>
+				  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
+						<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
+							<td>${patient.patient_no }</td>
+							<td>${patient.patient_name }</td>
+							<td>${searchSet.get(stat.index).get(2)}</td>
+							<td>${searchSet.get(stat.index).get(3)}</td>
+							<td>
+								<c:if test="${searchSet.get(stat.index).get(4)==null }">예약정보 없음</c:if>
+								<c:if test="${searchSet.get(stat.index).get(4)!=null }">${searchSet.get(stat.index).get(4)}</c:if>
+							</td>
+								
+						</tr>
+					</c:forEach>
 				</table>
 			</form>
 		</div>
-		<div class="content-right"
-				style="	display: inline-block; 
-						width: 45%; 
-						height: 100%; 
-						background-color: white;
-						float: right;">
-			<form class="patientInfBox" action="../patientSerachResultAct.do">
-				하이 에브리원
-			</form>
+		<div class="content-right"	style="	display: inline-block; width: 45%; height: 100%; background-color: white; float: right;">
+		<form class="patientInfBox" action="" style="overflow: scroll; height: 100%; border: 1px solid black;">
+			환자번호 : ${pi.patient_no }<br>
+			환자이름 : ${pi.patient_name }<br>
+			성별 : ${pi.gender }<br>
+			생년월일 : ${pi.birth }<br>
+			주소 : ${pi.address }<br>
+			연락처 : ${pi.contact }<br>
+			보호자연락처 : ${pi.protector_contact }<br>
+			주민번호 : ${pi.social_number }<br>
+			담당의 : ${pi.doctor_no }<br>
+			비밀번호 : ${pi.password }<br>
+			의사이름 : ${pi.doctor_name }<br>
+			진료과 : ${pi.department }<br>
+			의사사진 : ${pi.image }<br>
+			<br>
+				<c:if test="${dh.isEmpty() }">진단내역 : 없음.<br></c:if>
+				<c:if test="${!dh.isEmpty() }">
+				<c:forEach var="dh" items="${dh }" varStatus="stat">
+				<h1> 진단내역 : ${stat.index+1 } </h1>
+						차트번호 : ${dh.chart_no }<br>
+						진단의사 : ${dh.doctor_name } (${dh.department })<br>	
+						증상 : ${dh.chart_symptom }<br>
+						병명 : ${dh.chart_disease }<br>
+						진단일시 : ${dh.chart_date }<br>
+						<h3>처방약</h3>
+								<c:if test="${rsdd.isEmpty() }">처방약물 없음<br></c:if>
+								<c:if test="${!rsdd.isEmpty() }">
+								<c:forEach var="rsdd" items="${rsdd.get(stat.index) }" varStatus="stat2">
+									${stat2.index+1}. ${rsdd.drug_name}(${rsdd.drug_class })<br>
+								</c:forEach></c:if>
+				</c:forEach></c:if><p>
+			예약일시<br>
+				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
+				<c:if test="${pi.reservation_date.get(0)!=null }">
+				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
+						${date } ${pi.reservation_hour.get(stat.index) }시<br>
+				</c:forEach></c:if>
+		</form>
 		</div>
 	</div>
-	<%@ include file="footer.html" %>
+	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

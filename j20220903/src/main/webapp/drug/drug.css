@@ -3,6 +3,11 @@
 	margin-left: 50px;
 }
 
+#header {
+	width: 1190px;
+	margin: 0 auto;	
+}
+
 #contents {
 	overflow: scroll;	
 }

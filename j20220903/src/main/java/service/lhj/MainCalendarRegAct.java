@@ -27,7 +27,7 @@ public class MainCalendarRegAct implements CommandProcess {
 			schedule.setSchedule_title(request.getParameter("schedule_title"));
 			schedule.setSchedule_startdate(request.getParameter("schedule_startdate"));
 			schedule.setSchedule_enddate(request.getParameter("schedule_enddate"));
-			schedule.setSchedule_content(request.getParameter("setSchedule_content"));
+			schedule.setSchedule_content(request.getParameter("schedule_content"));
 			
 			ScheduleDao sd = ScheduleDao.getInstance();
 			int result = sd.insert(schedule);   
@@ -38,7 +38,9 @@ public class MainCalendarRegAct implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
 		return "scheduleRegAct.jsp";
+
 	}
 
 }

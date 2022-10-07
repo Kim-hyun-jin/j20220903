@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Doctor;
 import dao.DoctorDao;
@@ -21,14 +22,26 @@ public class LoginPro implements CommandProcess {
 		try {
 			String doctor_no = request.getParameter("doctor_no");
 			int password = Integer.parseInt(request.getParameter("password"));
+			String auto = request.getParameter("auto_log");
+			
+			System.out.println("LoginPro auto -> " + auto);
 			
 			DoctorDao dd = DoctorDao.getInstance();
 			int result = dd.check(doctor_no, password);
-			System.out.println(result);
+			
 			Doctor doctor = dd.select(doctor_no);
 			
+			if (result == 1) {
+				HttpSession session = request.getSession();
+				session.setAttribute("doctor_s", doctor);
+				
+				if (auto != null) {
+					System.out.println("hi");
+					// 이곳에 로그인 유지하는 세션 구현 해보기?!
+				}
+			}
+			System.out.println("LoginPro doctor_image => " + doctor.getImage());
 			request.setAttribute("result", result);
-			request.setAttribute("doctor", doctor);
 		} catch (Exception e) {
 			System.out.println("LoginPro Error ->" + e.getMessage());
 		}

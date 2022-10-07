@@ -19,7 +19,7 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
     font-size: 30px;
 	}
-	
+
 	#container {
 		width: 1000px;
 		height: 800px;
@@ -137,17 +137,74 @@
 		color: inherit;
 	}
 	
+	
+	#area {
+	  position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
+	  width: 100%;
+	  padding-bottom: 30%; /* 16:9 비율 */
+	}
+	
+	#video {
+	  position: absolute;
+	  width: 100%; /* 부모에 맞게 꽉 채운다. */
+	  height: 100%;
+	}
+	
+	#profile_info
+	{
+		background-color: cornflowerblue;
+		width:auto;
+		height:100px;
+		position:absolute;
+		right:0;
+		top:100px;
+		padding: 15px;
+		
+	}
+	
+	 	
+	#area {
+		  position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
+		  width: 720px;
+		  height: 100px;
+		
+		}
+	
+	#miniCalendar{
+	  border: none;
+	  position: absolute;
+	  width: 100%; /* 부모에 맞게 꽉 채운다. */
+	  height: 100%;
+	  marginwidth : 0;
+	  
+	}
+ 	
+	
 </style>
-
+<script>
+	function mouseOver(){
+		document.getElementById("profile_info").style.display='block';
+	}
+	function mouseOut(){
+		document.getElementById("profile_info").style.display='none';
+	}
+</script>
 </head> 
 <body>  
-  <div id="container">
-  
+
+  <div id="container"> 
   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">메인페이지</span>
   		<span class="header_name">김준완</span>
-  		<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="../images/myphoto.png" style="width: 60px"></a>
+  		<a href='../profileView.do' class="header_image"><img id="myphoto" onmouseover="mouseOver()" onmouseout="mouseOut()" alt="" src="../images/myphoto.png" style="width: 60px"></a>
+  	<!-- 	<div id="profile_info">
+	  		<p>	내정보<br>
+	  		사번: 101010<br>
+	  		담당학과: 흉부외과
+	  		</p>
+  		</div>
+  	 -->
   	</div>
   	
   	
@@ -166,7 +223,7 @@
 				<a href="drug.jsp">의약품조회</a>
 			</div>
 			<div class="main_menu_btn">
-				<a href="../shareBoardView.do">공유게시판</a>
+				<a href="">공유게시판</a>
 			</div>
 
 			<div class="main_menu_btn">
@@ -174,26 +231,29 @@
 			</div>
   	</div>
  
- 
-  	
+
+
   	<div id="contents">
   	<article id="schedule">
-  		<p> 내스케줄</p>
+  		<div id="area" style="width: 500px; height: 50px;">
+  		<p><a href="mainCalendarView.do">내스케줄</a>
+  		
+  		<iframe id="video" src="mainCalendar.jsp"/>
+		</div>
  	 </article>
 	<article id="patient_info">
   		<p> 나의 환자정보</p>
+  		<table>
+  			<tr><th>환자명</th><th>성별</th><th>나이</th><th>?</th></tr>
+  			<tr><td>jsp 파일</td></tr>
+  		</table>
  	 </article>
   	</div>
-  	
-  	
-  	
   	<div id="footer">
   		<h2>CareBare</h2>
   		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
   		TEL:02-313-1711
-  	</div>
-  	
+  	</div>	
   </div>
 </body>
-
 </html>
