@@ -18,24 +18,46 @@ public class PatientManageUpdate implements CommandProcess {
 			throws ServletException, IOException {
 		
 		System.out.println("PatientManageUpdate Service start...");
-		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		
 		String doctor_no = request.getParameter("doctor_no");
-		//임의 지정
-		doctor_no = "2";
+		doctor_no = "2"; //임의 지정
+		
 		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
 		
+		
 		try {
+			Patient patient = new Patient();
+			patient.setPatient_no(patient_no);
+			patient.setDoctor_no(doctor_no);
+			patient.setPatient_name(request.getParameter("patient_name"));
+			patient.setGender(request.getParameter("gender"));
+			patient.setBirth(request.getParameter("birth"));
+			patient.setAddress(request.getParameter("address"));
+			patient.setContact(request.getParameter("contact"));
+			patient.setProtector_contact(request.getParameter("protector_contact"));
+			patient.setSocial_number(request.getParameter("social_number"));
+
+			System.out.println("PatientManageUpdate Service patient_no ->" + patient_no);
+			System.out.println("patient_name ->" + request.getParameter("patient_name"));
+			System.out.println("birth ->" + request.getParameter("birth"));
+			System.out.println("address ->" + request.getParameter("address"));
+			System.out.println("protector_contact ->" + request.getParameter("protector_contact"));
+			System.out.println("social_number ->" + request.getParameter("social_number"));
+
 			PatientDao pd = PatientDao.getInstance();
-			Patient patient = pd.deletePatient(patient_no);
-			request.setAttribute("list", patient);
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			int result = pd.updatePatient(patient);
+		
+			request.setAttribute("result", result);	
+			
+		} catch (Exception e) {
+			System.out.println("patientManageUpdate.java" + e.getMessage());
 		}
 		
-		//삭제하시겠습니까 화면 페이지 
-		//return null;
+		//업데이트 완료 페이지
+		return "patientManage/patientManageUpdate.jsp";
 	}
 
 }
