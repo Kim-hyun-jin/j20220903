@@ -16,17 +16,19 @@ public class ShareBoardRegAct implements CommandProcess {
 			throws ServletException, IOException {
 		// 1. num , pageNum, writer , email , subject , passwd , content Get
 		request.setCharacterEncoding("utf-8");
+		
+		// 이전 jsp에서 넘어온 name 파라미터를 꺼내오는 것. request.getParameter
 		String pageNum = request.getParameter("pageNum");
 		String doctor_no = request.getParameter("doctor_no");
 		String shareBoard_content = request.getParameter("shareBoard_content");
 		String shareBoard_subject = request.getParameter("shareBoard_subject");
 		
-		
 		// 2. Board board 생성하고 Value Setting
 		ShareBoard shareboard = new ShareBoard();
 		shareboard.setDoctor_no(doctor_no);
-		shareboard.setShareBoard_content(request.getParameter("shareBoard_content"));
-		shareboard.setShareBoard_subject(request.getParameter("shareBoard_subject"));
+		shareboard.setShareBoard_content(shareBoard_content);
+		shareboard.setShareBoard_subject(shareBoard_subject);
+		
 		try {
 			// 3. BoardDao bd Instance
 			ShareBoardDao bd = ShareBoardDao.getInstance();// DB
@@ -43,5 +45,4 @@ public class ShareBoardRegAct implements CommandProcess {
 
 		return "shareBoard/shareBoardRegPro.jsp";
 	}
-
 }
