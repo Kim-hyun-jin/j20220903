@@ -46,13 +46,20 @@
   		 </div>
   		 <div class="profile_update_content">
   			
+  			<form action="<%=context %>/profileModView.do" method="post">
+		  		<input type="hidden" value="${doctor_s.doctor_no}" name="doctor_no">
+				<input type="hidden" value="${doctor_s.doctor_name}" name="doctor_name">
+				<input type="hidden" value="${doctor_s.department}" name="department">
+				<input type="hidden" value="${doctor_s.password}" name="password">
+		
   			<div>이름: ${doctor_s.doctor_name}</div>
   			<div>사번: ${doctor_s.doctor_no}</div>
   			<div>담당과:${doctor_s.department}</div>
-  			<div></div>
+  			<div>비밀번호:****</div>
   			
-  			<input type="button" onclick="location.href='<%=context %>/profileModForm.do'" value="정보수정">
-  			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>
+  			
+  			<input type="submit" value="정보수정">
+  			</form>
   		</div>
   		
   		</div>

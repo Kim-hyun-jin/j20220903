@@ -32,7 +32,8 @@ patient_info_table {
   <article id="schedule">
   	<div class="area" style="width: 500px; height: 50px;">
   	<a href="<%=context %>/mainCalendarView.do">내스케줄</a>
-  	<!-- <iframe id="video" src="mainCalendar.jsp"/> -->
+  	<!-- <iframe id="video" src="main/mainCalendar.jsp"/> -->
+  	
 	</div>
 	</article>
  

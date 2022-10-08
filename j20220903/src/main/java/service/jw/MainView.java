@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.Schedule;
 import dao.ScheduleDao;
+import dao.Doctor;
 import dao.PatientDao;
 import dao.PatientInf;
 import service.CommandProcess;
@@ -21,7 +22,10 @@ public class MainView implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("MainView 실행중...");	
 
-		String doctor_no = "2";
+		//String doctor_no = "2";
+		HttpSession session = request.getSession();
+		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
+		String doctor_no = doctor.getDoctor_no();
 		PatientDao patientDao =PatientDao.getInstance();
 		List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
 		

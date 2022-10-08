@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%   String context = request.getContextPath();%>
+<%   String contextSrc = request.getContextPath();%><!-- 공통으로 include하는 top-side파일에서 선언한 context 변수명과 겹쳐서 변경 -->
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
-<link href='<%=context%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
-<script src='<%=context%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
-<script type="<%=context%>/css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
+<link href='<%=contextSrc%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
+<script src='<%=contextSrc%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
+<script type="<%=contextSrc%>/css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
 <script type="text/javascript">
 	var schduleList = new Array(); // Json 데이터를 받기 위한 배열 선언
 	<c:forEach var="schedule" items="${list}"> /* JSTL */

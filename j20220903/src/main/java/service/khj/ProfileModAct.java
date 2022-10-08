@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,33 +17,48 @@ import dao.Doctor;
 import dao.DoctorDao;
 import service.CommandProcess;
 
+@MultipartConfig(
+	fileSizeThreshold = 1024*1024,
+	maxFileSize = 1024*1024*5,
+	maxRequestSize = 1024*1024*5*50
+)
+
 public class ProfileModAct implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("profileModAct Start..");
-		/*
-		HttpSession session = request.getSession();
-		Doctor doctor = (Doctor)session.getAttribute("doctor_s");
-		String doctor_no = doctor.getDoctor_no();
-		
-		DoctorDao doctorDao = DoctorDao.getInstance();
-		int result = doctorDao.updateProfile(doctor);
-		if(result == 1) {
-			System.out.println("ProfileModAct 수정성공");
-		} else{
-			System.out.println("ProfileModAct 수정실패");
-			response.sendRedirect("profile/profile.jsp");
-		}
-		request.setAttribute("doctor", doctor);
-		request.setAttribute("doctor_no", doctor_no);
-		request.setAttribute("result", result);
-		*/
 		request.setCharacterEncoding("utf-8");
+		
+		String doctor_no = request.getParameter("doctor_no");
+		String doctor_name = request.getParameter("doctor_name");
+		String department = request.getParameter("department");
+		int password = Integer.parseInt(request.getParameter("password"));
+		
+		System.out.println(password);
+		
 		HttpSession session = request.getSession();
 		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
 		
+		doctor.setDoctor_no(doctor_no);
+		doctor.setDoctor_name(doctor_name);
+		doctor.setDepartment(department);
+		doctor.setPassword(password);
+		
+		DoctorDao doctorDao = DoctorDao.getInstance();
+		int updateResult = doctorDao.updateProfile(doctor);
+		
+		request.setAttribute("updateResult", updateResult);
+		
+		//request.setAttribute("doctor_no", doctor_no);
+		//request.setAttribute("doctor", doctor_name);
+		//request.setAttribute("department", department);
+		//request.setAttribute("password", password);
+		//request.setAttribute("updateResult", updateResult);
+		
+		
+		/*
 		System.out.println("doctor_s.doctor_no => " + doctor.getDoctor_no());
 		// 5MB
 		int maxSize = 5 * 1024 * 1024;
@@ -85,9 +101,11 @@ public class ProfileModAct implements CommandProcess {
 //		member.setImg_path(img_path);
 //	 
 //		MemberDao md = MemberDao.getInstance();
-//		int result = md.insert3(member);
+//		int result = md.insert3(member); 
 		
-		return "profile/profile.jsp";
+		*/
+		return "profile/profileModAct.jsp";
 	}
+		
 
 }

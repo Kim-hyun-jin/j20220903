@@ -44,7 +44,7 @@ public class MainCalendarView implements CommandProcess {
 			System.out.println("MainCalendarView e.getMessage()-->"+e.getMessage());
 		}
 			
-		return "schedule.jsp";
+		return "main/schedule.jsp";
 	}
 
 }

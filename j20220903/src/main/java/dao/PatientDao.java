@@ -369,7 +369,7 @@ public class PatientDao {
 				"select * from (select rownum rn, n.* from\r\n"
 				+ "(select d.chart_no, p.patient_name, p.gender, d.chart_symptom, d.chart_disease,d.chart_date " 
 				+"from diahistory d inner join patient p on d.patient_no = p.patient_no where d.doctor_no = ? "
-				+"order by d.chart_date desc) n\r\n"
+				+"order by d.chart_date desc) n \r\n"
 				+ ")\r\n"
 				+ "where rn between 1 and 5";
 		//doctor_no => ?
@@ -386,7 +386,7 @@ public class PatientDao {
 			//2 => session
 			pstmt.setString(1, "2");
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				PatientInf patientInf = new PatientInf();
 				patientInf.setChart_no(rs.getInt("chart_no"));
 				patientInf.setPatient_name(rs.getString("patient_name"));
