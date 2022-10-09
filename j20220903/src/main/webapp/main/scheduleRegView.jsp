@@ -70,9 +70,8 @@
 </head>
 <body>
  <%@ include file="../top-side.jsp" %>
-	  	<article id="schedule">
-	  		<p> 내스케줄 	  		
-		<form action="<%=context%>/mainCalendarRegAct.do" method="post" id="mcra">
+  	<article id="schedule" style="height: 663px;">		
+		<form action="mainCalendarRegAct.do?doctor_no=${doctor_s.doctor_no}" method="post" id="mcra">
 		<input type="hidden" name="schedule_no" value="${schedule_no}">
 		<input type="hidden" name="doctor_no" value="${doctor_no}">	
 			<table border="1" id="scRe_table">
@@ -87,10 +86,12 @@
 			</table>
 				<p>
 			    <input id="addCalendar_btn" type="submit" value="등록">
-				<input id="scRe_table_btn" type="button" value="취소" onclick="location.href='<%=context%>/mainCalendarView.do'">
+				<input id="scRe_table_btn" type="button" value="취소" onclick="location.href='mainCalendarView.do?doctor_no=${doctor_s.doctor_no}'">
 		</form>
 
 	 	 </article>
-<%@ include file="../footer-side.jsp" %>
+	</div>
+	<%@ include file="../footer-side.jsp" %>
+</div>
 </body>
 </html>

@@ -31,9 +31,7 @@
 
   		
   		<div class="button">
-	  		<div class="patient_manage_button">
-	  			<input type="button" onclick="location.href='myPatientListView.do'" value="내환자목록">
-	  		</div>
+
 	  		
 	  		<div class="patient_manage_button">
 	  			<input type="button" onclick="location.href='patientRegView.do'" value="환자등록">

@@ -15,6 +15,7 @@
 	#header {
 		height : 50px;
 		background-color: cornflowerblue;
+		opacity: 0.3;
 		padding: 20px;
 		border-bottom: solid 3px;
 		border-bottom-color: white;
@@ -33,7 +34,7 @@
 		width: 1050px;
 		height : 800px;
 		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
-		background-color: lightsteelblue;
+		/* background-color: lightsteelblue; */
 	}
 	
 	#left-sidebar {
@@ -100,8 +101,8 @@
 	#schedule {
 		border: solid 2px;
 		border-color: white;
-		margin: 15px;
-		height: 320px;
+		margin: 10px;
+		height: 400px;
 		background-color: white;
 	  
 	}
@@ -110,8 +111,8 @@
 	
 		border: solid 2px;
 		border-color: white;
-		margin: 15px;
-		height: 320px;
+		margin: 10px;
+		height: 400px;
 		background-color: white;
 	}
 	

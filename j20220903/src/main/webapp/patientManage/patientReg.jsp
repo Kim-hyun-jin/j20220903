@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>환자 등록 페이지</title>
-<%@ include file="top-side.html" %>
+<%@ include file="../top-side.jsp" %>
 </head>
 <body>
 <form action="patientRegAct.do" method="post">
@@ -28,5 +28,4 @@
 	</table>
 	<input type="submit" value="제출">
 </form>
-</body>
-</html>
+<%@ include file="../footer-side.jsp" %>

@@ -34,11 +34,12 @@
   	<%@ include file="../top-side.jsp" %>
   	
   	<article id="profile_update">
-  		<div>내정보</div>
+  		
   		 
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
+  		 	<img  alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
   		 	<div><img id="edit_img" alt="" src="<%=context %>/images/${doctor_s.image}" style="width:100px"></div>
   		 	<form action="" method="post" enctype="multipart/form-data">
  

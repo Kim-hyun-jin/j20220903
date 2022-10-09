@@ -21,12 +21,13 @@ public class MyPatientListView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		/*
-		 * HttpSession session = request.getSession(); Doctor doctor = new Doctor();
-		 * doctor = (Doctor) session.getAttribute("doctor_s"); String doctor_no =
-		 * doctor.getDoctor_no();
-		 */
-		String doctor_no = "2";
+
+		HttpSession session = request.getSession(); 
+		 
+		Doctor doctor = (Doctor) session.getAttribute("doctor_s"); 
+		String doctor_no = doctor.getDoctor_no();
+		
+
 		PatientDao patientDao =PatientDao.getInstance();
 		List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
 		

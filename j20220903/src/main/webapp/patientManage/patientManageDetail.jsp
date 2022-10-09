@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<%@ include file="top-side.html" %>
+<title>환자상세정보</title>
+<%@ include file="../top-side.jsp" %>
 </head>
 <body>
 
@@ -25,5 +25,4 @@
 	
 </table>
 
-</body>
-</html>
+<%@ include file="../footer-side.jsp" %>

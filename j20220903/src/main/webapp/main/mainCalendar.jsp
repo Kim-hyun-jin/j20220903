@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>mainCalendar</title>
 <%   String contextSrc = request.getContextPath();%><!-- 공통으로 include하는 top-side파일에서 선언한 context 변수명과 겹쳐서 변경 -->
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
 <link href='<%=contextSrc%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
@@ -61,7 +62,7 @@
 </script>
 <style type="text/css">
 
-
+	
 	@font-face {
     font-family: 'GangwonEduSaeeum_OTFMediumA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
@@ -85,6 +86,7 @@
   
 	  body{  
 	 -ms-overflow-style: none;  /* 스크롤바는 숨기고 */
+/* 	  width: 500px; */
 	 }
 	::-webkit-scrollbar {      /* 스크롤 기능은 살림 */
 	  	display: none;
@@ -92,6 +94,16 @@
 
   	.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
   		min-height: 1em;
+  }	
+  
+  tr,td,th {
+  	font-size: 20px;
+  	text-align: center;
+  
+  }
+  
+  th,td {
+  	text-shadow: lightsteelblue;
   }
 	
 		
@@ -99,8 +111,49 @@
 </style>
 </head>
 <body>
-	  			<div style="float: center; padding-top: 0;" id='calendar'  ></div>   <!-- 캘린더 view -->
-
+	<table  style="width: 100%">
+		<tr>
+			<td style="width: 230px; padding-left: 10px;">
+				<table  id="todoList" style="width: 230px; padding-top: ">
+					<tr>
+						<th colspan="2"><span style="background-color: #D6F0FF">TODO LIST</span></th>
+					</tr>
+					<tr>
+						<th>오늘일자</th>
+						<th>To do</th>
+					<tr>
+					<c:forEach var="listOf" items="${todoList}">
+						<tr>
+							<td>${fn:substring(listOf.schedule_startdate,0,10)}</td>
+							<td>${listOf.schedule_title}</td>
+						</tr>
+					</c:forEach>
+			 	</table>
+		 	</td>
+		 	<td rowspan="2">
+		 		<div style="width: 400px; padding-left :15px; float: left;" id='calendar'></div>   <!-- 캘린더 view -->
+		 	</td>
+		</tr>
+		<tr>
+			<td style="width: 230px; float: right;  padding-left: 10px; ">
+				<table id="reservationList" style="width: 230px;">
+					<tr>
+						<th colspan="2"><span style="background-color: #D6F0FF">TODAY PATIENT</span></th>
+					</tr>
+					<tr>
+						<th>오늘일자</th>
+						<th>환자이름</th>
+					<tr>
+					<c:forEach var="listOf" items="${reservationList}">
+						<tr>
+							<td>${fn:substring(listOf.reservation_date,0,10)}</td>
+							<td>${listOf.patient_name}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</td>
+		</tr>
+	</table>
 </body>
 
 </html>
