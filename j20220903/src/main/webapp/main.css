@@ -70,6 +70,10 @@
 		border: 0;
 		font-size: 25px;
 	}
+	.header_logout:hover {
+		border-color: #1DDB16;
+		box-shadow: 0 0 10px #1DDB16;
+	}
 	
 	.header_page {
 		position: absolute;
