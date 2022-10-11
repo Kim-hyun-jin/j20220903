@@ -16,7 +16,6 @@
 		margin: 15px;
 		height: 520px;
 		background-color: white;
-	  
 	}
 	
 	.main
@@ -28,6 +27,13 @@
 		padding: 30px;
 	}
 	
+	.profile_update_img {
+		margin: 20px;
+	}
+	
+	.profile_update_content {
+		margin: 20px;
+	}
 </style>
 </head>
 <body>
@@ -39,8 +45,10 @@
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
+
   		 	<img  alt="profile_image" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
   		 	
+
   		 	<form action="" method="post" enctype="multipart/form-data">
  
 			</form>

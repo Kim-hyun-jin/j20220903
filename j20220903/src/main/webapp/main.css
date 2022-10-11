@@ -31,10 +31,11 @@
 	}
 	
 	#contents {
-		width: 1050px;
+		width: 1047px;
 		height : 800px;
 		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
 		/* background-color: lightsteelblue; */
+		border-right: 3px solid cornflowerblue;
 	}
 	
 	#left-sidebar {
@@ -58,6 +59,16 @@
 		position: absolute;
 		bottom: 10px;
 		right: 10px;
+	}
+	
+	.header_logout {
+		position: absolute;
+		bottom: 25px;
+		right: 170px;
+		background-color: #3DB7CC;
+		color: white;
+		border: 0;
+		font-size: 25px;
 	}
 	
 	.header_page {
@@ -112,7 +123,7 @@
 		border: solid 2px;
 		border-color: white;
 		margin: 10px;
-		height: 400px;
+		height: 370px;
 		background-color: white;
 	}
 	

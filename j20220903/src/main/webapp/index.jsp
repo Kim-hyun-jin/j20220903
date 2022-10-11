@@ -73,6 +73,5 @@ patient_info_table {
 	</div>
 	</article>
 		
- </div>
 
 <%@ include file="footer-side.jsp" %>

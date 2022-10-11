@@ -18,10 +18,10 @@ public class DrugView implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("DrugView 실행중...");
 		
-		/*
-		 * HttpSession session = request.getSession(); if
-		 * (session.getAttribute("doctor_s") == null) { return "login/loginForm.jsp"; }
-		 */
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("doctor_s") == null) { return "login/loginForm.jsp"; }
+		
 		return "drug/drug.jsp";
 	}
 
