@@ -31,11 +31,16 @@ public class DiaInfView implements CommandProcess {
 			
 			PatientInf pi = pd.patientInf(patient_no);
 			DiaHistoryInf dhi = dhd.diaInf(patient_no,chart_no); 
+			ArrayList<DiaHistoryInf> dhl = dhd.diaHistoryList(patient_no);
 			ArrayList<DiaDrugInf> ddi = ddd.diaDrugList(patient_no, chart_no);
+			
+
 			
 			request.setAttribute("diaInf", dhi);
 			request.setAttribute("patientInf", pi);
 			request.setAttribute("diaDrug", ddi);
+			request.setAttribute("patient_no", patient_no);
+			request.setAttribute("chart_no", chart_no);
 		} catch (Exception e) {
 			System.out.println("DiaInfView e.getMessage() ==>"+e.getMessage());
 		}

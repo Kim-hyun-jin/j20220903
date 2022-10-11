@@ -23,6 +23,7 @@
 		background: cornflowerblue;
 	}
 </style>
+
 <%
 	String context = request.getContextPath();
 %>
@@ -59,6 +60,10 @@
 	  	$("#address").val(addressStr);
 /*  	  	$("#doctorname").val(addressStr);  */
 
+	}
+	
+	function openPop(){
+	    var popup = window.open('<%=context%>/reservationSearch.do', '고객 조회', 'width=400px,height=300px,scrollbars=yes');
 	}
 
 </script>
@@ -114,7 +119,9 @@
 					
 					<%-- <tr><td>제목</td><td>${board.subject}</td></tr>  --%>
 				</tr>
-				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:160px; "><input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"></td>
+				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:160px; ">
+						<%-- <input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"> --%>
+						<a href="#none" target="_blank" onclick="openPop()"><input type="button" value="조회"></a></td>
 					<td><input id="num" name="patient_no" type="text" value="" style="text-align:center; width:130px;" ></td>
 					<td><input id="gender" name="gender" type="text" value="" style="text-align:center; width:150px;"></td>
 					<td><input id="birth" name="birth" type="text" value="" style="text-align:center; width:180px;"></td>

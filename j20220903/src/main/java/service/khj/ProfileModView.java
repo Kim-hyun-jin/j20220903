@@ -27,6 +27,7 @@ public class ProfileModView implements CommandProcess {
 		int password = Integer.parseInt(request.getParameter("password"));
 		String img_path = request.getParameter("img_path");
 		
+		System.out.println("ProfileModView img_path: "+ img_path);
 		request.setAttribute("doctor_no", doctor_no);
 		request.setAttribute("doctor_name", doctor_name);
 		request.setAttribute("department", department);
