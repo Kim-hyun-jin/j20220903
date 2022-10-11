@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import oracle.net.aso.l;
+
 //singleton + DBCP
 public class DoctorDao {
 	private static DoctorDao instance;
@@ -246,6 +248,28 @@ public class DoctorDao {
 	      return result;
 	    
 		
+	}
+
+	public String getImgpath(String doctor_no) {
+		
+		String img_path ="";
+		
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    
+	    String sql="select image from doctor where doctor_no ="+ doctor_no;
+	    
+	    try {
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);	
+	    	  rs =  pstmt.executeQuery();
+	    	  img_path = rs.getString("image");
+	    } catch (Exception e) {
+			System.out.println("getImgpath Err:"+ e.getMessage());
+		}
+		
+		return img_path;
 	}
 
 }

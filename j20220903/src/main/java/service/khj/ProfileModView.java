@@ -25,11 +25,13 @@ public class ProfileModView implements CommandProcess {
 		String doctor_name = request.getParameter("doctor_name");
 		String department = request.getParameter("department");
 		int password = Integer.parseInt(request.getParameter("password"));
+		String img_path = request.getParameter("img_path");
 		
 		request.setAttribute("doctor_no", doctor_no);
 		request.setAttribute("doctor_name", doctor_name);
 		request.setAttribute("department", department);
 		request.setAttribute("password", password);
+		request.setAttribute("img_path", img_path);
 		 
 		return "profile/profileMod.jsp";
 	}

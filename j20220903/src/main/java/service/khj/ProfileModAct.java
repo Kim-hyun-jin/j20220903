@@ -31,41 +31,46 @@ public class ProfileModAct implements CommandProcess {
 		System.out.println("profileModAct Start..");
 		request.setCharacterEncoding("utf-8");
 		
-		String doctor_no = request.getParameter("doctor_no");
+		
+		/*String doctor_no = request.getParameter("doctor_no");
 		String doctor_name = request.getParameter("doctor_name");
 		String department = request.getParameter("department");
-		int password = Integer.parseInt(request.getParameter("password"));
+		String password = Integer.parseInt(request.getParameter("password"));*/
 		
-		System.out.println(password);
 		
 		HttpSession session = request.getSession();
 		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
 		
-		doctor.setDoctor_no(doctor_no);
-		doctor.setDoctor_name(doctor_name);
-		doctor.setDepartment(department);
-		doctor.setPassword(password);
+
 		
 		DoctorDao doctorDao = DoctorDao.getInstance();
 		int updateResult = doctorDao.updateProfile(doctor);
 		
 		request.setAttribute("updateResult", updateResult);
 		
-		//request.setAttribute("doctor_no", doctor_no);
-		//request.setAttribute("doctor", doctor_name);
-		//request.setAttribute("department", department);
-		//request.setAttribute("password", password);
-		//request.setAttribute("updateResult", updateResult);
+
 		
 		
-		/*
+		
 		System.out.println("doctor_s.doctor_no => " + doctor.getDoctor_no());
 		// 5MB
 		int maxSize = 5 * 1024 * 1024;
 		String image = "/images";
 		// Meta Data
 		String realPath = request.getServletContext().getRealPath(image);
+		
 		MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+		String doctor_no = multi.getParameter("doctor_no");
+		String doctor_name = multi.getParameter("doctor_name");
+		String department =  multi.getParameter("department");
+		int password = Integer.parseInt(multi.getParameter("password")) ;
+		
+		doctor.setDoctor_no(doctor_no);
+		doctor.setDoctor_name(doctor_name);
+		doctor.setDepartment(department);
+		doctor.setPassword(password);
+		
+		
 		Enumeration en = multi.getFileNames();
 		String serverSaveFilename = "";
 		
@@ -103,7 +108,7 @@ public class ProfileModAct implements CommandProcess {
 //		MemberDao md = MemberDao.getInstance();
 //		int result = md.insert3(member); 
 		
-		*/
+		
 		return "profile/profileModAct.jsp";
 	}
 		

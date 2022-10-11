@@ -39,8 +39,8 @@
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
-  		 	<img  alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
-  		 	<div><img id="edit_img" alt="" src="<%=context %>/images/${doctor_s.image}" style="width:100px"></div>
+  		 	<img  alt="profile_image" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
+  		 	
   		 	<form action="" method="post" enctype="multipart/form-data">
  
 			</form>
@@ -48,10 +48,12 @@
   		 <div class="profile_update_content">
   			
   			<form action="<%=context %>/profileModView.do" method="post">
+  				<input type="hidden" value="${doctor_s.image}" name="doctor_image">
 		  		<input type="hidden" value="${doctor_s.doctor_no}" name="doctor_no">
 				<input type="hidden" value="${doctor_s.doctor_name}" name="doctor_name">
 				<input type="hidden" value="${doctor_s.department}" name="department">
 				<input type="hidden" value="${doctor_s.password}" name="password">
+				<input type="hidden" value="${img_path}" name="img_path">
 		
   			<div>이름: ${doctor_s.doctor_name}</div>
   			<div>사번: ${doctor_s.doctor_no}</div>

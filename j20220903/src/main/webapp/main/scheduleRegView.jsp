@@ -90,8 +90,5 @@
 		</form>
 
 	 	 </article>
-	</div>
+
 	<%@ include file="../footer-side.jsp" %>
-</div>
-</body>
-</html>

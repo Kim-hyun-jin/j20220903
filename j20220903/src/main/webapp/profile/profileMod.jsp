@@ -16,16 +16,21 @@
 		padding: 30px;
 	}
 	
+	table {
+	
+	}
+	
 </style>
 <body>
 	<%@ include file="../top-side.jsp" %>
 	
-	<form action="<%=context %>/profileModAct.do" method="post" >
+	<form action="<%=context %>/profileModAct.do" method="post" enctype="multipart/form-data">
 		
 
 		
 		
-		<div><img id="edit_img" alt="" src="<%=context %>/images/${doctor_s.image}" style="width:100px"></div>
+		<div><img id="edit_img" alt="" src="<%=context %>/images/${doctor_s.image}" style="width:100px">
+			</div>
 		<table border="1">
 			<caption>내정보 수정</caption>
 			<tr><td>사번</td><td><input type="text" name="doctor_no" required="required" readonly="readonly" value="${doctor_s.doctor_no}"></td>
@@ -43,7 +48,7 @@
 					<option value="흉부외과">흉부외과</option>
 				</select>	
 			</td></tr>
-			<tr><td colspan="2"><input type="submit"  value="완료"><!-- <input type="file" name="img_path"> --></td></tr>
+			<tr><td colspan="2"><input type="button"  value="취소" onclick="location.href='<%=context %>/profile.do'"><input type="submit"  value="완료"><input type="file" name="img_path"></td></tr>
 		</table>
 	</form>
 <%@ include file="../footer-side.jsp" %>
