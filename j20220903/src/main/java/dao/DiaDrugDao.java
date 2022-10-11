@@ -106,5 +106,38 @@ public class DiaDrugDao {
 		}
 		return result;
 	}
+	public int diaDrugMod(String patient_no, String chart_no, String[] drug_code) throws SQLException {
+		int result=0;
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		String sqlDel			= "DELETE diadrug WHERE patient_no=? AND chart_no=?";
+		String sql				= "INSERT INTO diadrug values(?, ?, ?)";
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sqlDel);
+			pstmt.setString(1, patient_no);
+			pstmt.setString(2, chart_no);
+			int delRs = pstmt.executeUpdate();
+			if(delRs>=0) {
+				int rs=0;
+				for(int i=0; i<drug_code.length; i++) {
+					pstmt.close();
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, patient_no);
+					pstmt.setString(2, chart_no);
+					pstmt.setString(3, drug_code[i]);
+					rs+=pstmt.executeUpdate();
+				}
+				System.out.println("약품등록 성공!("+rs+"/"+drug_code.length+")");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DiaDrug.diaDrugMod e.getMessage ==> " + e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
 
 }

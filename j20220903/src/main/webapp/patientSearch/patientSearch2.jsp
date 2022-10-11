@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@
 				<table class="srTable">
 					<tr><th style="width:52px ">환자<br>번호</th><th style="width:74px ">환자명</th><th style="width:73px ">담당의</th><th style="width:122px ">진료과</th><th style="width:109px ">예약일</th></tr>
 				  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
-						<tr class="patient_search" onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
+						<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
 							<td>${patient.patient_no }</td>
 							<td>${patient.patient_name }</td>
 							<td>${searchSet.get(stat.index).get(2)}</td>
@@ -96,7 +97,7 @@
 				<tr> <th>주소</th> 		<td>${pi.address }</td> </tr>
 				<tr> <th>연락처</th> 	<td>${pi.contact }</td> </tr>
 				<tr> <th>보호자연락처</th><td>${pi.protector_contact }</td> </tr>
-				<tr> <th>주민번호</th> 	<td>${pi.social_number }</td> </tr>
+				<tr> <th>주민번호</th> 	<td>${pi.social_number }</td> </tr>	
 				<tr> <th>담당의</th> 	<td>${pi.doctor_name }(${pi.department })</td> </tr>
 			</table>
 		</div>
@@ -106,7 +107,9 @@
 				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
 				<c:if test="${pi.reservation_date.get(0)!=null }">
 				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
-						${date } ${pi.reservation_hour.get(stat.index) }시<br>
+						<fmt:parseDate value = "${date }"  pattern = "yy/MM/dd" var = "dateRs"/>
+						<fmt:formatDate value="${dateRs }" pattern="yyyy년 MM월 dd일"/>
+						${pi.reservation_hour.get(stat.index) }시<br>
 				</c:forEach>
 				</c:if></td></tr>
 			</table>
@@ -142,4 +145,4 @@
 	</div>
 	<%@ include file="../footer-side.jsp" %>
 </body>
-</html>	
+</html>
