@@ -13,7 +13,7 @@
 <body>
   	<%@ include file="../top-side.jsp" %>
   	
-  	<div id="contents">
+  	
   		
   		<table class="patient_manage_table" border="2">
   		<caption>환자관리</caption>
@@ -39,7 +39,7 @@
 
   		</div>
   		
-  	</div>
+
 
   	
 <%@ include file="../footer-side.jsp" %>

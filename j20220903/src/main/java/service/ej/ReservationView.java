@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.Reservation2;
 import dao.ReservationDao;
@@ -50,7 +49,6 @@ public class ReservationView implements CommandProcess {
 		} catch (Exception e) {
 			System.out.println("Reservation Service e.getMessage() -->" +e.getMessage());
 		}
-		
 		return "reservation/reservationList.jsp";
 
 	}

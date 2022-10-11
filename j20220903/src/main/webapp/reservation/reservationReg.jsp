@@ -130,8 +130,8 @@
 					<th>예약일</th><th>예약시간</th><th colspan="2">의료진</th>
 				</tr>
 				<tr>
-					<td><input id="reservation_date" name="reservation_date" type="text" value="YY/MM/DD"></td>
-					<td><input id="reservation_hour" name="reservation_hour" type="text" value="HH" style="width:120px;"></td>
+					<td><input id="reservation_date" name="reservation_date" type="text" required="required" pattern="[0-9]{2}/[0-9]{2}/[0-9]{2}" maxlength="8" placeholder="예) 22/10/07"></td>
+					<td><input id="reservation_hour" name="reservation_hour" type="text" required="required" pattern="[0-9]{2}" placeholder="예) 12" style="width:120px;"></td>
 					<td colspan="2" style="text-align:center; width:200px;" ><select name="doctor_no" >
 							<option value="" selected="selected" colspan="2" style="text-align:center; width:300px;" >-의료진 선택-</option>
 							<c:forEach var="doctor" items="${list_doc }">

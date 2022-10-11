@@ -39,12 +39,7 @@ patient_info_table {
   align-content:center;
 }
 
-#schedule {
-	
-}
-#patient_info {
 
-}
 
 </style>
 </head>
