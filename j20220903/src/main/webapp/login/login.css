@@ -37,7 +37,7 @@
 	}
 	
 	td {
-		width: 200px;
+		font-size: 20px;
 		margin-top: 10px;
 	}
 	
@@ -101,13 +101,10 @@
 		display: flex;
 		justify-content: center;
 	}
-	
-	.label {
-		width: 100px;
-	}
-	
 	.in {
-		width: 200px;
+		width: 270px;
+		font-size: 20px;
+		margin-bottom: 10px;
 	}
 	
 	label {
@@ -119,4 +116,9 @@
 	}
 	#login_not {
 		color: red;
+	}
+	input:focus {
+		outline: none !important;
+		border-color: #1DDB16;
+		box-shadow: 0 0 10px #1DDB16;
 	}
