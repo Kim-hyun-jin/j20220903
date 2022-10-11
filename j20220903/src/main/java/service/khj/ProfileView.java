@@ -23,7 +23,7 @@ public class ProfileView implements CommandProcess {
 		HttpSession session = request.getSession();
 		
 		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
-		String img_path = doctorDao.getImgpath(doctor.getImage());
+		String img_path = doctor.getImage();
 		System.out.println("img_path:" + img_path);
 		request.setAttribute("img_path", img_path);
 		return "profile/profile.jsp";

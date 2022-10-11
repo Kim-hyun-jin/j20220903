@@ -25,7 +25,11 @@
 									${dd.drug_name }(${dd.drug_class })<br>
 								</c:forEach>
 								</td></tr>
+			
 		</table>
+		
+		<div class="button"><input type="button" value="진단상세수정"></div>
+		<div class="button"><input type="button" value="뒤로가기" onclick="location.href='diaHistroyView.do?patient_no=${patientInf.patient_no}'"></div>
 	</div>
 	</div>
 	<%@ include file="../footer-side.jsp" %>

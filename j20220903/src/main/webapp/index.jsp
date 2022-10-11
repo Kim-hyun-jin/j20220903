@@ -8,7 +8,7 @@
 <title>메인페이지</title>
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
-<link type="text/css" href="main.css" rel="stylesheet">
+
 <style>
 table, td, th {
   border: 1px solid black;

@@ -10,6 +10,21 @@
 	td select {
    font: initial;
 }
+	table {
+	background: lightsteelblue;
+}
+@font-face {
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	* {
+	font-family: 'GangwonEduSaeeum_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+    font-size: 30px;
+	}
 </style>
 </head>
 <%
@@ -58,7 +73,7 @@
 	
 	</script>
 	<form class="searchBox" style="background-color: white; width: 50%;" action="<%=context%>/reservationSearchAct.do" >
-		<table>
+		<table border="1">
 			<tr>
 				<th>환자명</th>
 				<td><input type="text" name="patientName" id="patientName"></td>
@@ -67,7 +82,7 @@
 		</table>
 	</form>
 	<form class="searchResult" style="background-color: white; width: 50%;" action="<%=context%>/reservationSearchAct.do" >
-		<table>
+		<table border="1">
 			<tr>
 				<td></td>
 				<td>환자번호</td>

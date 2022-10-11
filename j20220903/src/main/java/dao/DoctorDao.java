@@ -198,12 +198,12 @@ public class DoctorDao {
 	      return list;
 	   }
 	
-	public int updateProfile(Doctor doctor) throws SQLException {
+	public int updateProfile(Doctor doctor,String image, String doctor_no) {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    int result = 0;
 	    String sql="update  doctor \r\n"
-	    		+ "set  doctor_name=?, department=?, password =? \r\n"
+	    		+ "set  doctor_name=?, department=?, password =?,image =? \r\n"
 	    		+ "where doctor_no = ?";
 	    
 	    
@@ -214,21 +214,21 @@ public class DoctorDao {
 	    	  pstmt.setString(1, doctor.getDoctor_name());
 	    	  pstmt.setString(2, doctor.getDepartment());
 	    	  pstmt.setInt(3, doctor.getPassword());
-	    	  pstmt.setString(4, doctor.getDoctor_no());
+	    	  pstmt.setString(4, doctor.getImage());
+	    	  pstmt.setString(5, doctor.getDoctor_no());
 	          result = pstmt.executeUpdate();
-	   
+	          
+	          doctor.setImage(image);
 	      } catch (Exception e) {
 	         System.out.println("updateProfile error -> " + e.getMessage());
-	      } finally {
-			if(pstmt!=null)pstmt.close();
-			if(conn!=null)conn.close();
-		}
+	      } 
 	      return result;
-	    
-		
-	}
+	    }
 	
-	public int updateImage(String image, String doctor_no) {
+
+//updateImage 기능을 위의 updateProfile 로 합침
+	
+/*	public int updateImage(String image, String doctor_no) {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    int result = 0;
@@ -249,9 +249,8 @@ public class DoctorDao {
 	         System.out.println("updateProfile error -> " + e.getMessage());
 	      } 
 	      return result;
-	    
-		
-	}
+	    }
+	    */
 
 	public String getImgpath(String doctor_no) {
 		
@@ -262,12 +261,16 @@ public class DoctorDao {
 	    ResultSet rs = null;
 	    
 	    String sql="select image from doctor where doctor_no ="+ doctor_no;
-	    
+	    Doctor doctor = new Doctor();
 	    try {
 	    	  conn = getConnection();
 	    	  pstmt = conn.prepareStatement(sql);	
 	    	  rs =  pstmt.executeQuery();
+	    	  
+	    	  while(rs.next()) {
 	    	  img_path = rs.getString("image");
+	    	  
+	    	  }
 	    } catch (Exception e) {
 			System.out.println("getImgpath Err:"+ e.getMessage());
 		}
@@ -275,4 +278,60 @@ public class DoctorDao {
 		return img_path;
 	}
 
+
+	
+	public int insert(Doctor doctor) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "INSERT INTO doctor VALUES (DOCTOR_SEQ.nextval, ?, ?, ?, NULL)";
+		int passwd	= doctor.getPassword();
+		System.out.println("passwd => " + passwd);
+		String doctor_name		= doctor.getDoctor_name();
+		String department	= doctor.getDepartment();
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, passwd);
+			pstmt.setString(2, doctor_name);
+			pstmt.setString(3, department);
+			result = pstmt.executeUpdate();
+			// 일단 id OK 상태
+		} catch (Exception e) {
+			System.out.println("check error -> " + e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+
+		return result;
+	}
+	
+	public String join() throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String doctor_no = "";
+		String sql = "SELECT DOCTOR_SEQ.currval FROM DUAL";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			// 일단 id OK 상태
+			if(rs.next()) {
+				doctor_no = rs.getString(1);
+				System.out.println(doctor_no);
+				// password 체크
+			};
+
+		} catch (Exception e) {
+			System.out.println("check error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return doctor_no;
+	}
 }
