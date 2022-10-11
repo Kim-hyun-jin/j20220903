@@ -1,16 +1,12 @@
 package service.khj;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.Doctor;
-import dao.Patient;
 import dao.PatientDao;
 import dao.PatientInf;
 import service.CommandProcess;
@@ -27,13 +23,14 @@ public class MyPatientListView implements CommandProcess {
 		 * doctor.getDoctor_no();
 		 */
 		String doctor_no = "2";
-		PatientDao patientDao =PatientDao.getInstance();
-		List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
-		
-		request.setAttribute("myPatientList", list);
-		
-		
+		try {
+			PatientDao patientDao =PatientDao.getInstance();
+			List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
+			
+			request.setAttribute("myPatientList", list);
+		} catch (Exception e) {
+			System.out.println("MyPatientListView e.getMessage ==> "+e.getMessage());
+		}
 		return "patientManage/myPatientList.jsp";
 	}
-
 }

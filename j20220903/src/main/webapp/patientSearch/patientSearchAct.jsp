@@ -5,63 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환자 정보 검색</title>
-<style type="text/css">
-	.mainContents{
-		min-width: 1000px;
-		background-color: lightsteelblue;
-		display: inline-block;
-		height: 100%;
-		width: 100%;
-		position: relative;
-	}
-	.leftContents {
-		width : 43%;
-		height: 90%;
-		float: left;
-		margin-top: 2%;
-		margin-left: 5%;
-		margin-bottom: 5%;
-		position: relative;
-	}
-	.searchBox {
-		border: 3px solid black;
-		height: 29%;
-		margin-bottom: 1%;
-		background-color: white;
-	}
-	.searchResult {
-		border: 3px solid black;
-		height: 70%;
-		overflow: scroll;
-		background-color: white;
-	}
-	.patientInf {
-		border: 3px solid black;
-		width: 43%;
-		height: 90%;
-		float: right;
-		margin-top: 2%;
-		margin-right: 5%;
-		margin-bottom: 5%;
-		overflow: scroll;
-		background-color: white;
-	}
-	td select {
-		font: initial;
-	}
-	.searchResult table, .searchResult td, .searchResult th {
-		min-width:100%;
-		border: 1px solid black;
-		border-collapse:collapse;
-		font-size: 22pt;
-		width: auto;
-	}
-</style>
+<title>환자정보검색</title>
+<link type="text/css" href="patientSearch/search.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function dateSel(){
+		var state = jQuery('#diaDate option:selected').val();
+		<c:forEach var="dh" items="${dh }" varStatus="stat">
+		var rs = ".rs"+${stat.index};
+		if ( state == ${stat.index} ) {
+			jQuery(rs).show();
+		} else {
+			jQuery(rs).hide();
+		}
+		</c:forEach>
+	};
+</script>
 </head>
 <body>
 	<%@ include file="../top-side.jsp" %>
-		<div class="mainContents">
+	<div class="mainContents">
 		<div class="leftContents">
 			<form class="searchBox" action="<%=context %>/patientsearchAct.do">
 				<table>
@@ -105,7 +68,7 @@
 			</form>	
 			<div class="searchResult">
 				<table class="srTable">
-					<tr><td>환자<br>번호</td><td>환자명</td><td>담당의</td><td>진료과</td><td>예약일</td></tr>
+					<tr><th style="width:52px ">환자<br>번호</th><th style="width:74px ">환자명</th><th style="width:73px ">담당의</th><th style="width:122px ">진료과</th><th style="width:109px ">예약일</th></tr>
 				  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
 						<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
 							<td>${patient.patient_no }</td>
@@ -123,42 +86,57 @@
 			</div>
 		</div>
 		<div class="patientInf">
-			환자번호 : ${pi.patient_no }<br>
-			환자이름 : ${pi.patient_name }<br>
-			성별 : ${pi.gender }<br>
-			생년월일 : ${pi.birth }<br>
-			주소 : ${pi.address }<br>
-			연락처 : ${pi.contact }<br>
-			보호자연락처 : ${pi.protector_contact }<br>
-			주민번호 : ${pi.social_number }<br>
-			담당의 : ${pi.doctor_no }<br>
-			비밀번호 : ${pi.password }<br>
-			의사이름 : ${pi.doctor_name }<br>
-			진료과 : ${pi.department }<br>
-			의사사진 : ${pi.image }<br>
-			<br>
+		<div class="patientInf1">
+			<table class="inf">
+				<tr> <th>환자번호</th> 	<td>${pi.patient_no }</td> </tr>
+				<tr> <th>환자이름</th> 	<td>${pi.patient_name }</td> </tr>
+				<tr> <th>성별</th> 		<td>${pi.gender }</td> </tr>
+				<tr> <th>생년월일</th> 	<td>${pi.birth }</td> </tr>
+				<tr> <th>주소</th> 		<td>${pi.address }</td> </tr>
+				<tr> <th>연락처</th> 	<td>${pi.contact }</td> </tr>
+				<tr> <th>보호자연락처</th><td>${pi.protector_contact }</td> </tr>
+				<tr> <th>주민번호</th> 	<td>${pi.social_number }</td> </tr>
+				<tr> <th>담당의</th> 	<td>${pi.doctor_name }(${pi.department })</td> </tr>
+			</table>
+		</div>
+		<div class="patientInf3">
+			<table class="inf">
+				<tr><th>예약정보</th><td>
+				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
+				<c:if test="${pi.reservation_date.get(0)!=null }">
+				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
+						${date } ${pi.reservation_hour.get(stat.index) }시<br>
+				</c:forEach>
+				</c:if></td></tr>
+			</table>
+		</div>
+		<div class="patientInf2">
 			<c:if test="${dh.isEmpty() }">진단내역 : 없음.<br></c:if>
 			<c:if test="${!dh.isEmpty() }">
-			<c:forEach var="dh" items="${dh }" varStatus="stat">
-			<h1> 진단내역 : ${stat.index+1 } </h1>
-					차트번호 : ${dh.chart_no }<br>
-					진단의사 : ${dh.doctor_name } (${dh.department })<br>	
-					증상 : ${dh.chart_symptom }<br>
-					병명 : ${dh.chart_disease }<br>
-					진단일시 : ${dh.chart_date }<br>
-					<h3>처방약</h3>
-							<c:if test="${rsdd.isEmpty() }">처방약물 없음<br></c:if>
-							<c:if test="${!rsdd.isEmpty() }">
+				<select name="diaDate" id="diaDate" onchange="dateSel()">
+					<option>진단내역보기</option>
+					<c:forEach var="dh" items="${dh }" varStatus="stat">
+						<option value="${stat.index }">${dh.chart_date }/${dh.chart_disease }/${dh.doctor_name }</option>
+					</c:forEach>
+				</select>
+	 		<c:forEach var="dh" items="${dh }" varStatus="stat">
+	 		<div class="rs${stat.index }" style="display: none;">
+	 		<table class="inf">
+	 			<tr> <th>차트번호</th> 	<td>${dh.chart_no }</td> </tr>
+	 			<tr> <th>진단의사</th> 	<td>${dh.doctor_name } (${dh.department })</td> </tr>
+	 			<tr> <th>증상</th> 		<td>${dh.chart_symptom }</td> </tr>
+	 			<tr> <th>병명</th> 		<td>${dh.chart_disease }</td> </tr>
+	 			<tr> <th>진단일</th> 	<td>${dh.chart_date }</td> </tr>
+	 			<tr> <th>처방약</th><td>	
+							<c:if test="${rsdd.get(stat.index).isEmpty() }">처방약물 없음<br></c:if>
+							<c:if test="${!rsdd.get(stat.index).isEmpty() }">
 							<c:forEach var="rsdd" items="${rsdd.get(stat.index) }" varStatus="stat2">
 								${stat2.index+1}. ${rsdd.drug_name}(${rsdd.drug_class })<br>
 							</c:forEach></c:if>
-			</c:forEach></c:if><p>
-			예약일시<br>
-			<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
-			<c:if test="${pi.reservation_date.get(0)!=null }">
-			<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
-					${date } ${pi.reservation_hour.get(stat.index) }시<br>
-			</c:forEach></c:if>
+					</td></tr>
+	 		</table>
+			</div></c:forEach></c:if>
+		</div>
 		</div>
 	</div>
 	<%@ include file="../footer-side.jsp" %>

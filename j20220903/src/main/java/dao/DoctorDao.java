@@ -196,7 +196,7 @@ public class DoctorDao {
 	      return list;
 	   }
 	
-	public int updateProfile(Doctor doctor) {
+	public int updateProfile(Doctor doctor) throws SQLException {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    int result = 0;
@@ -217,7 +217,10 @@ public class DoctorDao {
 	   
 	      } catch (Exception e) {
 	         System.out.println("updateProfile error -> " + e.getMessage());
-	      } 
+	      } finally {
+			if(pstmt!=null)pstmt.close();
+			if(conn!=null)conn.close();
+		}
 	      return result;
 	    
 		

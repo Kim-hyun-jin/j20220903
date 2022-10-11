@@ -26,6 +26,7 @@
 		border: 3px solid lightsteelblue;
 		height: 70%;
 		overflow: scroll;
+		overflow-x: hidden; 
 	}
 	.patientInf {
 		border: 3px solid lightsteelblue;
@@ -36,8 +37,9 @@
 		margin-right: 5%;
 		margin-bottom: 5%;
 		overflow: scroll;
+		overflow-x: hidden; 
 	}
-	td select {
+	select {
 		font: initial;
 	}
 	.searchResult table, .searchResult td, .searchResult th {
@@ -46,4 +48,17 @@
 		border-collapse:collapse;
 		font-size: 22pt;
 		width: auto;
+	}
+	.searchResult th{
+		text-align: center;
+	}
+	.inf table, .inf tr, .inf td {
+		border: 1px solid #BDBDBD;
+		border-collapse:collapse;
+		width: 100%;
+	}
+	.inf th {
+		text-align: center;
+		min-width: 110px;
+		max-width: 110px;
 	}
