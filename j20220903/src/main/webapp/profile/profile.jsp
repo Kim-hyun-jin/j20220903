@@ -45,10 +45,14 @@
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
-
-  		 	<img  alt="profile_image" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
-  		 	
-
+  		 	<c:choose>
+				<c:when test="${doctor_s.image == null}">
+  		 			<img  alt="" src="<%=context %>/images/user.png" style="width: 100px; border-radius: 50%;">
+				</c:when>
+				<c:otherwise>
+  		 			<img  alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
+				</c:otherwise>
+			</c:choose>
   		 	<form action="" method="post" enctype="multipart/form-data">
  
 			</form>
