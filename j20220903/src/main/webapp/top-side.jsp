@@ -25,7 +25,6 @@
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page"><script type="text/javascript">document.write(document.title)</script></span>
   		<span class="header_name">${doctor_s.doctor_name }</span>
-  		<!-- <a class="header_logout" onclick="logout();">로그아웃</a> -->
   		<input type="button" onclick="logout()" class="header_logout" value="로그아웃">
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">
