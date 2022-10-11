@@ -76,15 +76,34 @@ public class DiaHistoryDao {
 		System.out.println(patient_no);
 		Connection conn			= null;
 		PreparedStatement pstmt	= null;
+		ResultSet rsa		=	null;
+		
 		String sqlbase			= "INSERT INTO diahistory values(?,(SELECT MAX(CHART_NO)+1 FROM DIAHISTORY WHERE PATIENT_NO =?),?,?,sysdate,?)";
+		String sqlbase2			= "select chart_no from diahistory WHERE patient_no=?";
+		String sqlbase3			= "INSERT INTO diahistory values(?,1,?,?,sysdate,?)";
 		try {
 			conn = getConnection();
-			pstmt= conn.prepareStatement(sqlbase);
+			pstmt= conn.prepareStatement(sqlbase2);
 			pstmt.setString(1, patient_no);
-			pstmt.setString(2, patient_no);
-			pstmt.setString(3, chart_symptom);
-			pstmt.setString(4, chart_disease);
-			pstmt.setString(5, doctor_no);
+			rsa= pstmt.executeQuery();
+			if(!rsa.next()) {
+				rsa.close();
+				pstmt.close();
+				pstmt = conn.prepareStatement(sqlbase3);
+				pstmt.setString(1, patient_no);
+				pstmt.setString(2, chart_symptom);
+				pstmt.setString(3, chart_disease);
+				pstmt.setString(4, doctor_no);
+			} else {
+				rsa.close();
+				pstmt.close();
+				pstmt= conn.prepareStatement(sqlbase);
+				pstmt.setString(1, patient_no);
+				pstmt.setString(2, patient_no);
+				pstmt.setString(3, chart_symptom);
+				pstmt.setString(4, chart_disease);
+				pstmt.setString(5, doctor_no);
+			}
 			result=pstmt.executeUpdate();
 			if(result>0) {
 				String sql2 = "INSERT INTO diadrug values(?,(SELECT MAX(CHART_NO) FROM diahistory WHERE PATIENT_NO=?),?)";

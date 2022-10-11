@@ -37,11 +37,10 @@ public class PatientDao {
 	}
 
 	// 환자관리
-	public List<Patient> selectAll() throws SQLException {
+	public List<Patient> selectAll(String doctor_no) throws SQLException {
 
 		List<Patient> list = new ArrayList<Patient>();
 		String sql = "select * from patient where doctor_no=? ORDER BY patient_no asc";
-		String doctor_no = "2";
 
 		Connection connection = null;
 		PreparedStatement pstmt = null;
@@ -262,7 +261,7 @@ public class PatientDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = "insert into patient (patient_no, patient_name, social_number, birth, gender, contact, protector_contact, address, doctor_no)"
-				+ " values(patient_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, 2)";
+				+ " values(patient_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		/*
 		 * String sql =
 		 * "insert into patient (patient_no, patient_name, social_number, birth, gender, contact, protector_contact, address, doctor_no)"
@@ -281,6 +280,7 @@ public class PatientDao {
 			pstmt.setString(5, patient.getContact());
 			pstmt.setString(6, patient.getProtector_contact());
 			pstmt.setString(7, patient.getAddress());
+			pstmt.setString(8, patient.getDoctor_no());
 			
 			//의사번호 2 대신 받기
 			//pstmt.setString(8, patient.getDoctor_no());
