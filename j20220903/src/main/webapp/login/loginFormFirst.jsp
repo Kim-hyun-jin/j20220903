@@ -9,6 +9,11 @@
 <%   String context = request.getContextPath();%> 
 <script type="text/javascript" src="<%=context %>/js/jquery.js"></script>
 <link type="text/css" rel="stylesheet" href="<%=context %>/login/login.css" >
+<script type="text/javascript">
+	$(document).ready(function(){
+		location.href="<%=context%>/autoLogin.do";
+		});
+</script>
 </head>
 <body>
 	<!-- 전체 박스 -->
