@@ -71,7 +71,7 @@ public class DiaHistoryDao {
 		}
 		return rsDiaHistories;
 	}
-	public int diaReg(String chart_symptom, String chart_disease, String patient_no, int doctor_no, String[] drug_code) throws SQLException {
+	public int diaReg(String chart_symptom, String chart_disease, String patient_no, String doctor_no, String[] drug_code) throws SQLException {
 		int result = 0;
 		System.out.println(patient_no);
 		Connection conn			= null;
@@ -84,7 +84,7 @@ public class DiaHistoryDao {
 			pstmt.setString(2, patient_no);
 			pstmt.setString(3, chart_symptom);
 			pstmt.setString(4, chart_disease);
-			pstmt.setInt(5, doctor_no);
+			pstmt.setString(5, doctor_no);
 			result=pstmt.executeUpdate();
 			if(result>0) {
 				String sql2 = "INSERT INTO diadrug values(?,(SELECT MAX(CHART_NO) FROM diahistory WHERE PATIENT_NO=?),?)";
@@ -161,6 +161,27 @@ public class DiaHistoryDao {
 			System.out.println("DiaHistory.diaHistoryDel e.getMessage ==> " + e.getMessage());
 		} finally {
 			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+	public int diaMod(String patient_no, String chart_no, String chart_symptom, String chart_disease) throws SQLException {
+		int result = 0;
+		Connection conn			= null;
+		PreparedStatement pstmt	= null;
+		String sqlbase			= "UPDATE diahistory SET chart_symptom=?, chart_disease=? WHERE chart_no=? AND patient_no=?";
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sqlbase);
+			pstmt.setString(1, chart_symptom);
+			pstmt.setString(2, chart_disease);
+			pstmt.setString(3, chart_no);
+			pstmt.setString(4, patient_no);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("DiaHistory.diaMod e.getMessage ==> " + e.getMessage());
+		} finally {
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		}

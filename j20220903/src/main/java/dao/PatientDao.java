@@ -110,7 +110,6 @@ public class PatientDao {
 						+ "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
 						+ "INNER JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
 						+ "WHERE p.patient_name like ?";
-		System.out.println(sqlbase);
 		try {
 			conn = getConnection();
 			if(!reservationDate.equals("")) pstmt = conn.prepareStatement(sqlbase2);
@@ -136,6 +135,7 @@ public class PatientDao {
 					list.add(patient);
 				} while (rs.next());
 			}
+			System.out.println("listSize==>"+list.size());
 			list_result.add(list.get(0));
 			for (int i = 1; i < list.size(); i++) {
 				if (list.get(i).getPatient_no() != list.get(i - 1).getPatient_no()) {

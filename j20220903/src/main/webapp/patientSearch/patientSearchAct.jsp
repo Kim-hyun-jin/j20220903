@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +97,7 @@
 				<tr> <th>주소</th> 		<td>${pi.address }</td> </tr>
 				<tr> <th>연락처</th> 	<td>${pi.contact }</td> </tr>
 				<tr> <th>보호자연락처</th><td>${pi.protector_contact }</td> </tr>
-				<tr> <th>주민번호</th> 	<td>${pi.social_number }</td> </tr>
+				<tr> <th>주민번호</th> 	<td>${pi.social_number }</td> </tr>	
 				<tr> <th>담당의</th> 	<td>${pi.doctor_name }(${pi.department })</td> </tr>
 			</table>
 		</div>
@@ -106,7 +107,9 @@
 				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
 				<c:if test="${pi.reservation_date.get(0)!=null }">
 				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
-						${date } ${pi.reservation_hour.get(stat.index) }시<br>
+						<fmt:parseDate value = "${date }"  pattern = "yy/MM/dd" var = "dateRs"/>
+						<fmt:formatDate value="${dateRs }" pattern="yyyy년 MM월 dd일"/>
+						${pi.reservation_hour.get(stat.index) }시<br>
 				</c:forEach>
 				</c:if></td></tr>
 			</table>
