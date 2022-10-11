@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -42,19 +46,6 @@ public class ProfileModAct implements CommandProcess {
 		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
 		
 		
-		try {
-			DoctorDao doctorDao = DoctorDao.getInstance();
-			int updateResult = doctorDao.updateProfile(doctor);
-			
-			request.setAttribute("updateResult", updateResult);
-		} catch (Exception e) {
-			System.out.println("ProfileModAct e.getMessage ==> "+e.getMessage());
-		}
-		
-
-		
-		
-		
 		System.out.println("doctor_s.doctor_no => " + doctor.getDoctor_no());
 		// 5MB
 		int maxSize = 5 * 1024 * 1024;
@@ -67,15 +58,22 @@ public class ProfileModAct implements CommandProcess {
 		String doctor_name = multi.getParameter("doctor_name");
 		String department =  multi.getParameter("department");
 		int password = Integer.parseInt(multi.getParameter("password")) ;
+		String img_path1 = multi.getParameter("img_path");
 		
 		doctor.setDoctor_no(doctor_no);
 		doctor.setDoctor_name(doctor_name);
 		doctor.setDepartment(department);
 		doctor.setPassword(password);
+		doctor.setImage(img_path1);
+		
+		System.out.println("img_path1: "+ img_path1);
 		
 		
 		Enumeration en = multi.getFileNames();
 		String serverSaveFilename = "";
+		ImageInputStream imgInputStream = null;
+		ImageOutputStream imgImageOutputStream = null;
+		
 		
 		while (en.hasMoreElements()) {
 			// input 태그의 속성이 file인 태그의 name 속성값 : 파라미터 이름
@@ -88,8 +86,21 @@ public class ProfileModAct implements CommandProcess {
 			String type = multi.getContentType(parameterName);
 			// 전송된 파일속성이 file인 태그의 name 속성값을 이용해 파일객체 생성
 			File file = multi.getFile(parameterName);
+			
+			//file 경로로 imageInputstream 생성
+			imgInputStream = new FileImageInputStream(file);
+			File storageFile = new File("../images");
+			imgImageOutputStream = new FileImageOutputStream(storageFile);
+			
+			byte[] array = new byte[1024];
+			while ( imgInputStream.read(array) != -1) {
+				imgImageOutputStream.write(array);
+			}
+			
+			imgInputStream.close();
+			imgImageOutputStream.close();
 		}
-		
+	
 		System.out.println("realPath : " + realPath);
 		System.out.println("저장된 파일 이름 : " + serverSaveFilename);
 		
@@ -98,8 +109,10 @@ public class ProfileModAct implements CommandProcess {
 		System.out.println("img_path => " + img_path);
 		
 		DoctorDao dd = DoctorDao.getInstance();
-		int result = dd.updateImage(img_path, doctor.getDoctor_no());
+		int updateResult = dd.updateProfile(doctor, img_path, doctor.getDoctor_no());
 		
+		
+		request.setAttribute("updateResult", updateResult);
 //		Member member = new Member();
 //		member.setId(id);
 //		member.setName(name);
