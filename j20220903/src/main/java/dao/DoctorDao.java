@@ -274,5 +274,59 @@ public class DoctorDao {
 		
 		return img_path;
 	}
+	
+	public int insert(Doctor doctor) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "INSERT INTO doctor VALUES (DOCTOR_SEQ.nextval, ?, ?, ?, NULL)";
+		int passwd	= doctor.getPassword();
+		System.out.println("passwd => " + passwd);
+		String doctor_name		= doctor.getDoctor_name();
+		String department	= doctor.getDepartment();
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, passwd);
+			pstmt.setString(2, doctor_name);
+			pstmt.setString(3, department);
+			result = pstmt.executeUpdate();
+			// 일단 id OK 상태
+		} catch (Exception e) {
+			System.out.println("check error -> " + e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
 
+		return result;
+	}
+	
+	public String join() throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String doctor_no = "";
+		String sql = "SELECT DOCTOR_SEQ.currval FROM DUAL";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			// 일단 id OK 상태
+			if(rs.next()) {
+				doctor_no = rs.getString(1);
+				System.out.println(doctor_no);
+				// password 체크
+			};
+
+		} catch (Exception e) {
+			System.out.println("check error -> " + e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return doctor_no;
+	}
 }
