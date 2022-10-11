@@ -27,6 +27,11 @@
 	cursor: pointer;
 	vertical-align: middle;
 }
+#search_btn:hover {
+	background-color: #D4F4FA;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
+}
 
 table {
 	margin-left: 50px;
@@ -41,4 +46,14 @@ th {
 td {
 	padding: 10px;
 	background-color: white;
+}
+input:focus {
+	outline: none !important;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
+}
+select:focus {
+	outline: none !important;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
 }
