@@ -37,8 +37,8 @@ public class LoginPro implements CommandProcess {
 				
 				if (auto != null) {
 					System.out.println("hi");
-					// 자동로그인 체크시 시간 설정 3초!
-					session.setMaxInactiveInterval(10);
+					// 자동로그인 체크시 시간 설정 1년!
+					session.setMaxInactiveInterval(60 * 60 * 24 * 365);
 				}
 			}
 			System.out.println("LoginPro doctor_image => " + doctor.getImage());
