@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
-<link type="text/css" rel="stylesheet" href="login.css" >
+<%   String context = request.getContextPath();%> 
+<link type="text/css" rel="stylesheet" href="<%=context %>/login/login.css" >
 </head>
 <body>
 	<!-- 전체 박스 -->
@@ -19,7 +20,7 @@
 		</span>
 		<!-- 이미지 or 텍스트 사이트 이름 -->
 		<!-- 로그인 박스 -->
-		<form action="../loginPro.do" method="get">
+		<form action="<%=context %>/loginPro.do" method="get">
 			<input type="text" class="id" id="doctor_no" name="doctor_no" placeholder="사번" required="required"><p>
 			<input type="password" class="id" id="password" name="password" placeholder="암호" required="required"><p>
 			<input type="submit" class="log" id="chk" value="로그인"><p>

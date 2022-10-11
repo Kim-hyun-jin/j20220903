@@ -14,8 +14,6 @@
 <body>
   	
   		<form action="<%=context%>/drugSearch.do">
-	  		<input type="hidden" name="doctor_no" value="${doctor.doctor_no }">
-	  		
 	  		<span class="drug_search">약품분류</span>
 	  		<select name="drug_class">
 	  			<option value="empty"></option>
@@ -42,7 +40,7 @@
 			</c:if>
 			<c:if test="${totCnt > 0 }">
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug_class}&drug_name=${drug_name}&doctor_no=${doctor.doctor_no}">[${i}]</a>
+					<a href="<%=context%>/drugSearch.do?pageNum=${i}&drug_class=${drug_class}&drug_name=${drug_name}">[${i}]</a>
 				</c:forEach>
 			</c:if>
 			<c:if test="${endPage < pageCnt }">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>진단내역</title>
 <%String context0 = request.getContextPath();%>
 <style type="text/css">
 	table, tr, td, th{
@@ -61,7 +61,7 @@
 			  			</tr>
 						</c:forEach>
 					</c:if>
-					<tr onclick="location.href='<%=context%>/diaRegView.do?patient_no=${patient_no}'"><td colspan="6">진단등록하기</td></tr>
+					<tr><td colspan="6"><input type="button" value="진단등록하기" onclick="location.href='<%=context%>/diaRegView.do?patient_no=${patient_no}'"></td></tr>
 			</table>
 		</form>
 	</div>

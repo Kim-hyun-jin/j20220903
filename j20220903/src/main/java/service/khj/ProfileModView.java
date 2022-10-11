@@ -17,14 +17,21 @@ public class ProfileModView implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		/* 오류남 세션처리
-		 * HttpSession session = request.getSession(); Doctor doctor = (Doctor)
-		 * session.getAttribute("doctor_s"); String doctor_no = doctor.getDoctor_no();
-		 * 
-		 * request.setAttribute("doctor_no", doctor_no);
-		 * request.setAttribute("doctor",doctor);
-		 */
+		
+		System.out.println("ProfileModView start...");
+		request.setCharacterEncoding("utf-8");
+		
+		String doctor_no = request.getParameter("doctor_no");
+		String doctor_name = request.getParameter("doctor_name");
+		String department = request.getParameter("department");
+		int password = Integer.parseInt(request.getParameter("password"));
+		String img_path = request.getParameter("img_path");
+		
+		request.setAttribute("doctor_no", doctor_no);
+		request.setAttribute("doctor_name", doctor_name);
+		request.setAttribute("department", department);
+		request.setAttribute("password", password);
+		request.setAttribute("img_path", img_path);
 		 
 		return "profile/profileMod.jsp";
 	}

@@ -23,16 +23,21 @@ public class MainCalendarMini implements CommandProcess {
 		ScheduleDao sd = ScheduleDao.getInstance();
 		
 		try {
-			/* String no = request.getParameter("doctor_no"); */
-			/* List<Schedule> list = sd.list(no); */
-			List<Schedule> list = sd.list();
+			String doctor_no= request.getParameter("doctor_no");
+			List<Schedule> list = sd.list(doctor_no);
+			List<Schedule> reservationList = sd.getReservationlist(doctor_no);
+			List<Schedule> todoList = sd.getTodoList(doctor_no); 
+			
 			request.setAttribute("list", list);
+			request.setAttribute("reservationList", reservationList); 
+			request.setAttribute("todoList", todoList);
+			
 		    
 		} catch (Exception e) {
 			System.out.println("MainCalendarMini e.getMessage()-->"+e.getMessage());
 		}
 			
-		return "mainCalendar.jsp";
+		return "main/mainCalendar.jsp";
 	}
 
 }

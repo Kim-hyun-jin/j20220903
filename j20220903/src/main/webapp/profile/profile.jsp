@@ -16,7 +16,6 @@
 		margin: 15px;
 		height: 520px;
 		background-color: white;
-	  
 	}
 	
 	.main
@@ -28,32 +27,50 @@
 		padding: 30px;
 	}
 	
+	.profile_update_img {
+		margin: 20px;
+	}
+	
+	.profile_update_content {
+		margin: 20px;
+	}
 </style>
 </head>
 <body>
   	<%@ include file="../top-side.jsp" %>
   	
   	<article id="profile_update">
-  		<div>내정보</div>
+  		
   		 
   		 <div class="main">
   		 	
   		 <div class="profile_update_img">
-  		 	<div><img id="edit_img" alt="" src="<%=context %>/images/myphoto.png" style="width:100px"></div>
+
+  		 	<img  alt="profile_image" src="<%=context %>/images/${doctor_s.image}" style="width: 100px; border-radius: 50%;">
+  		 	
+
   		 	<form action="" method="post" enctype="multipart/form-data">
  
-		  	  <input type="submit" value="이미지편집">
 			</form>
   		 </div>
   		 <div class="profile_update_content">
   			
+  			<form action="<%=context %>/profileModView.do" method="post">
+  				<input type="hidden" value="${doctor_s.image}" name="doctor_image">
+		  		<input type="hidden" value="${doctor_s.doctor_no}" name="doctor_no">
+				<input type="hidden" value="${doctor_s.doctor_name}" name="doctor_name">
+				<input type="hidden" value="${doctor_s.department}" name="department">
+				<input type="hidden" value="${doctor_s.password}" name="password">
+				<input type="hidden" value="${img_path}" name="img_path">
+		
   			<div>이름: ${doctor_s.doctor_name}</div>
   			<div>사번: ${doctor_s.doctor_no}</div>
   			<div>담당과:${doctor_s.department}</div>
-  			<div></div>
+  			<div>비밀번호:****</div>
   			
-  			<input type="button" onclick="location.href='<%=context %>/profileModForm.do'" value="정보수정">
-  			<%-- <input type="button" value="수정" onclick="location.href='profileModForm.do?doctior_no=${doctor.doctor_no}'"> --%>
+  			
+  			<input type="submit" value="정보수정">
+  			</form>
   		</div>
   		
   		</div>

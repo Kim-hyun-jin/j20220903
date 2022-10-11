@@ -10,6 +10,12 @@ public class Schedule {
 	private String schedule_enddate;//종료일
 	private String schedule_content;//내용
 	
+	private String reservation_date;//PK 예약일	
+	private int patient_no;//FK 환자번호
+	
+	private String patient_name;//환자이름 NOT NULL
+	
+	
 	public int getSchedule_no() {
 		return schedule_no;
 	}
@@ -46,10 +52,23 @@ public class Schedule {
 	public void setSchedule_content(String schedule_content) {
 		this.schedule_content = schedule_content;
 	}
-	
-	
-	
-	
-	
+	public String getReservation_date() {
+		return reservation_date;
+	}
+	public void setReservation_date(String reservation_date) {
+		this.reservation_date = reservation_date;
+	}
+	public int getPatient_no() {
+		return patient_no;
+	}
+	public void setPatient_no(int patient_no) {
+		this.patient_no = patient_no;
+	}
+	public String getPatient_name() {
+		return patient_name;
+	}
+	public void setPatient_name(String patient_name) {
+		this.patient_name = patient_name;
+	}
 	
 }

@@ -13,7 +13,7 @@
 <body>
   	<%@ include file="../top-side.jsp" %>
   	
-  	<div id="contents">
+  	
   		
   		<table class="patient_manage_table" border="2">
   		<caption>환자관리</caption>
@@ -31,9 +31,7 @@
 
   		
   		<div class="button">
-	  		<div class="patient_manage_button">
-	  			<input type="button" onclick="location.href='myPatientListView.do'" value="내환자목록">
-	  		</div>
+
 	  		
 	  		<div class="patient_manage_button">
 	  			<input type="button" onclick="location.href='patientRegView.do'" value="환자등록">
@@ -41,7 +39,7 @@
 
   		</div>
   		
-  	</div>
+
 
   	
 <%@ include file="../footer-side.jsp" %>

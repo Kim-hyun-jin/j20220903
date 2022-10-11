@@ -42,6 +42,9 @@
 	select {
 		font: initial;
 	}
+	.select {
+		font: initial;
+	}
 	.searchResult table, .searchResult td, .searchResult th {
 		min-width:100%;
 		border: 1px solid black;

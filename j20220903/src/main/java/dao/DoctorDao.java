@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import oracle.net.aso.l;
+
 //singleton + DBCP
 public class DoctorDao {
 	private static DoctorDao instance;
@@ -201,17 +203,17 @@ public class DoctorDao {
 	    PreparedStatement pstmt = null;
 	    int result = 0;
 	    String sql="update  doctor \r\n"
-	    		+ "set password =?, doctor_name=?, department=? \r\n"
-	    		+ "where doctor_no = ?;";
+	    		+ "set  doctor_name=?, department=?, password =? \r\n"
+	    		+ "where doctor_no = ?";
 	    
 	    
 	    try {
 	    	  conn = getConnection();
 	    	  pstmt = conn.prepareStatement(sql);
 	          
-	    	  pstmt.setInt(1, doctor.getPassword());
-	    	  pstmt.setString(2, doctor.getDoctor_name());
-	    	  pstmt.setString(3, doctor.getDepartment());
+	    	  pstmt.setString(1, doctor.getDoctor_name());
+	    	  pstmt.setString(2, doctor.getDepartment());
+	    	  pstmt.setInt(3, doctor.getPassword());
 	    	  pstmt.setString(4, doctor.getDoctor_no());
 	          result = pstmt.executeUpdate();
 	   
@@ -224,6 +226,53 @@ public class DoctorDao {
 	      return result;
 	    
 		
+	}
+	
+	public int updateImage(String image, String doctor_no) {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+	    String sql="update doctor\r\n"
+	    		+ "set image =?\r\n"
+	    		+ "where doctor_no = ?";
+	    
+	    
+	    try {
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);
+	          
+	    	  pstmt.setString(1, image);
+	    	  pstmt.setString(2, doctor_no);
+	          result = pstmt.executeUpdate();
+	   
+	      } catch (Exception e) {
+	         System.out.println("updateProfile error -> " + e.getMessage());
+	      } 
+	      return result;
+	    
+		
+	}
+
+	public String getImgpath(String doctor_no) {
+		
+		String img_path ="";
+		
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    
+	    String sql="select image from doctor where doctor_no ="+ doctor_no;
+	    
+	    try {
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);	
+	    	  rs =  pstmt.executeQuery();
+	    	  img_path = rs.getString("image");
+	    } catch (Exception e) {
+			System.out.println("getImgpath Err:"+ e.getMessage());
+		}
+		
+		return img_path;
 	}
 
 }

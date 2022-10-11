@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>환자 등록 페이지</title>
-<%@ include file="top-side.html" %>
+<%@ include file="../top-side.jsp" %>
 </head>
 <body>
 <form action="patientRegAct.do" method="post">
@@ -22,11 +22,10 @@
 		<tr><td>연락처: </td><td><input type="text" name="contact" value="${list.contact}"></td></tr>
 		<tr><td>보호자연락처: </td><td><input type="text" name="protector_contact" value="${list.protector_contact }"></td></tr>
 		<tr><td>주민번호: </td><td><input type="tel" name="social_number" 
-		pattern="[0-9]{6}-[0-9]{7}" required="required" value="${list.social_number }"></td></tr>
+		pattern="[0-9]{6}[0-9]{7}" required="required" value="${list.social_number }"></td></tr>
 		
 		<!-- patientDto 에서 담당의만 제외한 정보 -->
 	</table>
 	<input type="submit" value="제출">
 </form>
-</body>
-</html>
+<%@ include file="../footer-side.jsp" %>

@@ -57,7 +57,12 @@
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
 						</select> --%>
+<<<<<<< HEAD
 						<input type="date" name="reservationDate"></td>
+=======
+						<input type="date" name="reservationDate" class="select">
+						</td>
+>>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git
 					</tr> 
 					<tr>
 						<th>환자명</th>
@@ -70,7 +75,7 @@
 				<table class="srTable">
 					<tr><th style="width:52px ">환자<br>번호</th><th style="width:74px ">환자명</th><th style="width:73px ">담당의</th><th style="width:122px ">진료과</th><th style="width:109px ">예약일</th></tr>
 				  	<c:forEach var="patient" items="${list_pat }" varStatus="stat">
-						<tr onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
+						<tr class="patient_search" onclick="location.href='<%=context%>/patientSearchSelect.do?patient_no=${patient.patient_no }'">
 							<td>${patient.patient_no }</td>
 							<td>${patient.patient_name }</td>
 							<td>${searchSet.get(stat.index).get(2)}</td>

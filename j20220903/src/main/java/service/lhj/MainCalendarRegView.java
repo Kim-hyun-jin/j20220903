@@ -31,7 +31,7 @@ public class MainCalendarRegView implements CommandProcess {
 	
 		}
 	
-		return "scheduleRegView.jsp";
+		return "main/scheduleRegView.jsp";
 	}
 
 }
