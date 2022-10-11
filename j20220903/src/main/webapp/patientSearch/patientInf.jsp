@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>환자정보검색</title>
 <link type="text/css" href="patientSearch/search.css" rel="stylesheet">
+<link type="text/css" href="patientSearch/patientSearch.css" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function dateSel(){

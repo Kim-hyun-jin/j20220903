@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>환자정보검색</title>
 <link type="text/css" href="patientSearch/search.css" rel="stylesheet">
+<link type="text/css" href="patientSearch/patientSearch.css" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function dateSel(){
@@ -57,12 +58,7 @@
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
 						</select> --%>
-<<<<<<< HEAD
-						<input type="date" name="reservationDate"></td>
-=======
-						<input type="date" name="reservationDate" class="select">
-						</td>
->>>>>>> branch 'master' of https://github.com/Kim-hyun-jin/j20220903.git
+						<input type="date" name="reservationDate" class="select"></td>
 					</tr> 
 					<tr>
 						<th>환자명</th>
@@ -146,4 +142,4 @@
 	</div>
 	<%@ include file="../footer-side.jsp" %>
 </body>
-</html>
+</html>	
