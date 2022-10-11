@@ -24,12 +24,15 @@ public class MainView implements CommandProcess {
 
 		//String doctor_no = "2";
 		HttpSession session = request.getSession();
+		if (session.getAttribute("doctor_s") == null) { return "login/loginForm.jsp"; }
+		
 		Doctor doctor = (Doctor) session.getAttribute("doctor_s");
 		String doctor_no = doctor.getDoctor_no();
 		PatientDao patientDao =PatientDao.getInstance();
 		List<PatientInf> list = patientDao.getMyPatientList(doctor_no);
 		
 		request.setAttribute("myPatientList", list);
+		
 		
 		return "index.jsp";
 	}

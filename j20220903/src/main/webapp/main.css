@@ -60,6 +60,16 @@
 		right: 10px;
 	}
 	
+	.header_logout {
+		position: absolute;
+		bottom: 25px;
+		right: 170px;
+		background-color: #3DB7CC;
+		color: white;
+		border: 0;
+		font-size: 25px;
+	}
+	
 	.header_page {
 		position: absolute;
 		bottom: 20px;

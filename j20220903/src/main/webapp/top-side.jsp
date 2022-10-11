@@ -9,8 +9,14 @@
 <%   String context = request.getContextPath();%> 
 <title>Insert title here</title>
 <link type="text/css" href="<%=context %>/main.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/54a6153010.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	function logout() {
+		if (confirm("로그아웃을 하시겠습니까?")) {
+			location.href="<%=context%>/logout.do";
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -19,6 +25,8 @@
   		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page"><script type="text/javascript">document.write(document.title)</script></span>
   		<span class="header_name">${doctor_s.doctor_name }</span>
+  		<!-- <a class="header_logout" onclick="logout();">로그아웃</a> -->
+  		<input type="button" onclick="logout()" class="header_logout" value="로그아웃">
   		<c:choose>
 			<c:when test="${doctor_s.image == null}">
   				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>

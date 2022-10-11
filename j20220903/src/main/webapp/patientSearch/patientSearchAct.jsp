@@ -10,7 +10,7 @@
 <style type="text/css">
 	.mainContents{
 		min-width: 1000px;
-		background-color: lightsteelblue;
+		background-color: white;
 		display: inline-block;
 		height: 100%;
 		width: 100%;
@@ -26,19 +26,19 @@
 		position: relative;
 	}
 	.searchBox {
-		border: 3px solid black;
+		border: 3px solid lightsteelblue;
 		height: 29%;
 		margin-bottom: 1%;
 		background-color: white;
 	}
 	.searchResult {
-		border: 3px solid black;
+		border: 3px solid lightsteelblue;
 		height: 70%;
 		overflow: scroll;
 		background-color: white;
 	}
 	.patientInf {
-		border: 3px solid black;
+		border: 3px solid lightsteelblue;
 		width: 43%;
 		height: 90%;
 		float: right;
