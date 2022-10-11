@@ -15,7 +15,7 @@
 	#header {
 		height : 50px;
 		background-color: cornflowerblue;
-		opacity: 0.3;
+		
 		padding: 20px;
 		border-bottom: solid 3px;
 		border-bottom-color: white;
@@ -121,6 +121,7 @@
 		height : 130px;
 		clear : both; /* 나는 flat를 따르지 않을 거란다~ */
 		background-color: cornflowerblue;
+		
 		border-top: solid 3px;
 		border-top-color: white;
 		padding-left: 10px;

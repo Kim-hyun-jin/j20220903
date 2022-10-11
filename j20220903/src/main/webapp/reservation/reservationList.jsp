@@ -7,9 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<!-- <link rel="stylesheet" type="text/css" href="reservation/revStyle.css">  --> 
-<script src="https://kit.fontawesome.com/54a6153010.js"
-	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="reservation/revStyle.css">  
 <style type="text/css">
 	table tr td {
 		width:150px; 
@@ -28,6 +26,7 @@
 		background: cornflowerblue;
 	}
 </style>
+
 <script src="http://code.jquery.com/jquery-1.6.4.js"></script>
 <!-- <script type="text/javascript">
 	if(document.getElementById("input_check").checked) {
@@ -38,8 +37,7 @@
 
 <body>  
 
-  	<%@ include file="../top-side.jsp" %>
-  	
+<%@ include file="../top-side.jsp" %>
 
 	<form action="<%=context%>/reservationDel.do" id="table-style" method="post" >
 <!-- 	<article id="table-style"> -->
@@ -101,4 +99,6 @@
 <!-- 			<input type="button" value="등록" onclick="alert(1)" style="float: right"> -->
 
  	 </form>
+
+  	
 <%@ include file="../footer-side.jsp" %>
