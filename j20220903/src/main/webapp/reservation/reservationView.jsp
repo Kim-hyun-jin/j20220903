@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<!-- <link rel="stylesheet" type="text/css" href="reservation/revStyle.css">   --> 
+<!-- <link rel="stylesheet" type="text/css" href="revStyle.css">   -->
 <style type="text/css">
 	table tr td {
 		width:150px; 
@@ -18,7 +18,6 @@
 		width:15px;
 		height:15px;
 	}
-	
 </style>
 <%
 	String contextLocal = request.getContextPath();
@@ -28,10 +27,10 @@
 	location.href = "<%=contextLocal%>/reservationView.do";
 </script> 
 <%@ include file="../top-side.jsp" %>
-
+<!-- 
 	<article id="table-style">
 
- 	 </article>
+ 	 </article> -->
   	</div>
   	
 <%@ include file="../footer-side.jsp" %>

@@ -20,7 +20,6 @@
 	}
 	#contents {
 		overflow: scroll;
-		background-color: white;
 
 	}
 	table {
@@ -35,12 +34,14 @@
 	}
 
 </script> -->
-
-<body style="background-color: white">  
+<%
+	String contextLocal = request.getContextPath();
+%>
+<body>  
 
 <%@ include file="../top-side.jsp" %>
 
-	<form action="<%=context%>/reservationDel.do" id="table-style" method="post" style="background-color: white">
+	<form action="<%=context%>/reservationDel.do" id="table-style" method="post" >
 <!-- 	<article id="table-style"> -->
 
 		<table border="1">
@@ -101,5 +102,11 @@
 
  	 </form>
 
+
+
+	<article id="table-style">
+
+ 	 </article>
+  	</div>
   	
 <%@ include file="../footer-side.jsp" %>
