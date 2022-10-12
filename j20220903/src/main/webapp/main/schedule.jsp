@@ -28,8 +28,7 @@ String contextSrc = request.getContextPath();
     	  title: "<c:out value="${schedule.schedule_title}"/>",
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
-    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}",
-    	  allDay: true
+    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
     	   	  
     	 
    	  };
@@ -61,28 +60,18 @@ String contextSrc = request.getContextPath();
                 	  		window.location.href = "<%=contextSrc%>/mainCalendarRegView.do";
                   }
               }
-          },  
-          
- 	     eventDataTransform: function(event) {          //롱이벤트 버그 보완.                                                                                                                    
-	    	 if(event.allDay)  {  
-	    		var addDate = new Date(event.end);   
-	    		addDate.setDate(addDate.getDate() + 1);    // 종료일에 +1일 적용하여 버그 보완. 데이터 적용은 되지않는다.
-	    		  
-	    		event.end = addDate.toISOString().substring(0,10);
-        	  }
-        	  return event;  //위 작업 후 다시 이벤트로 돌려줌 
-       	  },    
-        	
+          },   
+          timeZone: 'Asia/Seoul',
           eventClick:function(info) { 
           },
 
 		  height: 550,
-		  contentHeight: 200,
-		  aspectRatio: 1.8
-		  
+		  contentHeight: 230,
+		  aspectRatio: 1.6
+        	   
           
         });
-          calendar.render(); 
+          calendar.render();
       });
       
 </script>

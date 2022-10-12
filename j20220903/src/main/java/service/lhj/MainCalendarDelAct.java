@@ -26,7 +26,7 @@ public class MainCalendarDelAct implements CommandProcess {
 			System.out.println(e.getMessage());
 		}
 		
-		return "main/scheduleDelAct.jsp";  
+		return "scheduleDelAct.jsp";  
 	}
 
 }

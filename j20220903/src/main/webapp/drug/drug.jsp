@@ -12,7 +12,7 @@
   	<%@ include file="../top-side.jsp" %>
 </head>
 <body>
-
+  	
   		<form action="<%=context%>/drugSearch.do">
 	  		<span class="drug_search">약품분류</span>
 	  		<select name="drug_class">
@@ -47,5 +47,4 @@
 				<a href="<%=context%>/drugSearch.do?pageNum=${startPage+blockSize }">[다음]</a>
 			</c:if>
 		</div>
-
 <%@ include file="../footer-side.jsp" %>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글쓰기</title>
+<title>Insert title here</title>
 <!-- <link type="text/css" href="main.css" rel="stylesheet"> -->
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@ table {
 </style>
 </head>
 <body>
-<!-- 	<div id="container"> -->
+	<div id="container">
 
 		<%@ include file="../top-side.jsp" %>
 
@@ -70,8 +70,8 @@ table {
 					<input type="button" value="목록" onclick="location.href='shareBoardView.do?pageNum=${pageNum }'">
 				</center>
 			</form>
-<!-- 		</div>
-	</div> -->
+		</div>
+	</div>
 
 	<%@ include file="../footer-side.jsp"%>
 </body>

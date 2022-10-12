@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" href="patientManage/patientManage.css" rel="stylesheet">
 </head>
 <body>
 	<c:if test="${result > 0}">

@@ -202,52 +202,28 @@ public class DoctorDao {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    int result = 0;
+	    String sql="update  doctor \r\n"
+	    		+ "set  doctor_name=?, department=?, password =?,image =? \r\n"
+	    		+ "where doctor_no = ?";
 	    
-	    if (image != null) {
-	    	String sql="update  doctor \r\n"
-	    			+ "set  doctor_name=?, department=?, password =?,image =? \r\n"
-	    			+ "where doctor_no = ?";
-	    	
-	    	try {
-	    		conn = getConnection();
-	    		pstmt = conn.prepareStatement(sql);
-	    		
-	    		pstmt.setString(1, doctor.getDoctor_name());
-	    		pstmt.setString(2, doctor.getDepartment());
-	    		pstmt.setInt(3, doctor.getPassword());
-	    		pstmt.setString(4, image);
-	    		pstmt.setString(5, doctor.getDoctor_no());
-	    		result = pstmt.executeUpdate();
-	    		
-	    		doctor.setImage(image);
-			
-	    	} catch (Exception e) {
-	    		System.out.println("updateProfile error -> " + e.getMessage());
-	    	} 
-	    	return result;
-	    } else {
-	    	String sql2="update  doctor \r\n"
-	    			+ "set  doctor_name=?, department=?, password =? \r\n"
-	    			+ "where doctor_no = ?";
-	    	
 	    
 	    try {
-	    	conn = getConnection();
-	    	pstmt = conn.prepareStatement(sql2);
-	    	
-	    	pstmt.setString(1, doctor.getDoctor_name());
-	    	pstmt.setString(2, doctor.getDepartment());
-	    	pstmt.setInt(3, doctor.getPassword());
-	    	pstmt.setString(4, doctor.getDoctor_no());
-	    	result = pstmt.executeUpdate();
-	    	
-	    } catch (Exception e) {
-	    	System.out.println("updateProfile error -> " + e.getMessage());
-	    } 
-	    return result;
-		}
-	    
-	}
+	    	  conn = getConnection();
+	    	  pstmt = conn.prepareStatement(sql);
+	          
+	    	  pstmt.setString(1, doctor.getDoctor_name());
+	    	  pstmt.setString(2, doctor.getDepartment());
+	    	  pstmt.setInt(3, doctor.getPassword());
+	    	  pstmt.setString(4, doctor.getImage());
+	    	  pstmt.setString(5, doctor.getDoctor_no());
+	          result = pstmt.executeUpdate();
+	          
+	          doctor.setImage(image);
+	      } catch (Exception e) {
+	         System.out.println("updateProfile error -> " + e.getMessage());
+	      } 
+	      return result;
+	    }
 	
 
 //updateImage 기능을 위의 updateProfile 로 합침

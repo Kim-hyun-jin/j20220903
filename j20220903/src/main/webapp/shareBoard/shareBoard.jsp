@@ -127,8 +127,8 @@ table {
 						href='shareBoardView.do?pageNum=${startPage+blockSize }'>[ 다음]</a>
 				</c:if>
 			</div>
-<!-- 		</div>
-	</div> -->
+		</div>
+	</div>
 	<%@ include file="../footer-side.jsp" %>
 </body>
 </html>

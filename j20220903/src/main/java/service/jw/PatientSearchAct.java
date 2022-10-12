@@ -58,16 +58,8 @@ public class PatientSearchAct implements CommandProcess {
 					list_res_date.add(list_res.get(i).getReservation_date());
 				}
 			}
-			ArrayList<String> dep = new ArrayList<String>();
-			dep.add(list_doc.get(0).getDepartment());
-			for(int i=1; i<list_doc.size(); i++) {
-				if(!dep.contains(list_doc.get(i).getDepartment())) {
-					dep.add(list_doc.get(i).getDepartment());
-				}
-			}
 			System.out.println("list_pat size ==> "+list_pat.size());
 			System.out.println("서치셋 size ==> "+searchSet.size());
-			request.setAttribute("dep", dep);
 			request.setAttribute("searchSet", searchSet);
 			request.setAttribute("list_pat", list_pat);
 			request.setAttribute("list_doc", list_doc);

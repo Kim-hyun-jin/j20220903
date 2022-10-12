@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("삭제 완료 ! ");
-		location.href="mainCalendarView.do?doctor_no=${doctor_s.doctor_no}";
+		location.href="mainCalendarView.do";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">
