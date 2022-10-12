@@ -104,9 +104,9 @@
 
 
 
-	<article id="table-style">
+<!-- 	<article id="table-style">
 
  	 </article>
-  	</div>
+  	</div> -->
   	
 <%@ include file="../footer-side.jsp" %>
