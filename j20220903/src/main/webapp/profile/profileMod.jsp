@@ -5,20 +5,70 @@
 <head>
 <meta charset="UTF-8">
 <title>내정보 수정</title>
-</head>
-<%   String context = request.getContextPath();%>
-<body>
+<script src="https://kit.fontawesome.com/54a6153010.js"
+	crossorigin="anonymous"></script>
 	
-	<form action="profileModAct.do" method="post">
-		<input type="hidden" name="doctor" value="${doctor}">
+</head>
+
+<style type="text/css">
+#edit_img
+	{
+		padding: 30px;
+	}
+	
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 100px;
+}
+.profile_update_content {
+	margin: 20px;
+	padding: 30px;
+	border: 1px solid ;
+	border-color: gray
+}
+ .table {
+ 	border-collapse: collapse;
+ 	border:none;
+ }
+ .table_row {
+ 	margin: 10px;
+ 	padding: 20px;
+ }
+.button {
+	size: 30px;
+}
+	
+</style>
+<body>
+	<%@ include file="../top-side.jsp" %>
+	
+	<form action="<%=context %>/profileModAct.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" value="${img_path}" name="img_path">
 		
-		<table border="1">
-			<caption>내정보 수정</caption>
-			<tr><td>이름</td><td><input type="text" name="doctor_name" required="required" value="${doctor.name}"></td></tr>
-			<tr><td>사번</td><td><input type="text" name="doctor_no" required="required" value="${doctor.doctor_no}"></td></tr>
-			<tr><td>담당과</td><td>
+		<div class="main">	
+		
+			<div class="edit_img">
+				<c:choose>
+				<c:when test="${doctor_s.image == null}">
+  					<img id="myphoto" class="profile_img" alt="image" src="<%=context %>/images/user.png" style="width: 100px;">
+				</c:when>
+				<c:otherwise>
+  					<img id="myphoto" class="profile_img"  alt="image" src="<%=context %>/images/${doctor_s.image}" style="width: 100px;">
+				</c:otherwise>
+				</c:choose>
+			</div>
+		<div class="profile_update_content">
+		<table border="1" class="table">
+			<caption>정보 수정</caption>
+			<tr class="table_row"><td>사번</td><td><input type="text" name="doctor_no" required="required" readonly="readonly" value="${doctor_s.doctor_no}"></td>
+			</tr>
+			<tr class="table_row"><td>이름</td><td><input type="text" name="doctor_name" required="required" value="${doctor_name}"></td></tr>
+			<tr class="table_row"><td>비밀번호</td><td><input type="text" name="password" required="required" value="${password}"></td></tr>
+			<tr class="table_row"><td>담당과</td><td>
 				<select name="department" id="department">
-					<option value="" selected="selected">${doctor.department}</option>
+					<option selected="selected">${department}</option>
 					<option value="간담췌외과" >간담췌외과</option>
 					<option value="소화기내과">소화기내과</option>
 					<option value="신장내과">신장내과</option>
@@ -27,8 +77,14 @@
 					<option value="흉부외과">흉부외과</option>
 				</select>	
 			</td></tr>
-			<tr><td colspan="2"><input type="submit"  value="완료"></td></tr>
+			<tr class="table_row"><td colspan="2">
+				<input type="file" name="img_path" class="button">
+				<input type="button"  value="취소" onclick="location.href='<%=context %>/profile.do'" class="button">
+				<input type="submit"  value="완료" class="button"></td></tr>
 		</table>
+		
+		</div>
+	</div>
 	</form>
-</body>
-</html>
+
+<%@ include file="../footer-side.jsp" %>

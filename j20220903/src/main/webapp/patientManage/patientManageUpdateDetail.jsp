@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>환자 수정, 삭제 페이지</title>
-<%@ include file="top-side.html" %>
+<title>환자 수정/삭제</title>
+<%@ include file="../top-side.jsp" %>
 </head>
 <body>
 <form action="patientManageUpdate.do" method="post">
@@ -23,5 +23,4 @@
 		<td><input type="button" onclick="location.href='patientManageDelete.do?patient_no=${list.patient_no}'" value="삭제"></td>
 </table>
 </form>
-</body>
-</html>
+<%@ include file="../footer-side.jsp" %>

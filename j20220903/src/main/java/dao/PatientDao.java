@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +37,10 @@ public class PatientDao {
 	}
 
 	// 환자관리
-	public List<Patient> selectAll() throws SQLException {
+	public List<Patient> selectAll(String doctor_no) throws SQLException {
 
 		List<Patient> list = new ArrayList<Patient>();
 		String sql = "select * from patient where doctor_no=? ORDER BY patient_no asc";
-		String doctor_no = "2";
 
 		Connection connection = null;
 		PreparedStatement pstmt = null;
@@ -111,7 +109,6 @@ public class PatientDao {
 						+ "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
 						+ "INNER JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
 						+ "WHERE p.patient_name like ?";
-		System.out.println(sqlbase);
 		try {
 			conn = getConnection();
 			if(!reservationDate.equals("")) pstmt = conn.prepareStatement(sqlbase2);
@@ -137,6 +134,7 @@ public class PatientDao {
 					list.add(patient);
 				} while (rs.next());
 			}
+			System.out.println("listSize==>"+list.size());
 			list_result.add(list.get(0));
 			for (int i = 1; i < list.size(); i++) {
 				if (list.get(i).getPatient_no() != list.get(i - 1).getPatient_no()) {
@@ -261,10 +259,9 @@ public class PatientDao {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		int result = 0;
 		String sql = "insert into patient (patient_no, patient_name, social_number, birth, gender, contact, protector_contact, address, doctor_no)"
-				+ " values(patient_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, 2)";
+				+ " values(patient_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		/*
 		 * String sql =
 		 * "insert into patient (patient_no, patient_name, social_number, birth, gender, contact, protector_contact, address, doctor_no)"
@@ -283,6 +280,7 @@ public class PatientDao {
 			pstmt.setString(5, patient.getContact());
 			pstmt.setString(6, patient.getProtector_contact());
 			pstmt.setString(7, patient.getAddress());
+			pstmt.setString(8, patient.getDoctor_no());
 			
 			//의사번호 2 대신 받기
 			//pstmt.setString(8, patient.getDoctor_no());
@@ -356,7 +354,7 @@ public class PatientDao {
 		return patient;
 	}
 	
-	public List<PatientInf> getMyPatientList(String doctor_no) {
+	public List<PatientInf> getMyPatientList(String doctor_no) throws SQLException {
 		
 		List<PatientInf> list = new ArrayList<PatientInf>();
 		
@@ -369,7 +367,7 @@ public class PatientDao {
 				"select * from (select rownum rn, n.* from\r\n"
 				+ "(select d.chart_no, p.patient_name, p.gender, d.chart_symptom, d.chart_disease,d.chart_date " 
 				+"from diahistory d inner join patient p on d.patient_no = p.patient_no where d.doctor_no = ? "
-				+"order by d.chart_date desc) n\r\n"
+				+"order by d.chart_date desc) n \r\n"
 				+ ")\r\n"
 				+ "where rn between 1 and 5";
 		//doctor_no => ?
@@ -386,7 +384,7 @@ public class PatientDao {
 			//2 => session
 			pstmt.setString(1, "2");
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				PatientInf patientInf = new PatientInf();
 				patientInf.setChart_no(rs.getInt("chart_no"));
 				patientInf.setPatient_name(rs.getString("patient_name"));
@@ -400,6 +398,10 @@ public class PatientDao {
 			
 			e.printStackTrace();
 			System.out.println("PatientDao  PatientInf getMyPatientList Err"+ e.getMessage());
+		} finally {
+			if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(conn!=null)conn.close();
 		}
 		System.out.println("getMyPatientList 실행");
 		
@@ -444,6 +446,58 @@ public int updatePatient(Patient patient) throws SQLException {
 		return result;
 		
 	}
+
+public PatientInf patientInf(int patient_no) throws SQLException {
+    PatientInf pi = new PatientInf();
+    Connection conn         = null;
+    PreparedStatement pstmt   = null;
+    ResultSet rs         = null;
+    String sqlbase         = 
+            "SELECT *\r\n"
+            + "FROM patient p\r\n"
+            + "INNER JOIN (select * from doctor) dd ON p.doctor_no=dd.doctor_no\r\n"
+            + "INNER JOIN (select * from doctor) d ON p.doctor_no=d.doctor_no\r\n"
+            + "LEFT JOIN (select * from reservation) r ON p.patient_no=r.patient_no\r\n"
+            + "WHERE p.patient_no=?";
+    try {
+       conn = getConnection();
+       pstmt= conn.prepareStatement(sqlbase);
+       pstmt.setInt(1, patient_no);
+       rs=pstmt.executeQuery();
+       if(rs.next()) {
+          System.out.println("rs.next() true!");
+          pi.setAddress(rs.getString("Address"));
+          pi.setBirth(rs.getString("Birth"));
+          pi.setContact(rs.getString("Contact"));
+          pi.setDepartment(rs.getString("Department"));
+          pi.setDoctor_name(rs.getString("Doctor_name"));
+          pi.setDoctor_no(rs.getString("Doctor_no"));
+          pi.setGender(rs.getString("Gender"));
+          pi.setImage(rs.getString("Image"));
+          pi.setPassword(rs.getInt("Password"));
+          pi.setPatient_name(rs.getString("Patient_name"));
+          pi.setPatient_no(rs.getInt("Patient_no"));
+          pi.setProtector_contact(rs.getString("Protector_contact"));
+          pi.setSocial_number(rs.getString("Social_number"));
+          ArrayList<String> rsResDate = new ArrayList<String>();
+          ArrayList<String> rsResHour = new ArrayList<String>();
+          do {
+             rsResDate.add(rs.getString("reservation_date"));
+             rsResHour.add(rs.getString("Reservation_hour"));
+          } while (rs.next());
+          pi.setReservation_date(rsResDate);
+          pi.setReservation_hour(rsResHour);
+       }
+    }catch (Exception e) {
+       System.out.println("patientInformation e.getMessage ==> " + e.getMessage());
+    } finally {
+       if (rs != null) rs.close();
+       if (pstmt != null) pstmt.close();
+       if (conn != null) conn.close();
+    }
+    return pi;
+
+ }
 
 	public int deletePatient(int patient_no) throws SQLException {
 		

@@ -15,6 +15,7 @@
 	#header {
 		height : 50px;
 		background-color: cornflowerblue;
+		
 		padding: 20px;
 		border-bottom: solid 3px;
 		border-bottom-color: white;
@@ -30,10 +31,11 @@
 	}
 	
 	#contents {
-		width: 1050px;
+		width: 1047px;
 		height : 800px;
 		float: left; /* 둘 다 left면 body에서 먼저 있는 애가 left로 잡히고 그 다음이 left로 잡힘 */
-		background-color: lightsteelblue;
+		/* background-color: lightsteelblue; */
+		border-right: 3px solid cornflowerblue;
 	}
 	
 	#left-sidebar {
@@ -57,6 +59,20 @@
 		position: absolute;
 		bottom: 10px;
 		right: 10px;
+	}
+	
+	.header_logout {
+		position: absolute;
+		bottom: 25px;
+		right: 170px;
+		background-color: #3DB7CC;
+		color: white;
+		border: 0;
+		font-size: 25px;
+	}
+	.header_logout:hover {
+		border-color: #1DDB16;
+		box-shadow: 0 0 10px #1DDB16;
 	}
 	
 	.header_page {
@@ -100,8 +116,8 @@
 	#schedule {
 		border: solid 2px;
 		border-color: white;
-		margin: 15px;
-		height: 320px;
+		margin: 10px;
+		height: 400px;
 		background-color: white;
 	  
 	}
@@ -110,8 +126,8 @@
 	
 		border: solid 2px;
 		border-color: white;
-		margin: 15px;
-		height: 320px;
+		margin: 10px;
+		height: 370px;
 		background-color: white;
 	}
 	
@@ -120,6 +136,7 @@
 		height : 130px;
 		clear : both; /* 나는 flat를 따르지 않을 거란다~ */
 		background-color: cornflowerblue;
+		
 		border-top: solid 3px;
 		border-top-color: white;
 		padding-left: 10px;
