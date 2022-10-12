@@ -7,7 +7,23 @@
 <title>내정보 수정</title>
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
-	
+<script type="text/javascript">
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	    	alert("바꿔줘!!");
+	    	document.getElementById("myDIV").style.display = "none";
+	    	document.getElementById('preview').src = e.target.result;
+	    	document.getElementById("preview").style.width = "100px";
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+}
+
+</script>
 </head>
 
 <style type="text/css">
@@ -49,7 +65,7 @@
 		
 		<div class="main">	
 		
-			<div class="edit_img">
+			<div class="edit_img" id="myDIV">
 				<c:choose>
 				<c:when test="${doctor_s.image == null}">
   					<img id="myphoto" class="profile_img" alt="image" src="<%=context %>/images/user.png" style="width: 100px;">
@@ -59,6 +75,7 @@
 				</c:otherwise>
 				</c:choose>
 			</div>
+			<img id="preview"/>
 		<div class="profile_update_content">
 		<table border="1" class="table">
 			<caption>정보 수정</caption>
@@ -78,7 +95,7 @@
 				</select>	
 			</td></tr>
 			<tr class="table_row"><td colspan="2">
-				<input type="file" name="img_path" class="button">
+				<input type="file" name="img_path" onchange="readURL(this);" class="button"> 
 				<input type="button"  value="취소" onclick="location.href='<%=context %>/profile.do'" class="button">
 				<input type="submit"  value="완료" class="button"></td></tr>
 		</table>
