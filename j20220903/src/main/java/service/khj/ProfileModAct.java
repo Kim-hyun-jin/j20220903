@@ -87,7 +87,7 @@ public class ProfileModAct implements CommandProcess {
 			// 전송된 파일속성이 file인 태그의 name 속성값을 이용해 파일객체 생성
 			File file = multi.getFile(parameterName);
 			
-			//file 경로로 imageInputstream 생성
+			/*//file 경로로 imageInputstream 생성
 			imgInputStream = new FileImageInputStream(file);
 			File storageFile = new File("../images");
 			imgImageOutputStream = new FileImageOutputStream(storageFile);
@@ -98,7 +98,7 @@ public class ProfileModAct implements CommandProcess {
 			}
 			
 			imgInputStream.close();
-			imgImageOutputStream.close();
+			imgImageOutputStream.close();*/
 		}
 	
 		System.out.println("realPath : " + realPath);
