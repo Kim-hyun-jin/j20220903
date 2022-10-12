@@ -134,11 +134,11 @@ public class ReservationDao {
 			pstmt.setString(2, reservation_hour);
 			pstmt.setString(3, doctor_no);
 			result = pstmt.executeUpdate();
-			if(result > 0) {
-				JOptionPane.showMessageDialog(null, "삭제가 완료되었습니다.");
-			} else {
-				JOptionPane.showMessageDialog(null, "삭제 실패하였습니다.");
-			}
+//			if(result > 0) {
+//				JOptionPane.showMessageDialog(null, "삭제가 완료되었습니다.");
+//			} else {
+//				JOptionPane.showMessageDialog(null, "삭제 실패하였습니다.");
+//			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("delete error msg-->" + e.getMessage());
