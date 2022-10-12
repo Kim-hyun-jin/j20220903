@@ -22,8 +22,8 @@ public class MainCalendarRegAct implements CommandProcess {
 			request.setCharacterEncoding("utf-8");
 			Schedule schedule = new Schedule();
 			schedule.setSchedule_no(Integer.parseInt(request.getParameter("schedule_no")));
-			schedule.setDoctor_no("2");
-			//schedule.setDoctor_no(request.getParameter("doctor_no"));
+			//schedule.setDoctor_no("2");
+			schedule.setDoctor_no(request.getParameter("doctor_no"));
 			schedule.setSchedule_title(request.getParameter("schedule_title"));
 			schedule.setSchedule_startdate(request.getParameter("schedule_startdate"));
 			schedule.setSchedule_enddate(request.getParameter("schedule_enddate"));
