@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,9 +76,6 @@ table {
 </style>
 
 </head>
-<%
-String context = request.getContextPath();
-%>
 <body>
 	<div id="header">
 		<a href="<%=context%>/mainView.do" class="header_logo"><i

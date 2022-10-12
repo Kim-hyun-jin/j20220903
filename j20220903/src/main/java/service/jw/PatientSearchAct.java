@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.Doctor;
 import dao.DoctorDao;
@@ -27,11 +26,19 @@ public class PatientSearchAct implements CommandProcess {
 		String department = request.getParameter("department");
 		String doctorName = request.getParameter("doctorName");
 		String reservationDate = request.getParameter("reservationDate");
+		System.out.println("hi" + reservationDate);
+		System.out.println("hi" + reservationDate);
+		
+		if (reservationDate == null || reservationDate == "") {
+			reservationDate = "";
+		}
+		
+		if (reservationDate != null && reservationDate != "") {
+			reservationDate = reservationDate.replaceAll("-", "/"); 
+			reservationDate = reservationDate.substring(reservationDate.length()-8, reservationDate.length());
+		}
+		
 		String patientName = request.getParameter("patientName");
-				
-		HttpSession session = request.getSession();
-		Doctor doc = (Doctor)session.getAttribute("doctor_s");
-		System.out.println("session 유효성검사"+doc.getDoctor_no());
 		
 		try {
 			PatientDao pd = PatientDao.getInstance();

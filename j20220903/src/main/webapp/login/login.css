@@ -12,7 +12,7 @@
 	}
 	
 	h1 {
-		margin-top: 100px;
+		margin-top: 50px;
 		color: #489CFF;
 		display: flex;
 		font-size : 3em;
@@ -31,6 +31,15 @@
 		margin-top: 60px;
 	}
 	
+	.jointable {
+		display: flex;
+		justify-content: center;
+	}
+	
+	td {
+		font-size: 13px;
+		margin-top: 10px;
+	}
 	
 	a {
 		text-decoration: none;
@@ -73,9 +82,30 @@
 		color: #1DDB16;
 	}
 	
+	.log2 {
+		width: 68%;
+		border: 0;
+		border-radius: 5px;
+		padding: 6px;
+		margin-top: 30px;
+		margin-left: 15%;
+		background-color: #489CFF;
+		color: white;
+	}
+	
+	.log2:hover {
+		color: #1DDB16;
+	}
+	
 	.forget {
 		display: flex;
 		justify-content: center;
+	}
+	.in {
+		width: 270px;
+		font-size: 16px;
+		margin-bottom: 10px;
+		padding: 8px;
 	}
 	
 	label {
@@ -87,4 +117,9 @@
 	}
 	#login_not {
 		color: red;
+	}
+	input:focus {
+		outline: none !important;
+		border-color: #1DDB16;
+		box-shadow: 0 0 10px #1DDB16;
 	}

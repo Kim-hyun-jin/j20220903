@@ -7,16 +7,18 @@
 <meta charset="UTF-8">
 <title>정보수정결과</title>
 <%   String context = request.getContextPath();%>
-<script>
-	<% int result = (Integer) request.getAttribute("result");
-		if(result > 0) {%>
+<c:if test="${updateResult > 0}">
+	<script>
 		alert('수정성공');
-		location.href="<%=context %>/profile.do";
-	<%} else {%>
+		location.href='<%=context%>/profile.do';
+	</script>
+</c:if>
+<c:if test="${updateResult == 0}">
+	<script>
 		alert('수정실패');
-		location.href="<%=context %>/profileModForm.do";
-	<%}%>
-</script>
+		location.href='<%=context%>/profileModView.do';
+	</script>
+</c:if>
 	
 </head>
 <body>

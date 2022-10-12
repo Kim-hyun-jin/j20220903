@@ -16,19 +16,24 @@ public class DiaModAct implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("DiaModAct start...");
-		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
-		int chart_no = Integer.parseInt(request.getParameter("chart_no"));
+		String patient_no = request.getParameter("patient_no");
+		String chart_no = request.getParameter("chart_no");
+		String chart_symptom = request.getParameter("chart_symptom");
+		String chart_disease = request.getParameter("chart_disease");
+		String[] drug_code = request.getParameterValues("drug_list");
 		
 		try {
 			DiaHistoryDao dhd=DiaHistoryDao.getInstance();
 			DiaDrugDao ddd= DiaDrugDao.getInstance();
 			
-			int ddirs = ddd.diaDrugDel(patient_no, chart_no);
-			int dhdrs = dhd.diaDel(patient_no,chart_no); 
+			int ddirs = ddd.diaDrugMod(patient_no, chart_no,drug_code);
+			int dhdrs = dhd.diaMod(patient_no,chart_no,chart_symptom,chart_disease); 
 			
+			System.out.println("diadrug == "+ddd);
+			System.out.println("diahistory == "+dhd);
 			request.setAttribute("patient_no", patient_no);
 			request.setAttribute("diaDrugResult", ddirs);
-			request.setAttribute("delResult", dhdrs); 
+			request.setAttribute("modResult", dhdrs); 
 		} catch (Exception e) {
 			System.out.println("DiaInfView e.getMessage() ==>"+e.getMessage());
 		}

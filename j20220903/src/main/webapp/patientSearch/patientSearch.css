@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.patient_search:hover {
+	background-color: #D4F4FA;
+	cursor: pointer;
+}
