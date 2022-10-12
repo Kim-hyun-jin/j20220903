@@ -23,6 +23,15 @@ public class ReservationRegAct implements CommandProcess {
 			String doctor_no = request.getParameter("doctor_no");
 			int patient_no = Integer.parseInt(request.getParameter("patient_no"));
 			
+			if (reservation_date == null || reservation_date == "") {
+				reservation_date = "";
+			}
+			
+			if (reservation_date != null && reservation_date != "") {
+				reservation_date = reservation_date.replaceAll("-", "/"); 
+				reservation_date = reservation_date.substring(reservation_date.length()-8, reservation_date.length());
+			}
+			
 			Reservation2 reservation22 = new Reservation2();
 			reservation22.setReservation_date(reservation_date);
 			System.out.println("1");
