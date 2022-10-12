@@ -22,6 +22,9 @@
 		}
 		</c:forEach>
 	};
+	if (${list_pat.isEmpty() }) {
+		alert("검색 결과가 없습니다.")
+	}
 </script>
 </head>
 <body>

@@ -104,7 +104,7 @@
 		<div class="patientInf3">
 			<table class="inf">
 				<tr><th>예약정보</th><td>
-				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
+				<c:if test="${pi.reservation_date.get(0)==null }">없음.</td></c:if>
 				<c:if test="${pi.reservation_date.get(0)!=null }">
 				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
 						<fmt:parseDate value = "${date }"  pattern = "yy/MM/dd" var = "dateRs"/>
@@ -115,7 +115,7 @@
 			</table>
 		</div>
 		<div class="patientInf2">
-			<c:if test="${dh.isEmpty() }">진단내역 : 없음.<br></c:if>
+			<c:if test="${dh.isEmpty() }"><table class="inf"><tr><th>진단내역</th><td>없음.</td></tr></table><br></c:if>
 			<c:if test="${!dh.isEmpty() }">
 				<select name="diaDate" id="diaDate" onchange="dateSel()">
 					<option>진단내역보기</option>
