@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" href="main.css" rel="stylesheet">
+<!-- <link type="text/css" href="main.css" rel="stylesheet"> -->
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -35,7 +35,7 @@ table {
 <body>
 	<div id="container">
 
-		<%@ include file="/shareBoard/common.jsp"%>
+		<%@ include file="../top-side.jsp" %>
 
 	<!-- 	<div id="contents"> -->
 			<form action="shareBoardRegAct.do?">
