@@ -2,12 +2,13 @@ package service.hy;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.Doctor;
 import dao.Patient;
 import dao.PatientDao;
 import service.CommandProcess;
@@ -20,6 +21,8 @@ public class PatientManageDetail implements CommandProcess {
 		
 		System.out.println("PatientManageDetail Service start...");
 		
+		HttpSession session = request.getSession();
+		Doctor doctor= (Doctor)session.getAttribute("doctor_s");
 		
 		/* String doctor_no = request.getParameter("doctor_no"); */
 		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
@@ -31,7 +34,7 @@ public class PatientManageDetail implements CommandProcess {
 			
 			//doctor_no 임의로 2
 			/* Patient patient = pd.select(doctor_no, patient_no); */
-			Patient patient = pd.selectPatient(patient_no);
+			Patient patient = pd.selectPatient(patient_no,doctor.getDoctor_no());
 			
 			request.setAttribute("list", patient);
 			System.out.println("patient..." + patient.getPatient_name());
