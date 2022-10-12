@@ -28,6 +28,7 @@
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
     	  //url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	  allDay: true
     	   	  
     	 
    	  };

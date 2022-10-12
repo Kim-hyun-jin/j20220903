@@ -28,7 +28,8 @@ String contextSrc = request.getContextPath();
     	  title: "<c:out value="${schedule.schedule_title}"/>",
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
-    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}",
+    	  allDay: true
     	   	  
     	 
    	  };
