@@ -48,9 +48,9 @@ td {
 </head>
 
 <body>
-	<div id="container">
+	<!-- <div id="container"> -->
 	
-		<%@ include file="/shareBoard/common.jsp"%>
+		<%@ include file="../top-side.jsp" %>
 
 	<!-- 	<div id="contents"> -->
 			<form action="shareBoardContentView.do">
@@ -96,10 +96,8 @@ td {
 						onclick="location.href='shareBoardView.do?pageNum=${pageNum }'">
 					</td>
 				</center>
-
 			</form>
-		</div>
-	</div>
+	<!-- 	</div> -->
 
 	<%@ include file="../footer-side.jsp"%>
 

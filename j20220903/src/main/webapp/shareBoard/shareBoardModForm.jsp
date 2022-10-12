@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>수정페이지</title>
-<link type="text/css" href="main.css" rel="stylesheet">
+<!-- <link type="text/css" href="main.css" rel="stylesheet"> -->
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="style.css">	
@@ -30,9 +30,9 @@
 </style>
 </head>
 <body>
-	<div id="container">
+	<!-- <div id="container"> -->
 	
-		<%@ include file="/shareBoard/common.jsp"%>
+		<%@ include file="../top-side.jsp" %>
 
 		<!-- <div id="contents"> -->
 		<form action="shareBoardModAct.do">
@@ -66,8 +66,8 @@
 				<input type="submit" value="확인">
 			</center>
 		</form>
-		</div>
-	</div>
+<!-- 		</div>
+	</div> -->
 		
 		<%@ include file="../footer-side.jsp"%>
 </body>
