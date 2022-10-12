@@ -60,18 +60,28 @@ String contextSrc = request.getContextPath();
                 	  		window.location.href = "<%=contextSrc%>/mainCalendarRegView.do";
                   }
               }
-          },   
-          timeZone: 'Asia/Seoul',
+          },  
+          
+ 	     eventDataTransform: function(event) {          //롱이벤트 버그 보완.                                                                                                                    
+	    	 if(event.allDay)  {  
+	    		var addDate = new Date(event.end);   
+	    		addDate.setDate(addDate.getDate() + 1);    // 종료일에 +1일 적용하여 버그 보완. 데이터 적용은 되지않는다.
+	    		  
+	    		event.end = addDate.toISOString().substring(0,10);
+        	  }
+        	  return event;  //위 작업 후 다시 이벤트로 돌려줌 
+       	  },    
+        	
           eventClick:function(info) { 
           },
 
 		  height: 550,
-		  contentHeight: 230,
-		  aspectRatio: 1.6
-        	   
+		  contentHeight: 200,
+		  aspectRatio: 1.8
+		  
           
         });
-          calendar.render();
+          calendar.render(); 
       });
       
 </script>
