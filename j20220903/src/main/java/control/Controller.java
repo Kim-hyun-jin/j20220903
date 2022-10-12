@@ -74,8 +74,12 @@ public class Controller extends HttpServlet {
 			System.out.println("4. init className => "+className);
 			
 			try {
-				Class commandClass = Class.forName(className);
-				Object commandInstance = commandClass.newInstance();
+				/*
+				 * Class commandClass = Class.forName(className); Object commandInstance =
+				 * commandClass.newInstance();
+				 */
+				Class<?> commandClass = Class.forName(className);
+				CommandProcess commandInstance = (CommandProcess) commandClass.getDeclaredConstructor().newInstance();
 				commandMap.put(command, commandInstance);
 				
 			} catch (Exception e) {
