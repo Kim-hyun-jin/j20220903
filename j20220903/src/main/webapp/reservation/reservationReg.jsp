@@ -119,7 +119,7 @@
 					
 					<%-- <tr><td>제목</td><td>${board.subject}</td></tr>  --%>
 				</tr>
-				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:153px; ">
+				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:140px; ">
 						<%-- <input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"> --%>
 						<a href="#none" target="_blank" onclick="openPop()"><input type="button" value="조회"></a></td>
 					<td><input id="num" name="patient_no" type="text" value="" style="text-align:center; width:130px;" ></td>
