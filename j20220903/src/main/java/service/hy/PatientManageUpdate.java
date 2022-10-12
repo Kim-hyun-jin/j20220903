@@ -1,12 +1,13 @@
 package service.hy;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.Doctor;
 import dao.Patient;
 import dao.PatientDao;
 import service.CommandProcess;
@@ -21,16 +22,15 @@ public class PatientManageUpdate implements CommandProcess {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String doctor_no = request.getParameter("doctor_no");
-		doctor_no = "2"; //임의 지정
+		HttpSession session = request.getSession();
+		Doctor doctor= (Doctor)session.getAttribute("doctor_s");
 		
 		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
-		
 		
 		try {
 			Patient patient = new Patient();
 			patient.setPatient_no(patient_no);
-			patient.setDoctor_no(doctor_no);
+			patient.setDoctor_no(doctor.getDoctor_no());
 			patient.setPatient_name(request.getParameter("patient_name"));
 			patient.setGender(request.getParameter("gender"));
 			patient.setBirth(request.getParameter("birth"));
