@@ -23,7 +23,7 @@
 
 	}
 	table {
-		background: cornflowerblue;
+		background: white;
 	}
 </style>
 
@@ -107,6 +107,6 @@
 	<article id="table-style">
 
  	 </article>
-  	</div>
+
   	
 <%@ include file="../footer-side.jsp" %>
