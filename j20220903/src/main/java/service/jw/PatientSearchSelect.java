@@ -2,6 +2,7 @@ package service.jw;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,12 @@ import dao.DiaDrugDao;
 import dao.DiaDrugInf;
 import dao.DiaHistoryDao;
 import dao.DiaHistoryInf;
+import dao.Doctor;
+import dao.DoctorDao;
 import dao.PatientDao;
 import dao.PatientInf;
+import dao.Reservation;
+import dao.ReservationDao;
 import service.CommandProcess;
 
 public class PatientSearchSelect implements CommandProcess {
@@ -40,10 +45,28 @@ public class PatientSearchSelect implements CommandProcess {
 				} while (dh.size()>i);
 			}
 			System.out.println("pi 유효성 검사: pi.getPatient_name() ==> "+pi.getPatient_name());
-			
 			request.setAttribute("pi", pi);
 			request.setAttribute("dh", dh);
 			request.setAttribute("rsdd", rsdd);
+
+			
+//			==== 검색기준데이터 저장용
+			DoctorDao dd = DoctorDao.getInstance();
+			ReservationDao rd = ReservationDao.getInstance();
+			List<Doctor> list_doc = dd.doctorList("");
+			List<Reservation> list_res = rd.reserList("");
+			
+			List<String> list_res_date = new ArrayList<String>();
+			list_res_date.add(list_res.get(0).getReservation_date()); 
+			for(int i1=1; i1<list_res.size(); i1++) {
+				if(!list_res.get(i1).getReservation_date().equals(list_res.get(i1-1).getReservation_date())) {
+					list_res_date.add(list_res.get(i1).getReservation_date());
+				}
+			}
+//			System.out.println("list_res_date.size() == >"+list_res_date.size());
+			
+			request.setAttribute("list_doc", list_doc);
+			request.setAttribute("list_res_date", list_res_date);
 		} catch (Exception e) {
 			System.out.println("PatientSearchSelect e.getMessage ==> "+e.getMessage());
 		}

@@ -1,103 +1,134 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공유게시판</title>
-<link type="text/css" href="main.css" rel="stylesheet">
-<!-- <style type="text/css">
 
-tr {
-	text-align="center"
-	
+<script src="https://kit.fontawesome.com/54a6153010.js"
+	crossorigin="anonymous"></script>
+<style type="text/css">
+@font-face {
+	font-family: 'GangwonEduSaeeum_OTFMediumA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-</style> -->
-</head>
-<%
-String context = request.getContextPath();
-%>
-<body>
-  	<div id="header">
-  		<a href="<%=context%>/mainView.do" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
-  		<span class="header_page">공유게시판</span>
-  		<span class="header_name">${doctor_s.doctor_name }</span>
-  		<c:choose>
-			<c:when test="${doctor_s.image == null}">
-  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
-			</c:when>
-			<c:otherwise>
-  				<a href="profile.jsp" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/myphoto.png" style="width: 60px; border-radius: 50%;"></a>
-			</c:otherwise>
-		</c:choose>
-  	</div>
-	<div id="container">
-  	<div id="left-sidebar">
-   	
-  			<div class="main_menu_btn">
-				<a href="<%=context%>/patientSearch.do">환자정보검색</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/reservationView.do">예약조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/patientManageView.do">환자관리</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context%>/drugView.do?doctor_no=2">의약품조회</a>
-			</div>
-			<div class="main_menu_btn">
-				<a href="<%=context %>/shareBoardView.do">공유게시판</a>
-			</div>
-  	</div>
-	<h1>공유게시판 메인페이지</h1>
-	공유게시판 게시글 수 
-	<p>totCount : ${totCnt}
-	<table>
-		<tr>
-			<td>
-				<a href="shareBoardRegView.do?doctor_no=2" class="left">글쓰기</a>
-			</td>
-		</tr>
-	</table>
-	<table width="1000" border="1" border-collapse="collapse" border-color="skyblue" align="center" >
-		<tr height="50">
+* {
+	font-family: 'GangwonEduSaeeum_OTFMediumA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+		format('woff');
+	font-size: 30px;
+}
 
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>등록일</th>
-		</tr>
-		<c:if test="${totCnt > 0 }" />
-		<c:forEach var="shareBoard" items="${list}">
-			<tr>
-				<td>${startNum }</td>
-				<td class="left" width=300><a
-					href='shareBoardContentView.do?shareboard_no=${shareBoard.shareBoard_no }&pageNum=${currentPage}'>
-						${shareBoard.shareBoard_subject}</a></td>
-				<td>${shareBoard.doctor_no}</td>
-				<td>${shareBoard.shareBoard_date}</td>
-			</tr>
-			<c:set var="startNum" value="${startNum  -1}" />
-		</c:forEach>
-		<c:if test="${totCnt ==0 }">
-			<tr>
-				<td colspan="7">데이터가 없네</td>
-			</tr>
-		</c:if>
-	</table>
-	<!--페이지 숫자 보여주는 거  -->
-	<div style="text-align: center;">
-		<c:if test="${startPage > blockSize }">
-			<a href='shareBoardView.do?pageNum=${startPage-blockSize }'>[이전]</a>
-		</c:if>
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<a href='shareBoardView.do?pageNum=${i }'>[${i }]</a>
-		</c:forEach>
-		<c:if test="${endPage < pageCnt }">
-			<a href='shareBoardView.do?pageNum=${startPage+blockSize }'>[ 다음]</a>
-		</c:if>
-	</div>
+.a {
+	text-decoration: none;
+	color: black;
+}
+
+th {
+	height: 20px;
+	background-color: cornflowerblue;
+	padding: 20px;
+	border-bottom: solid 3px;
+	border-bottom-color: white;
+	/* 	position: relative; */
+	text-decoration-line: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+/* 	.header{
+		margin-bottom: 50;
+	} */
+.writebtn {
+	background-color: white;
+	border: 1px solid black;
+	justify-content: center;
+	margin: 20px;
+	margin-left: 900px;
+}
+
+.count {
+	margin-left: 50px;
+}
+
+.non_line {
+	text-decoration-line: none;
+	text-align: right;
+}
+
+.non_line2 {
+	text-decoration-line: none;
+}
+
+.pageNum {
+	margin-top: 20;
+}
+</style>
+
+</head>
+<body>
+		<%@ include file="../top-side.jsp" %>
+	
+			<h1 align="center" class="header">공유게시판 메인페이지</h1>
+			<a class="count">공유게시판 게시글 수 :${totCnt}</a>
+
+			<div class="a">
+				<button type="button" class="writebtn"
+					onClick="location.href='shareBoardRegView.do?pageNum=${pageNum}&doctor_no=${doctor.doctor_no}'">글쓰기</button>
+			</div>
+
+
+			<table width="1000" border="1" border-collapse="collapse" align="center">
+				<tr height="40">
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
+				<c:if test="${totCnt > 0 }" />
+				<c:forEach var="shareBoard" items="${list}">
+					<tr>
+						<td align="center">${startNum }</td>
+						<td class="left" width=400><a class="non_line"
+							href='shareBoardContentView.do?shareboard_no=${shareBoard.shareBoard_no }&pageNum=${currentPage}'>
+								${shareBoard.shareBoard_subject}</a></td>
+						<td align="center">${shareBoard.doctor_name}</td>
+						<td align="center">${shareBoard.shareBoard_date}</td>
+					</tr>
+					<c:set var="startNum" value="${startNum - 1}" />
+				</c:forEach>
+				<c:if test="${totCnt == 0 }">
+					<tr>
+						<td colspan="7">데이터가 없네</td>
+					</tr>
+				</c:if>
+			</table>
+
+			<!--페이지 숫자 보여주는 거  -->
+			<div class="pageNum" style="text-align: center;">
+				<c:if test="${startPage > blockSize }">
+					<a href='shareBoardView.do?pageNum=${startPage-blockSize }'>[이전]</a>
+				</c:if>
+				<c:forEach var="i" begin="${startPage }" end="${endPage }">
+					<a class="non_line2" href='shareBoardView.do?pageNum=${i }'>[${i }]</a>
+				</c:forEach>
+				<c:if test="${endPage < pageCnt }">
+					<a class="non_line2"
+						href='shareBoardView.do?pageNum=${startPage+blockSize }'>[ 다음]</a>
+				</c:if>
+			</div>
+<!-- 		</div>
+	</div> -->
 	<%@ include file="../footer-side.jsp" %>
+</body>
+</html>

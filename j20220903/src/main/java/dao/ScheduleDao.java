@@ -35,12 +35,12 @@ import javax.sql.DataSource;
 			return conn;
 		}
 		
-	public  List<Schedule> list() throws SQLException {
+	public  List<Schedule> list(String doctor_no) throws SQLException {
 		List<Schedule> list = new ArrayList<Schedule>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
-		String sql = "select * from schedule where doctor_no=2";
+		String sql = "select * from schedule where doctor_no="+doctor_no;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -181,6 +181,73 @@ import javax.sql.DataSource;
 		    return result;
 	}
 	
+	public  List<Schedule> getTodoList(String doctor_no) throws SQLException {
+		List<Schedule> todoList = new ArrayList<Schedule>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		String sql = "SELECT SCHEDULE_STARTDATE,SCHEDULE_TITLE\r\n"
+						+ "FROM SCHEDULE\r\n"
+						+ "WHERE SCHEDULE_STARTDATE=TO_CHAR(SYSDATE,'YYYY-MM-DD')\r\n"
+						+ "AND DOCTOR_NO="+doctor_no;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if(rs.next()){
+				do{
+					Schedule schedule= new Schedule();
+					schedule.setSchedule_title(rs.getString("schedule_title"));
+					schedule.setSchedule_startdate(rs.getString("schedule_startdate"));
+					todoList.add(schedule);
+				 } while(rs.next());
+		
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		    return todoList;
+	}
+	
+	public  List<Schedule> getReservationlist(String doctor_no) throws SQLException {
+		List<Schedule> reservationList = new ArrayList<Schedule>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		String sql = "SELECT TO_CHAR(TO_DATE(RESERVATION.RESERVATION_DATE,'YY/MM/DD'),'YYYY-MM-DD') AS RESERVATION_DATE,PATIENT.PATIENT_NAME\r\n"
+						+ "FROM RESERVATION,PATIENT\r\n"
+						+ "WHERE RESERVATION.PATIENT_NO=PATIENT.PATIENT_NO\r\n"
+						+ "AND TO_CHAR(TO_DATE(RESERVATION.RESERVATION_DATE,'YY/MM/DD'),'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')\r\n"
+						+ "AND RESERVATION.DOCTOR_NO="+doctor_no;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				do{
+					Schedule schedule= new Schedule();
+					schedule.setReservation_date(rs.getString("reservation_date"));
+					schedule.setPatient_name(rs.getString("patient_name"));
+					reservationList.add(schedule);
+				 } while(rs.next());
+		
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		    return reservationList;
+	}
+	
 	
 		
 }
+

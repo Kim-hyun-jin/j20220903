@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Doctor;
 import dao.Schedule;
 import dao.ScheduleDao;
 import service.CommandProcess;
@@ -23,7 +24,8 @@ public class MainCalendarView implements CommandProcess {
 		ScheduleDao sd = ScheduleDao.getInstance();
 		
 		try {
-			List<Schedule> list = sd.list();
+			String doctor_no= request.getParameter("doctor_no");
+			List<Schedule> list = sd.list(doctor_no);
 			request.setAttribute("list", list);
 		    
 		} catch (Exception e) {
@@ -34,3 +36,4 @@ public class MainCalendarView implements CommandProcess {
 	}
 
 }
+

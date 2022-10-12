@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>mainCalendar</title>
-<%
-String context = request.getContextPath();
-%>
+<%   String contextSrc = request.getContextPath();%><!-- 공통으로 include하는 top-side파일에서 선언한 context 변수명과 겹쳐서 변경 -->
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
-<link href='<%=context%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
-<script src='<%=context%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
-<script type="<%=context%>/css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
+<link href='<%=contextSrc%>/css/fullcalendar/main.css' rel='stylesheet' /> <!-- 캘린더 css -->
+<script src='<%=contextSrc%>/css/fullcalendar/main.js'></script>  <!-- 캘린더 js -->
+<script type="<%=contextSrc%>/css/fullcalendar/ko.js"></script>   <!-- 캘린더 한글변환 -->
 <script type="text/javascript">
 	var schduleList = new Array(); // Json 데이터를 받기 위한 배열 선언
 	<c:forEach var="schedule" items="${list}"> /* JSTL */
@@ -28,7 +27,7 @@ String context = request.getContextPath();
     	  title: "<c:out value="${schedule.schedule_title}"/>",
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
-    	  url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	  //url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
     	   	  
     	 
    	  };
@@ -43,11 +42,18 @@ String context = request.getContextPath();
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth', //달 형식으로 캘린더 보이기
           locale: 'ko', //한글변환
+          headerToolbar: {
+        	  start: '', // will normally be on the left. if RTL, will be on the right
+        	  center: 'title',
+        	  end: '' // will normally be on the right. if RTL, will be on the left
+          },
           events: schduleList, /* 캘린더에 list를 뿌려주는 event */
 		  height: 300,
-		  contentHeight: 20,
-		  aspectRatio: 0.2
-        	   
+		  //expandRows: true,
+		  //contentHeight: 200,
+		  //aspectRatio: 5.0,
+		 //calendar.setOption('contentHeight', 30),
+           
           
         });
           calendar.render();
@@ -56,7 +62,7 @@ String context = request.getContextPath();
 </script>
 <style type="text/css">
 
-
+	
 	@font-face {
     font-family: 'GangwonEduSaeeum_OTFMediumA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
@@ -70,16 +76,84 @@ String context = request.getContextPath();
     font-size: 30px;
 	}
 	
+	#calendar {
+    max-width: 480px;
+    min-height: 50px;
+    margin: 0 auto;
+    -ms-overflow-style: none;
+    /* pointer-events : none; */
+  }
+  
+	  body{  
+	 -ms-overflow-style: none;  /* 스크롤바는 숨기고 */
+/* 	  width: 500px; */
+	 }
+	::-webkit-scrollbar {      /* 스크롤 기능은 살림 */
+	  	display: none;
+	}
+
+  	.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  		min-height: 1em;
+  }	
+  
+  tr,td,th {
+  	font-size: 20px;
+  	text-align: center;
+  
+  }
+  
+  th,td {
+  	text-shadow: lightsteelblue;
+  }
 	
 		
 	
 </style>
 </head>
 <body>
-
-
-	  			<div style="width: 350px; float: center; padding-left: 50px;" id='calendar'  ></div>   <!-- 캘린더 view -->
-
-
+	<table  style="width: 100%">
+		<tr>
+			<td style="width: 230px; padding-left: 10px;">
+				<table  id="todoList" style="width: 230px; padding-top: ">
+					<tr>
+						<th colspan="2"><span style="background-color: #D6F0FF">TODO LIST</span></th>
+					</tr>
+					<tr>
+						<th>오늘일자</th>
+						<th>To do</th>
+					<tr>
+					<c:forEach var="listOf" items="${todoList}">
+						<tr>
+							<td>${fn:substring(listOf.schedule_startdate,0,10)}</td>
+							<td>${listOf.schedule_title}</td>
+						</tr>
+					</c:forEach>
+			 	</table>
+		 	</td>
+		 	<td rowspan="2">
+		 		<div style="width: 400px; padding-left :15px; float: left;" id='calendar'></div>   <!-- 캘린더 view -->
+		 	</td>
+		</tr>
+		<tr>
+			<td style="width: 230px; float: right;  padding-left: 10px; ">
+				<table id="reservationList" style="width: 230px;">
+					<tr>
+						<th colspan="2"><span style="background-color: #D6F0FF">TODAY PATIENT</span></th>
+					</tr>
+					<tr>
+						<th>오늘일자</th>
+						<th>환자이름</th>
+					<tr>
+					<c:forEach var="listOf" items="${reservationList}">
+						<tr>
+							<td>${fn:substring(listOf.reservation_date,0,10)}</td>
+							<td>${listOf.patient_name}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</td>
+		</tr>
+	</table>
 </body>
+
 </html>

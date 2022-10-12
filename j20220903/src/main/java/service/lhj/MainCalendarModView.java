@@ -32,7 +32,7 @@ public class MainCalendarModView implements CommandProcess {
 		
 		
 		
-		return "scheduleMod.jsp";
+		return "main/scheduleMod.jsp";
 	}
 
 }

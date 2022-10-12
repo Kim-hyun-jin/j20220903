@@ -16,8 +16,7 @@ public class ShareBoardModView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			// 신규글
-			// int num = 0, ref = 0, re_level = 0, re_step = 0;
+		
 			String pageNum = request.getParameter("pageNum");
 			int shareboard_no = Integer.parseInt(request.getParameter("shareboard_no"));
 

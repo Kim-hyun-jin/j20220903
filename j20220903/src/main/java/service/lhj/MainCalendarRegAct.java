@@ -39,7 +39,7 @@ public class MainCalendarRegAct implements CommandProcess {
 			System.out.println(e.getMessage());
 		}
 		
-		return "scheduleRegAct.jsp";
+		return "main/scheduleRegAct.jsp";
 
 	}
 

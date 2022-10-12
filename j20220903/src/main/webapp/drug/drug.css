@@ -3,11 +3,6 @@
 	margin-left: 50px;
 }
 
-#header {
-	width: 960px;
-	margin: 0 auto;	
-}
-
 #contents {
 	overflow: scroll;	
 }
@@ -23,6 +18,7 @@
 #search_btn {
 	background: url("../images/search_icon.png");
 	background-repeat: no-repeat;
+	background-color: white;
 	width: 32px;
 	height: 32px;
 	border: 3px solid black;
@@ -30,6 +26,11 @@
 	padding: 3px;
 	cursor: pointer;
 	vertical-align: middle;
+}
+#search_btn:hover {
+	background-color: #D4F4FA;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
 }
 
 table {
@@ -45,4 +46,14 @@ th {
 td {
 	padding: 10px;
 	background-color: white;
+}
+input:focus {
+	outline: none !important;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
+}
+select:focus {
+	outline: none !important;
+	border-color: #DB9CFF;
+	box-shadow: 0 0 10px #DB9CFF;
 }
