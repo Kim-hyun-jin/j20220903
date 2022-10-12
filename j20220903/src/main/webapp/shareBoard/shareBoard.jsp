@@ -35,7 +35,7 @@
 
 th {
 	height: 20px;
-	background-color: cornflowerblue;
+	background-color: #D4F4FA;
 	padding: 20px;
 	border-bottom: solid 3px;
 	border-bottom-color: white;
@@ -56,6 +56,9 @@ table {
 	margin: 20px;
 	margin-left: 900px;
 }
+.writebtn:hover {
+	background-color: #D4F4FA;
+}
 
 .count {
 	margin-left: 50px;
@@ -64,6 +67,10 @@ table {
 .non_line {
 	text-decoration-line: none;
 	text-align: right;
+}
+
+.non_line:hover {
+	text-decoration: underline;
 }
 
 .non_line2 {
