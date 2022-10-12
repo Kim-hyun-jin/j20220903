@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<link rel="stylesheet" type="text/css" href="reservation/revStyle.css">  
+<!-- <link rel="stylesheet" type="text/css" href="reservation/revStyle.css">   -->
 <style type="text/css">
 	table tr td {
 		width:150px; 
@@ -20,6 +20,7 @@
 	}
 	#contents {
 		overflow: scroll;
+		background-color: white;
 
 	}
 	table {
@@ -35,11 +36,11 @@
 
 </script> -->
 
-<body>  
+<body style="background-color: white">  
 
 <%@ include file="../top-side.jsp" %>
 
-	<form action="<%=context%>/reservationDel.do" id="table-style" method="post" >
+	<form action="<%=context%>/reservationDel.do" id="table-style" method="post" style="background-color: white">
 <!-- 	<article id="table-style"> -->
 
 		<table border="1">
