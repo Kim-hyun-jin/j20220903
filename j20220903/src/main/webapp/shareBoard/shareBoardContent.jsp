@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상세</title>
+<title>게시글 상세페이지</title>
 <link type="text/css" href="main.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>

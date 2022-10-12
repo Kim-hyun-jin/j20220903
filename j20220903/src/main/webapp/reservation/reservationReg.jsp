@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 조회</title>
-<link rel="stylesheet" type="text/css" href="reservation/revStyle.css">  
+<!-- <link rel="stylesheet" type="text/css" href="reservation/revStyle.css"> -->  
 <style type="text/css">
 	table tr td {
 		width:150px; 
@@ -25,7 +25,7 @@
 </style>
 
 <%
-	String context = request.getContextPath();
+	String contextsrc = request.getContextPath();
 %>
 
 <body>  
@@ -63,11 +63,12 @@
 	}
 	
 	function openPop(){
-	    var popup = window.open('<%=context%>/reservationSearch.do', '고객조회', 'width=400px,height=300px,scrollbars=yes');
+	    var popup = window.open('<%=contextsrc%>/reservationSearch.do', '고객조회', 'width=400px,height=300px,scrollbars=yes');
 	}
 
 </script>
-  	<div id="header">
+<%@ include file="../top-side.jsp" %>
+<!--   	<div id="header">
   		<a href="3-layout.html" class="header_logo"><i class="fa-solid fa-hand-holding-medical"></i> CareBare</a>
   		<span class="header_page">예약조회</span>
   		<span class="header_name">김준완</span>
@@ -96,12 +97,12 @@
 			</div>
 
   	</div>
-  	
-  	<div id="contents">
+  	 -->
+  	<div id="contents" style="background-color: white">
   	
   		
 
-		<form id="table-style" action="<%=context %>/reservationRegAct.do" >
+		<form id="table-style" action="<%=contextsrc %>/reservationRegAct.do" style="background-color: white">
 	
 			<table border="1">
 			 <colgroup>
@@ -189,13 +190,6 @@
 	 	 </form>
   	</div>
   	
-  	<div id="footer">
-  		<h2>CareBare</h2>
-  		서울 마포구 신촌로 176 중앙빌딩 / 대표자:정중앙
-  		TEL:02-313-1711
-	</div>
-</body>
 
-</html>
-  	
+<%@ include file="../footer-side.jsp" %>
  
