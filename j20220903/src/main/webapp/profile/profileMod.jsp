@@ -12,7 +12,6 @@ function readURL(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
-	    	alert("바꿔줘!!");
 	    	document.getElementById("myDIV").style.display = "none";
 	    	document.getElementById('preview').src = e.target.result;
 	    	document.getElementById("preview").style.width = "100px";
