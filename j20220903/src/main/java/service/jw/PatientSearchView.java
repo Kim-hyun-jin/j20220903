@@ -34,15 +34,8 @@ public class PatientSearchView implements CommandProcess {
 					list_res_date.add(list_res.get(i).getReservation_date());
 				}
 			}
-			ArrayList<String> dep = new ArrayList<String>();
-			dep.add(list_doc.get(0).getDepartment());
-			for(int i=1; i<list_doc.size(); i++) {
-				if(!dep.contains(list_doc.get(i).getDepartment())) {
-					dep.add(list_doc.get(i).getDepartment());
-				}
-			}
-			request.setAttribute("dep", dep);
 //			System.out.println("list_res_date.size() == >"+list_res_date.size());
+			
 			request.setAttribute("list_doc", list_doc);
 			request.setAttribute("list_res_date", list_res_date);
 		} catch (Exception e) {

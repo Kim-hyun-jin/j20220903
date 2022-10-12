@@ -66,9 +66,9 @@ public class ReservationDel implements CommandProcess {
 			System.out.println("getMessage->"+e.getMessage());
 		}
 		
-		return "reservation/reservationDel.jsp";
 
-		//return "reservation/reservationView.jsp";
+
+		return "reservation/reservationView.jsp";
 	}
 
 }

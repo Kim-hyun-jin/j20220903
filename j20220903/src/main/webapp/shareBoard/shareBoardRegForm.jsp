@@ -33,7 +33,7 @@ table {
 </style>
 </head>
 <body>
-<!-- 	<div id="container"> -->
+	<div id="container">
 
 		<%@ include file="../top-side.jsp" %>
 
@@ -70,8 +70,8 @@ table {
 					<input type="button" value="목록" onclick="location.href='shareBoardView.do?pageNum=${pageNum }'">
 				</center>
 			</form>
-<!-- 		</div>
-	</div> -->
+		</div>
+	</div>
 
 	<%@ include file="../footer-side.jsp"%>
 </body>

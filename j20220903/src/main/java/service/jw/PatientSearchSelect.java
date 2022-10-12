@@ -63,16 +63,8 @@ public class PatientSearchSelect implements CommandProcess {
 					list_res_date.add(list_res.get(i1).getReservation_date());
 				}
 			}
-			ArrayList<String> dep = new ArrayList<String>();
-			dep.add(list_doc.get(0).getDepartment());
-			for(int i1=1; i1<list_doc.size(); i1++) {
-				if(!dep.contains(list_doc.get(i1).getDepartment())) {
-					dep.add(list_doc.get(i1).getDepartment());
-				}
-			}
 //			System.out.println("list_res_date.size() == >"+list_res_date.size());
 			
-			request.setAttribute("dep", dep);
 			request.setAttribute("list_doc", list_doc);
 			request.setAttribute("list_res_date", list_res_date);
 		} catch (Exception e) {

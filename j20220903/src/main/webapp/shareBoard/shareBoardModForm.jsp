@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-	<!-- <div id="container"> -->
+	<div id="container">
 	
 		<%@ include file="../top-side.jsp" %>
 
@@ -66,8 +66,8 @@
 				<input type="submit" value="확인">
 			</center>
 		</form>
-<!-- 		</div>
-	</div> -->
+		</div>
+	</div>
 		
 		<%@ include file="../footer-side.jsp"%>
 </body>

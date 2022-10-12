@@ -10,10 +10,6 @@
 	crossorigin="anonymous"></script>
 
 <style>
-table, td, th {
-  border: 1px solid black;
-  
-}
 table {
 	width: 700px;
 }
@@ -23,12 +19,13 @@ td {
 }
 patient_info_table {
   border-collapse: collapse;
+  padding: 50px;
 }
 
 #area {
   position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
   width: 100%;
- /*  padding-bottom: 56.25%; /* 16:9 비율 */ */
+ padding-bottom: 56.25%; /* 16:9 비율 */ 
 }
 
 #calendar_iframe {
@@ -38,7 +35,15 @@ patient_info_table {
   border: none;
   align-content:center;
 }
+.seperator {
+	border: 1px solid gray ;
+	width: 700px;
+}
 
+.main_content {
+	padding-left: 50px;
+	padding-top: 5px;
+}
 
 
 </style>
@@ -46,10 +51,11 @@ patient_info_table {
 <body>
   	<%@ include file="top-side.jsp" %>
 
+  		<div class="main_content">
 	<article id="schedule">
 		<div class="area" style="width: 500px; height: 50px;">
 	  		<div>
-	  			<a href="<%=context %>/mainCalendarView.do?doctor_no=${doctor_s.doctor_no}">내스케줄</a>
+	  			<a href="<%=context %>/mainCalendarView.do?doctor_no=${doctor_s.doctor_no}">내스케줄  </a><i class="fa-solid fa-arrow-left fa-sm" class="arrow_icon"></i>
 	  		</div>
 	  		<div>
 		      	<iframe id="calendar_iframe" src="mainCalendarMini.do?doctor_no=${doctor_s.doctor_no}" style="width: 720px;"></iframe>
@@ -72,6 +78,7 @@ patient_info_table {
 	</table>
 	</div>
 	</article>
+	</div>
 		
 
 <%@ include file="footer-side.jsp" %>

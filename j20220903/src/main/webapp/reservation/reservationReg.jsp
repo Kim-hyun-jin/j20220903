@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+1<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -120,7 +120,7 @@
 					
 					<%-- <tr><td>제목</td><td>${board.subject}</td></tr>  --%>
 				</tr>
-				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:140px; ">
+				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:160px; ">
 						<%-- <input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"> --%>
 						<input type="button" value="조회" onclick="openPop()">
 						<!-- <a href="#none" target="_blank" onclick="openPop()"><input type="button" value="조회"></a></td> -->

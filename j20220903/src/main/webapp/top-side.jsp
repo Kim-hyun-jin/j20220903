@@ -31,7 +31,7 @@
   				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/user.png" style="width: 60px; border-radius: 50%;"></a>
 			</c:when>
 			<c:otherwise>
-  				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 60px; height:60px; border-radius: 50%;"></a>
+  				<a href="<%=context %>/profile.do" class="header_image"><img id="myphoto" alt="" src="<%=context %>/images/${doctor_s.image}" style="width: 60px; border-radius: 50%;"></a>
 			</c:otherwise>
 		</c:choose>
   	</div>

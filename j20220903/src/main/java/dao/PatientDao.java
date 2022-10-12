@@ -308,14 +308,14 @@ public class PatientDao {
 	 * doctor_no=2 라고 가정 public Patient select(String doctor_no, int patient_no)
 	 * throws SQLException {
 	 */
-	public Patient selectPatient(int patient_no,String doctor_no) throws SQLException {
+	public Patient selectPatient(int patient_no) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		// doctor_no=2 라고 가정
-		String sql = "SELECT * FROM patient WHERE doctor_no = ? AND patient_no=? ";
+		String sql = "SELECT * FROM patient WHERE doctor_no = 2 AND patient_no=? ";
 
 		Patient patient = new Patient();
 
@@ -325,8 +325,7 @@ public class PatientDao {
 			// doctor_no=2 라고 가정
 			// pstmt.setInt(1, doctor_no);
 			// pstmt.setInt(2, patient_no);
-			pstmt.setString(1, doctor_no);
-			pstmt.setInt(2, patient_no);
+			pstmt.setInt(1, patient_no);
 
 			rs = pstmt.executeQuery();
 

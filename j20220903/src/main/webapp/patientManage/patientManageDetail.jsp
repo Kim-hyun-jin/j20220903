@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>환자상세정보</title>
 <%@ include file="../top-side.jsp" %>
+<link type="text/css" href="patientManage/patientManage.css" rel="stylesheet">
 </head>
 <body>
 
