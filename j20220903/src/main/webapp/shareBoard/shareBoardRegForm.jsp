@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <link type="text/css" href="main.css" rel="stylesheet"> -->
 <script src="https://kit.fontawesome.com/54a6153010.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -32,41 +33,46 @@ table {
 </style>
 </head>
 <body>
-	<form action="shareBoardRegAct.do?">
-	
- 		<input type="hidden" name="pageNum" value="${pageNum }">
-		<input type="hidden" name="doctor_no" value="${doctor_no }">
-		
-		<h2 align="center">게시판 글쓰기</h2>
+	<div id="container">
 
-		<table align="center" border="1">
-			<tr>
-				<td>작성자</td>
-				<td></td>
-				<td><input type="text" size="80"
-					value="${doctor_name}" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td colspan="4"><input type="text" name="shareBoard_subject"
-					size="80" required="required" autofocus="autofocus">
-				</td>
-			</tr>
-			<tr>
-				<td>게시글 내용</td>
-				<td colspan="4">
-					<textarea rows="20" name="shareBoard_content" cols="90" required="required" autofocus="autofocus">
-					</textarea>
-				</td>
-			</tr>
-		</table>
+		<%@ include file="../top-side.jsp" %>
 
-		<center>
-			<input type="submit" value="확인"> 
-			<input type="reset"  value="다시작성">
-			<input type="button" value="목록" onclick="location.href='shareBoardView.do?pageNum=${pageNum }'">		
-		</center>
-	</form>
+	<!-- 	<div id="contents"> -->
+			<form action="shareBoardRegAct.do?">
+
+				<input type="hidden" name="pageNum" value="${pageNum }"> <input
+					type="hidden" name="doctor_no" value="${doctor_no }">
+
+				<h2 align="center">게시판 글쓰기</h2>
+
+				<table align="center" border="1">
+					<tr>
+						<td>작성자</td>
+						<td></td>
+						<td><input type="text" size="80" value="${doctor_name}"
+							readonly></td>
+					</tr>
+					<tr>
+						<td>제목</td>
+						<td colspan="4"><input type="text" name="shareBoard_subject"
+							size="80" required="required" autofocus="autofocus"></td>
+					</tr>
+					<tr>
+						<td>게시글 내용</td>
+						<td colspan="4"><textarea rows="10" name="shareBoard_content"
+								cols="90" required="required" autofocus="autofocus">
+					</textarea></td>
+					</tr>
+				</table>
+				<center>
+					<input type="submit" value="확인"> 
+					<input type="reset" value="다시작성"> 
+					<input type="button" value="목록" onclick="location.href='shareBoardView.do?pageNum=${pageNum }'">
+				</center>
+			</form>
+		</div>
+	</div>
+
+	<%@ include file="../footer-side.jsp"%>
 </body>
 </html>

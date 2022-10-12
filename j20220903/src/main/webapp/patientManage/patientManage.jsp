@@ -7,8 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>환자관리</title>
-<script src="https://kit.fontawesome.com/54a6153010.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
+
+<!-- <link type="text/css" href="patientManage.css" rel="stylesheet"> -->
+<style type="text/css">
+	table {
+		border-collapse : collapse;
+		border : 1px solid black;
+		border-width : 0px;
+		height : auto;
+	}
+	
+	span {
+		text-align : center;
+	}
+
+</style>
 </head>
 <body>
   	<%@ include file="../top-side.jsp" %>

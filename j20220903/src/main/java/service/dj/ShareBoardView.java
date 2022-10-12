@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.Doctor;
 import dao.ShareBoard;
 import dao.ShareBoardDao;
 import service.CommandProcess;
@@ -39,6 +40,11 @@ public class ShareBoardView implements CommandProcess {
 			      //공갈 Page 방지 
 			      if(endPage > pageCnt) endPage = pageCnt;
 			      
+			      // 의사정보 세션에서 꺼내오기
+			      HttpSession session = request.getSession();
+			      Doctor doctor = (Doctor)session.getAttribute("doctor_s");
+		
+			      
 			      request.setAttribute("list", list);//제일중요
 			      request.setAttribute("totCnt", totCnt);
 			      request.setAttribute("pageNum", pageNum);
@@ -48,6 +54,7 @@ public class ShareBoardView implements CommandProcess {
 			      request.setAttribute("pageCnt", pageCnt);
 			      request.setAttribute("startPage", startPage);
 			      request.setAttribute("endPage", endPage);
+			      request.setAttribute("doctor", doctor);
 	
 		      }catch (Exception e) {
 		    	  System.out.println("shareBoardView e.getMessage()->" + e.getMessage());
