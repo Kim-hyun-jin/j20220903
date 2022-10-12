@@ -28,6 +28,7 @@
     	  start: date_str.substring(0,10),
     	  end :  date_end.substring(0,10),
     	  //url : "mainCalendarModView.do?schedule_no=${schedule.schedule_no}"
+    	  allDay: true
     	   	  
     	 
    	  };
@@ -37,7 +38,7 @@
 	
 	/* fullcalendar render */
 	
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth', //달 형식으로 캘린더 보이기
@@ -47,12 +48,24 @@
         	  center: 'title',
         	  end: '' // will normally be on the right. if RTL, will be on the left
           },
+          //dayMaxEventRows: true,
           events: schduleList, /* 캘린더에 list를 뿌려주는 event */
 		  height: 300,
+		  eventDataTransform: function(event) {          //롱이벤트 버그 수정                                                                                                                    
+		    	 if(event.allDay)  {  
+		    		var addDate = new Date(event.end);
+		    		addDate.setDate(addDate.getDate() + 1);
+		    		  
+		    		event.end = addDate.toISOString().substring(0,10);
+	        	  }
+	        	  return event;  
+	       	  },    
+		  editable : false
 		  //expandRows: true,
 		  //contentHeight: 200,
 		  //aspectRatio: 5.0,
 		 //calendar.setOption('contentHeight', 30),
+		 
            
           
         });
