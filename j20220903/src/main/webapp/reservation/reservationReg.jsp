@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+1<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -63,7 +63,7 @@
 	}
 	
 	function openPop(){
-	    var popup = window.open('<%=contextsrc%>/reservationSearch.do', '고객조회', 'width=400px,height=300px,scrollbars=yes');
+	    var popup = window.open('<%=contextsrc%>/reservationSearch.do', '', 'width=400px,height=300px,scrollbars=yes');
 	}
 
 </script>
@@ -102,7 +102,7 @@
   	
   		
 
-		<form id="table-style" action="<%=contextsrc %>/reservationRegAct.do" style="background-color: white">
+		<form id="table-style" action="<%=context %>/reservationRegAct.do" style="background-color: white">
 	
 			<table border="1">
 			 <colgroup>
@@ -120,9 +120,10 @@
 					
 					<%-- <tr><td>제목</td><td>${board.subject}</td></tr>  --%>
 				</tr>
-				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:140px; ">
+				<tr><td><input id="name" name="name" type="text" value="" style="text-align:center; width:160px; ">
 						<%-- <input type="button" value="조회" onclick="window.open('<%=context%>/reservationSearch.do')"> --%>
-						<a href="#none" target="_blank" onclick="openPop()"><input type="button" value="조회"></a></td>
+						<input type="button" value="조회" onclick="openPop()">
+						<!-- <a href="#none" target="_blank" onclick="openPop()"><input type="button" value="조회"></a></td> -->
 					<td><input id="num" name="patient_no" type="text" value="" style="text-align:center; width:130px;" ></td>
 					<td><input id="gender" name="gender" type="text" value="" style="text-align:center; width:150px;"></td>
 					<td><input id="birth" name="birth" type="text" value="" style="text-align:center; width:180px;"></td>
@@ -138,8 +139,8 @@
 					<th>예약일</th><th>예약시간</th><th colspan="2">의료진</th>
 				</tr>
 				<tr>
-					<td><input id="reservation_date" name="reservation_date" type="text" required="required" pattern="[0-9]{2}/[0-9]{2}/[0-9]{2}" maxlength="8" placeholder="예) 22/10/07"></td>
-					<td><input id="reservation_hour" name="reservation_hour" type="text" required="required" pattern="[0-9]{2}" placeholder="예) 12" style="width:120px;"></td>
+					<td><input id="reservation_date" name="reservation_date" type="date" required="required"></td>
+					<td><input id="reservation_hour" name="reservation_hour" type="number" required="required" min="9" max="18" placeholder="예) 12" style="width:120px;"></td>
 					<td colspan="2" style="text-align:center; width:200px;" ><select name="doctor_no" >
 							<option value="" selected="selected" colspan="2" style="text-align:center; width:300px;" >-의료진 선택-</option>
 							<c:forEach var="doctor" items="${list_doc }">

@@ -86,7 +86,14 @@ String contextSrc = request.getContextPath();
       });
       
 </script>
+<style type="text/css">
+	
+	.fc-toolbar-chunk {        	    /*  상단 툴바 정렬하기위한 스타일 적용 */
+	  	display: flex; 			    /* 일렬로 나란히 */
+	  	align-items: center;        /* 수직 가운데 정렬 */
+	}
 
+</style>
 
 </head>
 

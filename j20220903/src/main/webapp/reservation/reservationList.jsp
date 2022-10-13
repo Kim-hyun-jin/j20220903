@@ -22,8 +22,12 @@
 		overflow: scroll;
 
 	}
-	table {
-		background: cornflowerblue;
+	th {
+		background: #D4F4FA;
+	}
+	#chk:hover {
+		border-color: #DB9CFF;
+		box-shadow: 0 0 10px #DB9CFF;
 	}
 </style>
 
@@ -104,10 +108,9 @@
 
 
 
-<!-- 	<article id="table-style">
+	<article id="table-style">
 
  	 </article>
 
-  	</div> -->
   	
 <%@ include file="../footer-side.jsp" %>
