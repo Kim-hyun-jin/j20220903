@@ -141,7 +141,7 @@
 				<tr>
 					<td><input id="reservation_date" name="reservation_date" type="date" required="required"></td>
 					<td><input id="reservation_hour" name="reservation_hour" type="number" required="required" min="9" max="18" placeholder="예) 12" style="width:120px;"></td>
-					<td colspan="2" style="text-align:center; width:200px;" ><select name="doctor_no" >
+					<td colspan="2" style="text-align:center; width:200px;" ><select name="doctor_no" style="font: initial;">
 							<option value="" selected="selected" colspan="2" style="text-align:center; width:300px;" >-의료진 선택-</option>
 							<c:forEach var="doctor" items="${list_doc }">
 								<option  value=${doctor.doctor_no } style="text-align:center; width:200px;">${doctor.doctor_name }</option>

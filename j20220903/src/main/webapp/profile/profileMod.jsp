@@ -83,7 +83,7 @@ function readURL(input) {
 			<tr class="table_row"><td>이름</td><td><input type="text" name="doctor_name" required="required" value="${doctor_name}"></td></tr>
 			<tr class="table_row"><td>비밀번호</td><td><input type="text" name="password" required="required" value="${password}"></td></tr>
 			<tr class="table_row"><td>담당과</td><td>
-				<select name="department" id="department">
+				<select name="department" id="department" style="font: initial;">
 					<option selected="selected">${department}</option>
 					<option value="간담췌외과" >간담췌외과</option>
 					<option value="소화기내과">소화기내과</option>

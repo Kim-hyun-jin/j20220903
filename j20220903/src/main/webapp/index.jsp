@@ -75,8 +75,8 @@ patient_info_table {
 <%-- 	<c:foreach var="patientInfo_main" items="${myPatientList}"> --%>
 	<c:forEach var="patientInfo_main" items="${myPatientList}">
 		<tr><td>${patientInfo_main.chart_no}</td><td>${patientInfo_main.patient_name}</td>
-		<td>${patientInfo_main.gender}</td><td>${patientInfo_main.chart_symptom}</td>
-		<td>${patientInfo_main.chart_disease}</td><td>${patientInfo_main.chart_date}</td></tr>
+		<td>${patientInfo_main.gender}</td><td>${patientInfo_main.chart_disease}</td>
+		<td>${patientInfo_main.chart_symptom}</td><td>${patientInfo_main.chart_date}</td></tr>
 	</c:forEach>
 	
 	</table>
