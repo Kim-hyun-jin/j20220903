@@ -21,6 +21,9 @@ td {
 	padding: 10px;
 	border-color: white;
 }
+th {
+	background-color: #D4F4FA;
+}
 patient_info_table {
   border-collapse: collapse;
   padding: 50px;
@@ -48,7 +51,9 @@ patient_info_table {
 	padding-left: 50px;
 	padding-top: 5px;
 }
-
+#second_title {
+	padding: 10px;
+}
 
 </style>
 </head>
@@ -69,9 +74,9 @@ patient_info_table {
  
    <article id="patient_info">
   	<div class="area" style="width: 500px; height: 50px;">
-  	<div>최근 환자</div>
+  	<div id="second_title">최근 환자</div>
   		<table border="2" id="patient_info_table">
-	<tr><td>차트번호</td><td>환자명</td><td>성별</td><td>병명</td><td>증상</td><td>진단일</td></tr>
+	<tr><th>차트번호</th><th>환자명</th><th>성별</th><th>병명</th><th>증상</th><th>진단일</ths></tr>
 <%-- 	<c:foreach var="patientInfo_main" items="${myPatientList}"> --%>
 	<c:forEach var="patientInfo_main" items="${myPatientList}">
 		<tr><td>${patientInfo_main.chart_no}</td><td>${patientInfo_main.patient_name}</td>

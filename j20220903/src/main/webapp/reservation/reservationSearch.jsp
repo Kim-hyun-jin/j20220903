@@ -11,7 +11,7 @@
    font: initial;
 }
 	table {
-	background: lightsteelblue;
+	background: white;
 }
 @font-face {
     font-family: 'GangwonEduSaeeum_OTFMediumA';
