@@ -76,9 +76,9 @@ String contextSrc = request.getContextPath();
           eventClick:function(info) { 
           },
 
-		  height: 550,
-		  contentHeight: 200,
-		  aspectRatio: 1.8
+		  height: 600,
+		  contentHeight: 250,
+		  aspectRatio: 1.6
 		  
           
         });
@@ -102,6 +102,15 @@ String contextSrc = request.getContextPath();
 	  	display: none;
 	}
 
+.fc, .fc *, .fc *:before, .fc *:after{
+	font-size: 19px;
+}
+
+	.fc .fc-button-primary{
+		width : 60px;
+	
+	}
+
 </style>
 
 </head>
@@ -110,6 +119,6 @@ String contextSrc = request.getContextPath();
 <%@ include file="../top-side.jsp" %>
 	  	<article id="schedule">
 	  		<p> 내스케줄 	  		
-	  			<div style=" size:auto; width: 700px; float: center; padding-left: 10px;" id='calendar' ></div>   <!-- 캘린더 view -->
+	  			<div style=" size:auto; width: 850px; float: center; padding-left: 60px;" id='calendar' ></div>   <!-- 캘린더 view -->
 	 	 </article>
 <%@ include file="../footer-side.jsp" %>
