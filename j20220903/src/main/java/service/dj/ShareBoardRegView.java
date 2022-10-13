@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Doctor;
 import dao.DoctorDao;
-import dao.ShareBoard;
-import dao.ShareBoardDao;
 import service.CommandProcess;
 
 public class ShareBoardRegView implements CommandProcess {

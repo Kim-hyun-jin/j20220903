@@ -13,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import oracle.net.aso.l;
 
 //singleton + DBCP
 public class DoctorDao {
@@ -285,7 +284,6 @@ public class DoctorDao {
 	    ResultSet rs = null;
 	    
 	    String sql="select image from doctor where doctor_no ="+ doctor_no;
-	    Doctor doctor = new Doctor();
 	    try {
 	    	  conn = getConnection();
 	    	  pstmt = conn.prepareStatement(sql);	

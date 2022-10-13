@@ -10,7 +10,14 @@
 <title>Insert title here</title>
 <link type="text/css" href="<%=context %>/main.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/54a6153010.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
+	$(function(){
+		if (${doctor_s.doctor_no==null}) {
+			alert("잘못 된 접근입니다. \n 로그인정보 없음.");
+			location.href="<%=context%>/logout.do"
+		}
+	})
 	function logout() {
 		if (confirm("로그아웃을 하시겠습니까?")) {
 			location.href="<%=context%>/logout.do";

@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 
-import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.ServletException;

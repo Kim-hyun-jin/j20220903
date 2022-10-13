@@ -101,14 +101,16 @@ public class PatientDao {
 				  + "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
 				  + "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
 				  + "LEFT JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
-				  + "WHERE p.patient_name like ?";
+				  + "WHERE p.patient_name like ?"
+				  + "ORDER BY p.patient_no";
 		String sqlbase2			= 
 				"SELECT *\r\n"
 						+ "FROM patient p\r\n"
 						+ "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
 						+ "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
 						+ "INNER JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
-						+ "WHERE p.patient_name like ?";
+						+ "WHERE p.patient_name like ?"
+						+ "ORDER BY p.patient_no";
 		try {
 			conn = getConnection();
 			if(!reservationDate.equals("")) pstmt = conn.prepareStatement(sqlbase2);
@@ -204,16 +206,25 @@ public class PatientDao {
 		PreparedStatement pstmt	= null;
 		ResultSet rs			= null;
 		String sqlbase			= 
-					  "SELECT *\r\n"
-					  + "FROM patient p\r\n"
-					  + "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
-					  + "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
-					  + "LEFT JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
-					  + "WHERE p.patient_name like ?";
-		
+				  "SELECT *\r\n"
+				  + "FROM patient p\r\n"
+				  + "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
+				  + "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
+				  + "LEFT JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
+				  + "WHERE p.patient_name like ?"
+				  + "ORDER BY p.patient_no";
+		String sqlbase2			= 
+				"SELECT *\r\n"
+						+ "FROM patient p\r\n"
+						+ "INNER JOIN (select * from doctor where department like ?) dd ON p.doctor_no=dd.doctor_no\r\n"
+						+ "INNER JOIN (select * from doctor where doctor_name like ?) d ON p.doctor_no=d.doctor_no\r\n"
+						+ "INNER JOIN (select * from reservation where reservation_date like ?) r ON p.patient_no=r.patient_no\r\n"
+						+ "WHERE p.patient_name like ?"
+						+ "ORDER BY p.patient_no";
 		try {
 			conn = getConnection();
-			pstmt= conn.prepareStatement(sqlbase);
+			if(!reservationDate.equals("")) pstmt = conn.prepareStatement(sqlbase2);
+			else pstmt= conn.prepareStatement(sqlbase);
 			pstmt.setString(1, "%"+department+"%");
 			pstmt.setString(2, "%"+doctorName+"%");
 			pstmt.setString(3, "%"+reservationDate+"%");
@@ -391,7 +402,7 @@ public class PatientDao {
 				patientInf.setPatient_name(rs.getString("patient_name"));
 				patientInf.setGender(rs.getString("gender"));
 				patientInf.setChart_symptom(rs.getString("chart_symptom"));
-				patientInf.setChart_symptom(rs.getString("chart_disease"));
+				patientInf.setChart_disease(rs.getString("chart_disease"));
 				patientInf.setChart_date(rs.getDate("chart_date"));
 				list.add(patientInf);
 			}
