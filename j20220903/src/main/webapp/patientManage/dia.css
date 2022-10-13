@@ -8,6 +8,11 @@
 		width: 100%;
 		position: relative;
 	}
+	textarea {
+		width: 400px;
+		height: 140px;
+		resize: none;
+	}
 	.resultBox {
 		width : 90%;
 		height: 90%;

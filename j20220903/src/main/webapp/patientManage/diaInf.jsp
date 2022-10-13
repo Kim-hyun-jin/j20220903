@@ -13,7 +13,7 @@
 	
 	<div class="mainContents">
 	<div class="resultBox">
-		<table class="inf">
+		<table class="inf" style="height: 85%;">
 			<tr><th>차트번호</th><td>${diaInf.chart_no }</td></tr>
 			<tr><th>환자명</th><td>${patientInf.patient_name }</td></tr>
 			<tr><th>진료자</th><td>${diaInf.doctor_name }(${diaInf.department })</td></tr>
@@ -27,8 +27,7 @@
 								</td></tr>
 			
 		</table>
-		
-		<div class="button"><input type="button" value="진단상세수정"></div>
+		<div class="button"><input type="button" value="진단상세수정" onclick="location.href='<%=context%>/diaModView.do?patient_no=${patientInf.patient_no}&chart_no=${diaInf.chart_no}'"></div>
 		<div class="button"><input type="button" value="뒤로가기" onclick="location.href='diaHistroyView.do?patient_no=${patientInf.patient_no}'"></div>
 	</div>
 	</div>

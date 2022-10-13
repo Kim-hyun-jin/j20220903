@@ -9,6 +9,48 @@
 <link type="text/css" href="patientManage/dia.css" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+	function symptomChk(obj,maxByte){
+		var str = obj.value;
+		var str_len = str.length;
+		var rbyte=0;
+		var rlen=0;
+		var one_char="";
+		var str2="";
+		
+		for(var i=0; i<str_len; i++){
+			one_char=str.charAt(i);
+			if (escape(one_char).length>3)	rbyte+=3;
+			else	rbyte++;
+			if (rbyte<=maxByte) rlen= i+1;
+		}
+		if(rbyte>maxByte){
+			alert("증상은 최대"+maxByte+"byte를 초과 할 수 없습니다.");
+			str2=str.substr(0,rlen);
+			obj.value=str2;
+			symptomChk(obj.maxByte);
+		} else document.getElementById('symptomInfo').innerText=rbyte;
+	}
+	function diseaseChk(obj,maxByte){
+		var str = obj.value;
+		var str_len = str.length;
+		var rbyte=0;
+		var rlen=0;
+		var one_char="";
+		var str2="";
+		
+		for(var i=0; i<str_len; i++){
+			one_char=str.charAt(i);
+			if (escape(one_char).length>3)	rbyte+=3;
+			else	rbyte++;
+			if (rbyte<=maxByte) rlen= i+1;
+		}
+		if(rbyte>maxByte){
+			alert("병명은 최대"+maxByte+"byte를 초과 할 수 없습니다.");
+			str2=str.substr(0,rlen);
+			obj.value=str2;
+			symptomChk(obj.maxByte);
+		} else document.getElementById('diseaseInfo').innerText=rbyte;
+	}
 /*  	function addList() {
 		var html = `<article class="drugCnt"><select name="drug_list" onselect="checkDupl()">
 						<c:forEach var="drug" items="${drug }" >
@@ -36,8 +78,10 @@
 			<input type="hidden" name="patient_no" value="${patient_no }">
 			<table border="1">
 			<caption><h2>진단 등록</h2></caption>
-			<tr><td>증상</td><td><textarea rows="10"  cols="100" name="chart_symptom" style="width: 400px; height: 150px; resize: none;" required="required"></textarea></td></tr>
-			<tr><td>병명</td><td><textarea rows="10"  cols="100" name="chart_disease" style="width: 400px; height: 150px; resize: none;" required="required"></textarea></td></tr>
+			<tr><td>증상</td><td><textarea rows="10"  cols="100" name="chart_symptom" 
+			onKeyUp="symptomChk(this,'50')" required="required"></textarea><br><span id="symptomInfo">0</span>/50bytes</td></tr>
+			<tr><td>병명</td><td><textarea rows="10"  cols="100" name="chart_disease" 
+			onKeyUp="diseaseChk(this,'20')" required="required"></textarea><br><span id="diseaseInfo">0</span>/20bytes</td></tr>
 			<tr><td>처방약</td>
 				<td id="drug_list">
 <!--  				<article class="drugCnt"><select name="drug_list" onchange="checkDupl()">

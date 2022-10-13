@@ -10,6 +10,10 @@
 	crossorigin="anonymous"></script>
 
 <style>
+#contents{
+	overflow: scroll ;
+	overflow-x:hidden;
+}
 table {
 	width: 700px;
 }
