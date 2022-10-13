@@ -31,10 +31,9 @@ public class DiaInfView implements CommandProcess {
 			
 			PatientInf pi = pd.patientInf(patient_no);
 			DiaHistoryInf dhi = dhd.diaInf(patient_no,chart_no); 
-			ArrayList<DiaHistoryInf> dhl = dhd.diaHistoryList(patient_no);
+//			ArrayList<DiaHistoryInf> dhl = dhd.diaHistoryList(patient_no);
 			ArrayList<DiaDrugInf> ddi = ddd.diaDrugList(patient_no, chart_no);
 			
-
 			
 			request.setAttribute("diaInf", dhi);
 			request.setAttribute("patientInf", pi);

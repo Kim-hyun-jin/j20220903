@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import dao.DiaHistoryDao;
 import dao.Doctor;
-import dao.PatientDao;
 import service.CommandProcess;
 
 public class DiaRegAct implements CommandProcess {

@@ -1,7 +1,6 @@
 package service.lhj;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;

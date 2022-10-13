@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Patient;
 import dao.PatientDao;
 import service.CommandProcess;
 
@@ -20,8 +19,8 @@ public class PatientManageDelete implements CommandProcess {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String doctor_no = request.getParameter("doctor_no");
-		doctor_no = "2";	//임의 지정
+//		String doctor_no = request.getParameter("doctor_no");
+//		doctor_no = "2";	//임의 지정
 		
 		int patient_no = Integer.parseInt(request.getParameter("patient_no"));
 		

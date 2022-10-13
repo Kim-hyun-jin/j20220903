@@ -10,7 +10,7 @@
 	}
 	textarea {
 		width: 400px;
-		height: 140px;
+		height: 130px;
 		resize: none;
 	}
 	.resultBox {
@@ -21,8 +21,7 @@
 		margin-top : 3%;
 		position: relative;
 		border: 3px solid lightsteelblue;
-		overflow: scroll;
-		overflow-x:hidden;
+		overflow: auto;
 		text-align: center;
 	}
 	select {
