@@ -13,6 +13,10 @@
 		border: 1px solid black; 
 		border-collapse: collapse;
 	}
+	
+	th {
+		background-color: #D4F4FA;
+	}
 </style>
 <script type="text/javascript">
 	if (${regResult!=null}) {

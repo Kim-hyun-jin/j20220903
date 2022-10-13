@@ -34,7 +34,10 @@
 	
 	.profile_update_content {
 		margin: 20px;
-		padding: 30px;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		padding-left: 50px;
+		padding-right: 100px;
 		border: 1px solid ;
 		border-color: gray;
 	}
@@ -79,10 +82,10 @@
 				<input type="hidden" value="${doctor_s.password}" name="password">
 				<input type="hidden" value="${img_path}" name="img_path">
 		
-  			<div class="table_row">이름: ${doctor_s.doctor_name}</div>
-  			<div class="table_row">사번: ${doctor_s.doctor_no}</div>
-  			<div class="table_row">담당과:${doctor_s.department}</div>
-  			<div class="table_row">비밀번호:****</div>
+  			<div class="table_row">이름:      ${doctor_s.doctor_name}</div>
+  			<div class="table_row">사번:      ${doctor_s.doctor_no}</div>
+  			<div class="table_row">담당과:     ${doctor_s.department}</div>
+  			<div class="table_row">비밀번호:    ****</div>
   			
   			
   			<input type="submit" value="정보수정" id="mod_button">

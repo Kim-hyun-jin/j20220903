@@ -38,6 +38,9 @@ tr.line:hover {
 	cursor: pointer;
 	color: white;
 }
+th {
+	background-color: #D4F4FA;
+}
 </style>
 </head>
 
