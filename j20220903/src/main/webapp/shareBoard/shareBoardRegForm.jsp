@@ -59,9 +59,11 @@ table {
 					</tr>
 					<tr>
 						<td>게시글 내용</td>
-						<td colspan="4"><textarea rows="10" name="shareBoard_content"
+						<td colspan="4">
+							<textarea rows="10" name="shareBoard_content"
 								cols="90" required="required" autofocus="autofocus">
-					</textarea></td>
+							</textarea>
+						</td>
 					</tr>
 				</table>
 				<center>
