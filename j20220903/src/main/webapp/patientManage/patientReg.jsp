@@ -53,13 +53,13 @@ tr.line:hover {
 	
 	<table border="2">
    <!-- <tr><td>환자번호: </td><td><input type="number" name="patient_no" min="10" max="100"></td></tr> -->
-		<tr><td>환자이름: </td><td><input type="text" class="line" name="patient_name" required="required" value="${list.patient_name }"></td></tr>
-		<tr><td>성별:	</td><td><input type="text" class="line" name="gender" required="required" value="${list.gender }"></td></tr>
-		<tr><td>생년월일: </td><td><input type="text" class="line" name="birth" required="required" value="${list.birth }"></td></tr>
-		<tr><td>주소: </td><td><input type="text" class="line" name="address" value="${list.address }"></td></tr>
-		<tr><td>연락처: </td><td><input type="text" class="line" name="contact" value="${list.contact}"></td></tr>
-		<tr><td>보호자연락처: </td><td><input type="text" class="line" name="protector_contact" value="${list.protector_contact }"></td></tr>
-		<tr><td>주민번호: </td><td><input type="tel" class="line" name="social_number" 
+		<tr><td>환자이름: </td><td><input type="text" class="line" name="patient_name" required="required" placeholder="이름을 입력하세요" value="${list.patient_name }"></td></tr>
+		<tr><td>성별:	</td><td><input type="text" class="line" name="gender" required="required" placeholder="예) 남 / 여" value="${list.gender }"></td></tr>
+		<tr><td>생년월일: </td><td><input type="text" class="line" name="birth" required="required" placeholder="예) 19991111" value="${list.birth }"></td></tr>
+		<tr><td>주소: </td><td><input type="text" class="line" name="address" placeholder="주소를 입력하세요" value="${list.address }"></td></tr>
+		<tr><td>연락처: </td><td><input type="text" class="line" name="contact" placeholder="예) 01022222222" value="${list.contact}"></td></tr>
+		<tr><td>보호자연락처: </td><td><input type="text" class="line" name="protector_contact" placeholder="예) 01012345678" value="${list.protector_contact }"></td></tr>
+		<tr><td>주민번호: </td><td><input type="tel" class="line" placeholder="예) 9911111234567" name="social_number" 
 		pattern="[0-9]{6}[0-9]{7}" required="required" value="${list.social_number }"></td></tr>
 		
 		<!-- patientDto 에서 담당의만 제외한 정보 -->
