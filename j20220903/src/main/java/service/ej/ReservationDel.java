@@ -49,8 +49,14 @@ public class ReservationDel implements CommandProcess {
 			for(String check : chk) {
 				int i = Integer.parseInt(check);
 				System.out.println("선택된 번호"+i);
+				if(i==-1) {
+					int i2=reservation_date.length-1;
+					int result = rd.delete(reservation_date[i2], reservation_hour[i2], doctor_no[i2]);
+					resultset = resultset+result;
+				} else {
 				int result = rd.delete(reservation_date[i], reservation_hour[i], doctor_no[i]);
 				resultset = resultset+result;
+				}
 			}
 			System.out.println("요청값 : "+chk.length+"중 처리값 :"+resultset);
 			System.out.println("ReservationDel 4");

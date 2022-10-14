@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Doctor;
 import dao.DoctorDao;
@@ -20,6 +21,15 @@ public class PatientSearchView implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("PatientSearchView Start...");
+		HttpSession session = request.getSession();
+		session.removeAttribute("searchSet");
+		session.removeAttribute("list_pat");
+		session.removeAttribute("list_res_date");
+		session.removeAttribute("department");
+		session.removeAttribute("doctorName");
+		session.removeAttribute("reservationDate");
+		session.removeAttribute("patientName");
+		
 		try {
 			DoctorDao dd = DoctorDao.getInstance();
 			ReservationDao rd = ReservationDao.getInstance();
@@ -34,20 +44,23 @@ public class PatientSearchView implements CommandProcess {
 				}
 			}
 			ArrayList<String> dep = new ArrayList<String>();
+			ArrayList<String> nam = new ArrayList<String>();
 			dep.add(list_doc.get(0).getDepartment());
+			nam.add(list_doc.get(0).getDoctor_name());
 			for(int i=1; i<list_doc.size(); i++) {
 				if(!dep.contains(list_doc.get(i).getDepartment())) {
 					dep.add(list_doc.get(i).getDepartment());
 				}
+				if(!nam.contains(list_doc.get(i).getDoctor_name())) {
+					nam.add(list_doc.get(i).getDoctor_name());
+				}
 			}
-			request.setAttribute("dep", dep);
-//			System.out.println("list_res_date.size() == >"+list_res_date.size());
-			request.setAttribute("list_doc", list_doc);
-			request.setAttribute("list_res_date", list_res_date);
+			session.setAttribute("dep", dep);
+			session.setAttribute("nam", nam);
+			session.setAttribute("list_res_date", list_res_date);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("PatientSearchView ==> "+e.getMessage());
 		}
-		
 		return "patientSearch/patientSearch2.jsp";
 	}
 
