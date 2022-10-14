@@ -11,6 +11,12 @@
 <link type="text/css" href="patientSearch/patientSearch.css" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+	function dateChk(obj) {
+		alert($(obj.value));
+	}
+	$(function(){
+		alert(${reservationDate };
+	});
 	function dateSel(){
 		var state = jQuery('#diaDate option:selected').val();
 		<c:forEach var="dh" items="${dh }" varStatus="stat">
@@ -34,10 +40,10 @@
 						<th>진료과</th>
 						<td><select name="department">
 								<option value="" selected="selected">선택하지 않음</option>
-								<c:forEach var="dep" items="${dep }">
-									<option value="${dep }" >${dep }</option>
+								<c:forEach var="depart" items="${dep }">
+									<option value="${depart }" >${depart }</option>
 								</c:forEach>
-<!-- 								<option value="간담췌외과" >간담췌외과</option>
+<!-- 							<option value="간담췌외과" >간담췌외과</option>
 								<option value="소화기내과">소화기내과</option>
 								<option value="신장내과">신장내과</option>
 								<option value="정형외과">정형외과</option>
@@ -49,8 +55,8 @@
 						<th>의사명</th>
 						<td><select name="doctorName">
 								<option value="" selected="selected">선택하지 않음</option>
-								<c:forEach var="doctor" items="${list_doc }">
-									<option value=${doctor.doctor_name }>${doctor.doctor_name }</option>
+								<c:forEach var="name" items="${nam }">
+									<option value=${name }>${name }</option>
 								</c:forEach>
 						</select></td>
 					</tr> 
@@ -67,7 +73,7 @@
 					<tr>
 						<th>환자명</th>
 						<td><input type="text" name="patientName" id="patientName"></td>
-						<td><input type="submit" value="검색"></td>
+						<td><input type="submit" value="검색" onclick="dateChk(this)"></td>
 					</tr> 
 				</table>
 			</form>	

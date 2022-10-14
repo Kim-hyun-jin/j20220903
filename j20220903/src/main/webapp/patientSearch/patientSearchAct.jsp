@@ -36,11 +36,14 @@
 					<tr>
 						<th>진료과</th>
 						<td><select name="department">
-								<option value="" selected="selected">선택하지 않음</option>
+								<option value="">선택하지 않음</option>
 								<c:forEach var="dep" items="${dep }">
-									<option value="${dep }" >${dep }</option>
+									<c:choose>
+										<c:when test="${dep==department }"><option value="${dep }" selected="selected">${dep }</option></c:when>
+										<c:otherwise><option value="${dep }" >${dep }</option></c:otherwise>
+									</c:choose>
 								</c:forEach>
-<!-- 								<option value="간담췌외과" >간담췌외과</option>
+<!-- 							<option value="간담췌외과" >간담췌외과</option>
 								<option value="소화기내과">소화기내과</option>
 								<option value="신장내과">신장내과</option>
 								<option value="정형외과">정형외과</option>
@@ -51,9 +54,12 @@
 					<tr>
 						<th>의사명</th>
 						<td><select name="doctorName">
-								<option value="" selected="selected">선택하지 않음</option>
-								<c:forEach var="doctor" items="${list_doc }">
-									<option value=${doctor.doctor_name }>${doctor.doctor_name }</option>
+								<option value="">선택하지 않음</option>
+								<c:forEach var="name" items="${nam }">
+									<c:choose>
+										<c:when test="${name==doctorName }"><option value=${name } selected="selected">${name }</option></c:when>
+										<c:otherwise><option value=${name }>${name }</option></c:otherwise>
+									</c:choose>
 								</c:forEach>
 						</select></td>
 					</tr> 
@@ -65,11 +71,11 @@
 									<option value=${reservationDate }>${reservationDate }</option>
 								</c:forEach>
 						</select> --%>
-						<input type="date" name="reservationDate" class="select"></td>
+						<input type="date" name="reservationDate" class="select" value="${reservationDate }"></td>
 					</tr> 
 					<tr>
 						<th>환자명</th>
-						<td><input type="text" name="patientName" id="patientName"></td>
+						<td><input type="text" name="patientName" id="patientName" value="${patientName }"></td>
 						<td><input type="submit" value="검색"></td>
 					</tr> 
 				</table>
@@ -110,7 +116,7 @@
 		<div class="patientInf3">
 			<table class="inf">
 				<tr><th>예약정보</th><td>
-				<c:if test="${pi.reservation_date.get(0)==null }">예약정보 없음.</c:if>
+				<c:if test="${pi.reservation_date.get(0)==null }">없음.</td></c:if>
 				<c:if test="${pi.reservation_date.get(0)!=null }">
 				<c:forEach var="date" items="${pi.reservation_date }" varStatus="stat">
 						<fmt:parseDate value = "${date }"  pattern = "yy/MM/dd" var = "dateRs"/>
@@ -121,7 +127,7 @@
 			</table>
 		</div>
 		<div class="patientInf2">
-			<c:if test="${dh.isEmpty() }">진단내역 : 없음.<br></c:if>
+			<c:if test="${dh.isEmpty() }"><table class="inf"><tr><th>진단내역</th><td>없음.</td></tr></table><br></c:if>
 			<c:if test="${!dh.isEmpty() }">
 				<select name="diaDate" id="diaDate" onchange="dateSel()">
 					<option>진단내역보기</option>

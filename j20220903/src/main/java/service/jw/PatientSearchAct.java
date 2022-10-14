@@ -1,19 +1,18 @@
 package service.jw;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.Doctor;
-import dao.DoctorDao;
 import dao.Patient;
 import dao.PatientDao;
-import dao.Reservation;
-import dao.ReservationDao;
 import service.CommandProcess;
 
 public class PatientSearchAct implements CommandProcess {
@@ -23,56 +22,38 @@ public class PatientSearchAct implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("PatientSearchAct 작동...");
 
+		HttpSession session = request.getSession();
+		
 		String department = request.getParameter("department");
 		String doctorName = request.getParameter("doctorName");
 		String reservationDate = request.getParameter("reservationDate");
-		System.out.println("hi" + reservationDate);
-		System.out.println("hi" + reservationDate);
-		
+		String patientName = request.getParameter("patientName");
 		if (reservationDate == null || reservationDate == "") {
 			reservationDate = "";
 		}
-		
 		if (reservationDate != null && reservationDate != "") {
 			reservationDate = reservationDate.replaceAll("-", "/"); 
 			reservationDate = reservationDate.substring(reservationDate.length()-8, reservationDate.length());
 		}
 		
-		String patientName = request.getParameter("patientName");
+		session.setAttribute("department", department);
+		session.setAttribute("doctorName", doctorName);
+		session.setAttribute("reservationDate", request.getParameter("reservationDate"));
+		session.setAttribute("patientName", request.getParameter("patientName"));
 		
 		try {
 			PatientDao pd = PatientDao.getInstance();
-			DoctorDao dd = DoctorDao.getInstance();
-			ReservationDao rd= ReservationDao.getInstance();
 			
 			List<Patient> list_pat = pd.patientSearch(department, doctorName, reservationDate, patientName);
 			ArrayList<ArrayList<String>> searchSet = pd.searchSet(department, doctorName, reservationDate, patientName);
 			
-			List<Doctor> list_doc = dd.doctorList("");
-			List<Reservation> list_res=rd.reserList("");
-			
 			List<String> list_res_date = new ArrayList<String>();
-			list_res_date.add(list_res.get(0).getReservation_date()); 
-			for(int i=1; i<list_res.size(); i++) {
-				if(!list_res.get(i).getReservation_date().equals(list_res.get(i-1).getReservation_date())) {
-					list_res_date.add(list_res.get(i).getReservation_date());
-				}
-			}
-			ArrayList<String> dep = new ArrayList<String>();
-			dep.add(list_doc.get(0).getDepartment());
-			for(int i=1; i<list_doc.size(); i++) {
-				if(!dep.contains(list_doc.get(i).getDepartment())) {
-					dep.add(list_doc.get(i).getDepartment());
-				}
-			}
 			System.out.println("list_pat size ==> "+list_pat.size());
 			System.out.println("서치셋 size ==> "+searchSet.size());
-			request.setAttribute("dep", dep);
-			request.setAttribute("searchSet", searchSet);
-			request.setAttribute("list_pat", list_pat);
-			request.setAttribute("list_doc", list_doc);
-			request.setAttribute("list_res", list_res);
-			request.setAttribute("list_res_date", list_res_date);
+			session.setAttribute("searchSet", searchSet);
+			session.setAttribute("list_pat", list_pat);
+			session.setAttribute("list_res_date", list_res_date);
+			
 		} catch (Exception e) {
 			System.out.println("patientSearchAct e.getMessage"+ e.getMessage());
 		}
