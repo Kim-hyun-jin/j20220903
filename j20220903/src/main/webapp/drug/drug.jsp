@@ -16,14 +16,14 @@
   		<form action="<%=context%>/drugSearch.do">
 	  		<span class="drug_search">약품분류</span>
 	  		<select name="drug_class">
-	  			<option value="empty"></option>
-	  			<option value="shot">주사제</option>
-	  			<option value="soft">경질캡슐</option>
-	  			<option value="liquid">액제</option>
+	  			<option value="empty" <c:if test="${'empty' eq drug_class }">selected="selected"</c:if>></option>
+	  			<option value="shot" <c:if test="${'shot' eq drug_class }">selected="selected"</c:if>>주사제</option>
+	  			<option value="soft" <c:if test="${'soft' eq drug_class }">selected="selected"</c:if>>경질캡슐</option>
+	  			<option value="liquid" <c:if test="${'liquid' eq drug_class }">selected="selected"</c:if>>액제</option>
 	  		</select><p>
 	  		
 	  		<span class="drug_search">약품명</span>
-	  		<input type="text" name="drug_name" style="margin-left: 33px; border-radius: 5px; vertical-align: middle;">
+	  		<input type="text" name="drug_name" value="${drug_name }" style="margin-left: 33px; border-radius: 5px; vertical-align: middle;">
 	  		<input type="submit" id="search_btn" alt="search_btn" value="">
   		</form>
   		
